@@ -1,0 +1,1 @@
+## Course Repository for Spatial Thinking with GIS - Spring 2026. Course Listing UENV3200 + UURB3210 - The New School, NYC. © 2026 by Stephen Metts | licensed under CC BY-NC-SA 4.0.  See License File Located in Repository. 
