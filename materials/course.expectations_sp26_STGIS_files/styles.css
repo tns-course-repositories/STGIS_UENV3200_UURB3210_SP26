@@ -5,7 +5,6 @@ nav#TOC a::first-letter {
   vertical-align: middle;
 }
 
-
 a {
 	color:#45A29E;
 }
@@ -54,7 +53,6 @@ a.external:after {
     border-left: 1px solid #45A29E;
     color: #45A29E !important;
   }
-
 
 
 
