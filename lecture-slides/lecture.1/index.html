@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <title>Class 1 - Lecture Introduction to Spatial Thinking, Spatial Data &amp; GIS</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-bc5d0e4cc052d46e51a47a8e2a8553d8.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Class 1 - Lecture Introduction to Spatial Thinking, Spatial Data &amp; GIS</h1>
+  <p class="subtitle">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section id="spatial-thinking---definition-and-introduction" class="slide level2">
+<h2>Spatial Thinking - definition and introduction</h2>
+<p><br></p>
+<p>Spatial thinking is defined as the knowledge, skills, and habits of mind to use concepts of space, tools of representation like maps and graphs, and processes of reasoning to organize and solve problems.<sup>1</sup></p>
+<div class="footer">
+<p>Source: <a href="https://nap.nationalacademies.org/read/11019/chapter/1">Learning to Think Spatially</a></p>
+</div>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Downs and de Souza 2005</p></li></ol></aside></section>
+<section id="spatial-thinking---connections-to-mental-maps" class="slide level2">
+<h2>Spatial Thinking - Connections to Mental Maps</h2>
+<p><em>Mental maps are a way of combining our objective knowledge of places in addition to our subjective perceptions, or opinions, of locations around the world.</em></p>
+<p><img data-src="index_files/img/steinberg_1976.jpeg" class="absolute" style="top: 270px; left: 680px; width: 330px; "></p>
+
+<div class="footer">
+<p>Source: <a href="https://www.geographyrealm.com/mental-maps/">What are Mental Maps?</a></p>
+</div>
+<aside><div>
+<p>Saul Steinberg, 1976 | <a href="https://www.illustrationhistory.org/illustrations/view-of-the-world-from-9th-avenue">View of the World from 9th Avenue</a></p>
+</div></aside></section>
+<section id="spatial-thinking---concepts-of-space" class="slide level2">
+<h2>Spatial Thinking - Concepts of Space</h2>
+<ul>
+<li class="fragment">Space, space-time, object/field, place</li>
+<li class="fragment">Primitives of identity:
+<ul>
+<li class="fragment">object, container, boundary, shape, texture</li>
+</ul></li>
+<li class="fragment">Primitive spatial relations:
+<ul>
+<li class="fragment">static location - distance, direction, distribution</li>
+<li class="fragment">connection</li>
+<li class="fragment">dynamic motion - flow, force, intersection/collision</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p>Source: <a href="http://teachspatial.org/elements-of-spatial-thinking/">Elements of Spatial Thinking</a></p>
+</div>
+</section>
+<section id="spatial-thinking---spatial-reasoning" class="slide level2">
+<h2>Spatial Thinking - Spatial Reasoning</h2>
+<ul>
+<li class="fragment">Extracting spatial structures
+<ul>
+<li class="fragment">boundary; pattern; cluster; center; path; surface; network; sequence; hierarchy; region</li>
+</ul></li>
+<li class="fragment">Performing spatial transformations
+<ul>
+<li class="fragment">perspective; rotation; 3D &gt; 2D; scale; interpolation; generalization</li>
+</ul></li>
+<li class="fragment">Drawing functional inferences
+<ul>
+<li class="fragment">spatial correlation; spatial dependence; heterogeneity; extrapolation; prediction; causation</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p>Source: <a href="http://teachspatial.org/elements-of-spatial-thinking/">Elements of Spatial Thinking</a></p>
+</div>
+</section>
+<section id="spatial-thinking---asking-geographic-questions" class="slide level2 scrollable">
+<h2>Spatial Thinking - Asking Geographic Questions</h2>
+<ul>
+<li class="fragment"><strong>Questions about geographic location:</strong>
+<ul>
+<li class="fragment">Where is it?</li>
+<li class="fragment">Why is it here or there?</li>
+<li class="fragment">How much of it is here or there?</li>
+</ul></li>
+<li class="fragment"><strong>Questions about geographic distribution:</strong>
+<ul>
+<li class="fragment">Is it distributed locally or globally?</li>
+<li class="fragment">Is it spatially clustered or dispersed?</li>
+<li class="fragment">Where are the boundaries?</li>
+<li class="fragment">Questions about geographic association:</li>
+</ul></li>
+<li class="fragment"><strong>What else is near it?</strong>
+<ul>
+<li class="fragment">What else occurs with it?</li>
+<li class="fragment">What is absent in its presence?</li>
+</ul></li>
+<li class="fragment"><strong>Questions about geographic interaction:</strong>
+<ul>
+<li class="fragment">Is it linked to something else?</li>
+<li class="fragment">What is the nature of this association?</li>
+<li class="fragment">How much interaction occurs between the locations?</li>
+</ul></li>
+<li class="fragment"><strong>Questions about geographic change:</strong>
+<ul>
+<li class="fragment">Has it always been here?</li>
+<li class="fragment">How has it changed over time and space?</li>
+<li class="fragment">What causes its diffusion or contraction?</li>
+</ul></li>
+</ul>
+<div class="footer">
+<p>Source: <a href="https://saylordotorg.github.io/text_essentials-of-geographic-information-systems/s05-01-spatial-thinking.html">Essentials of Geographic Information Systems</a></p>
+</div>
+</section>
+<section id="maps---historical-frameworks" class="slide level2">
+<h2>Maps - Historical Frameworks</h2>
+<ul>
+<li class="fragment">Mappa Mundi in La Fleur des Histoires, 1459-1463, showing Noah’s Ark on Mount Ararat.</li>
+<li class="fragment">Medieval Period -European, Schematic + Illustrative.</li>
+</ul>
+<p><img data-src="index_files/img/T-O_Mappa_mundi.jpg" class="absolute" style="top: 280px; left: 370px; width: 300px; "></p>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/Mappa_mundi#/media/File:T-O_Mappa_mundi.jpg">Mappa Mundi</a></p>
+</div>
+</section>
+<section id="maps---historical-frameworks-1" class="slide level2">
+<h2>Maps - Historical Frameworks</h2>
+<ul>
+<li class="fragment"><p>A Micronesian navigational chart (Marshall Islands), made of wood, sennit fiber and cowrie shells.</p></li>
+<li class="fragment"><p>Navigational purpose; mapping of ocean swells and currents.</p></li>
+</ul>
+<p><img data-src="index_files/img/Micronesian_navigational_chart.jpg" class="absolute" style="top: 340px; left: 275px; width: 500px; "></p>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/Marshall_Islands_stick_chart">Marshall Islands Stick Chart</a></p>
+</div>
+</section>
+<section id="maps---historical-frameworks-2" class="slide level2">
+<h2>Maps - Historical Frameworks</h2>
+<ul>
+<li class="fragment"><p>Ptolemy’s World Map (Mathematical Treatment of Space, Coordinate system)</p></li>
+<li class="fragment"><p>Reconstituted from Ptolemy’s Geography (circa 150) in the 15th century.</p></li>
+</ul>
+<p><img data-src="index_files/img/Claudius_Ptolemy-_The_World.jpg" class="absolute" style="top: 340px; left: 275px; width: 500px; "></p>
+<div class="footer">
+<p>Source: <a href="https://commons.wikimedia.org/wiki/File:1482_Ulm_Ptolemy_World_Map.jpg">Ptolemy World Map</a></p>
+</div>
+</section>
+<section id="maps---historical-frameworks-3" class="slide level2">
+<h2>Maps - Historical Frameworks</h2>
+<ul>
+<li class="fragment">Mercator Map (Refined Mathematical Approach, Geometric Treatment of Space)</li>
+</ul>
+<p><img data-src="index_files/img/Mercator_1569.png" class="absolute" style="top: 300px; left: 235px; width: 600px; "></p>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/Mercator_1569_world_map">Mercator 1569 world map</a></p>
+</div>
+</section>
+<section id="maps---historical-frameworks-4" class="slide level2">
+<h2>Maps - Historical Frameworks</h2>
+<ul>
+<li class="fragment">Any straight line on a Mercator projection map is a line of constant true bearing relative to true north that enables a navigator to plot a straight-line course. This is also termed a Rhumb Line or Loxodrome.</li>
+</ul>
+<p><img data-src="index_files/img/Rhumb-line-on-Mercator-projection-map.png" class="absolute" style="top: 325px; left: 320px; width: 450px; "></p>
+<div class="footer">
+<p>Source: <a href="https://www.researchgate.net/publication/292590001/figure/fig3/AS:1086766614351891@1636116760948/Rhumb-line-on-Mercator-projection-map.jpg">Rhumb Line Diagram</a></p>
+</div>
+</section>
+<section id="early-geographic-information-systems" class="slide level2" data-background="#000000">
+<h2>Early Geographic Information Systems</h2>
+<p><img data-src="index_files/img/london.gis.png" class="absolute" style="top: 400px; left: 270px; width: 500px; "></p>
+<ul>
+<li class="fragment">19th Century London</li>
+<li class="fragment">John Snow - b.1813, d.1858</li>
+<li class="fragment">‘Father’ of Geographic Information Systems</li>
+</ul>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/John_Snow">John Snow</a></p>
+</div>
+</section>
+<section id="john-snows-broad-street-pump-map" class="slide level2">
+<h2>John Snow’s ‘Broad Street Pump Map’</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="index_files/img/John_Snow.jpg"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="index_files/img/Snow-cholera-map-1.jpg"></p>
+</div></div>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/John_Snow">John Snow</a></p>
+</div>
+</section>
+<section id="john-snows-broad-street-pump-map-1" class="slide level2">
+<h2>John Snow’s ‘Broad Street Pump Map’</h2>
+<p><img data-src="index_files/img/Snow-cholera-map-1.jpg" class="absolute" style="top: 100px; left: 175px; width: 730px; "></p>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/John_Snow">John Snow</a></p>
+</div>
+</section>
+<section id="john-snows-broad-street-pump-map-2" class="slide level2">
+<h2>John Snow’s ‘Broad Street Pump Map’</h2>
+<ul>
+<li class="fragment"><p>Early example of (Modern) epidemilogical mapping</p></li>
+<li class="fragment"><p>Fits within the larger study and analysis of the distribution (who, when, and where)</p></li>
+<li class="fragment"><p>Excellent example of Waldo Tobler’s <strong>The First Law of Geography</strong> (1969) whereby <em>everything is related to everything else, but near things are more related than distant things</em>.</p></li>
+</ul>
+<div class="footer">
+<p>Source: <a href="https://en.wikipedia.org/wiki/Tobler%27s_first_law_of_geography">Tobler’s First Law of Geography</a></p>
+</div>
+</section>
+<section id="john-snows-broad-street-pump-map-3" class="slide level2">
+<h2>John Snow’s ‘Broad Street Pump Map’</h2>
+<p>Thiessen polygons (also known as a Voronoi Diagram) around the wells, defining straight-line least-distance service areas for each pump.</p>
+<p><img data-src="index_files/img/snow.neighborhoods.png" class="absolute" style="top: 200px; left: 250px; width: 530px; "></p>
+<div class="footer">
+<p>Source: <a href="https://github.com/lindbrook/cholera">R analysis of original JS data</a></p>
+</div>
+</section>
+<section id="john-snows-broad-street-pump-map-4" class="slide level2">
+<h2>John Snow’s ‘Broad Street Pump Map’</h2>
+<p>Spatial autocorrelation helps understand how similar closer objects are to other nearby objects.</p>
+<p><img data-src="index_files/img/Spatial-Autocorrelation.png" class="absolute" style="top: 330px; left: 250px; width: 600px; "></p>
+<div class="footer">
+<p>Source: <a href="https://gisgeography.com/tobler-first-law-of-geography/">Tobler’s First Law of Geography</a></p>
+</div>
+</section>
+<section id="gis---the-quantitative-approach" class="slide level2">
+<h2>GIS - The Quantitative Approach</h2>
+<ul>
+<li class="fragment"><strong>SYMAP</strong> (Harvard Laboratory for Computer Graphics and Spatial Analysis ): early GIS system that was able to output vector features representing land use and contours in urban areas. (Harvard )</li>
+</ul>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="index_files/img/symap1.jpeg"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="index_files/img/symap.jpg"></p>
+</div></div>
+<div class="footer">
+<p>Source: <a href="https://www.harvarddesignmagazine.org/issues/36/substance-and-structure-ii-the-digital-culture-of-landscape-architecture">SYMAP History</a></p>
+</div>
+</section>
+<section id="gis---the-quantitative-approach-1" class="slide level2">
+<h2>GIS - The Quantitative Approach</h2>
+<ul>
+<li class="fragment"><p>Prevalence:</p>
+<ul>
+<li class="fragment">80% of the world’s data includes some kind of spatial aspect, 80% of data has a location component, 80% of data possesses a geographic reference, 80% of transactional data has a location component.*</li>
+</ul></li>
+<li class="fragment"><p>Maturity &amp; accessibility:</p></li>
+</ul>
+<p><img data-src="index_files/img/geo-softwares.png" class="absolute" style="top: 450px; left: 175px; width: 700px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://www.gislounge.com/80-percent-data-is-geographic/">80% of data is geographic</a></p>
+</div>
+</section>
+<section id="gis---qgis---version-history" class="slide level2">
+<h2>GIS - QGIS - Version History</h2>
+<p><img data-src="index_files/img/qgis-versions.png" class="absolute" style="top: 115px; left: 250px; width: 550px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://en.wikipedia.org/wiki/QGIS">QGIS Wiki</a></p>
+</div>
+</section>
+<section id="gis---definitions" class="slide level2" data-background="#43464B" data-background-image="index_files/img/vector1.png">
+<h2>GIS - Definitions</h2>
+<ul>
+<li class="fragment">Geographic
+<ul>
+<li class="fragment">i.e.&nbsp;the <em>geometry</em> or <em>spatial</em> component of data</li>
+</ul></li>
+</ul>
+</section>
+<section id="gis---definitions-1" class="slide level2" data-background="#43464B" data-background-image="index_files/img/vector2.png">
+<h2>GIS - Definitions</h2>
+<ul>
+<li class="fragment">Information
+<ul>
+<li class="fragment">i.e.&nbsp;common, colloquial formats, often <em>tabular</em> of <strong>attribute data</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="gis---definitions-2" class="slide level2" data-background="#43464B" data-background-image="index_files/img/vector3.png">
+<h2>GIS - Definitions</h2>
+<ul>
+<li class="fragment">System
+<ul>
+<li class="fragment">processing <em>input</em> data to <em>output</em> meaningful results, often presented as cartographic output, i.e.&nbsp;maps</li>
+</ul></li>
+</ul>
+</section>
+<section id="gis---definitions-3" class="slide level2" data-background="#43464B" data-background-image="index_files/img/vector4.png">
+<h2>GIS - Definitions</h2>
+<ul>
+<li class="fragment">Valid GIS data inputs are generally defined by two main models - Vector &amp; Raster</li>
+</ul>
+</section>
+<section id="gis---definitions-4" class="slide level2" data-background="#43464B" data-background-image="index_files/img/vector4.png">
+<h2>GIS - Definitions</h2>
+<ul>
+<li class="fragment">The vector model is defined by points, lines and polygons; this model is typically used to represent discrete phenomena, i.e.&nbsp;‘bounded’ or defined by an edge.</li>
+</ul>
+</section>
+<section id="gis---terminology" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Feature
+<ul>
+<li class="fragment">In a GIS, a physical object or location of an event. Features can be points (a tree or a traffic accident), lines (a road or river), or areas (a forest or a parking lot).</li>
+</ul></li>
+</ul>
+<p><img data-src="index_files/img/qgis_feature.png" class="absolute" style="top: 320px; left: 200px; width: 580px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://overpass-turbo.eu/s/19Y9">Overpass Turbo -Feature</a></p>
+</div>
+</section>
+<section id="gis---terminology-1" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Geometry
+<ul>
+<li class="fragment">Geometry deals with the measures and properties of points, lines and surfaces. In a GIS, geometry is used to represent the spatial component of geographic features.</li>
+</ul></li>
+</ul>
+<p><img data-src="index_files/img/vertices_centroid.png" class="absolute" style="top: 320px; left: 200px; width: 580px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://overpass-turbo.eu/s/19Y9">Overpass Turbo -Feature</a></p>
+</div>
+</section>
+<section id="gis---terminology-2" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Attributes
+<ul>
+<li class="fragment">Organized by <strong>Record</strong> &amp; <strong>Row</strong>; Record is a logical unit of data in a file, and the Row is positioned horizontally and contains a series of thematic descriptors of various data types.</li>
+</ul></li>
+</ul>
+<p><img data-src="index_files/img/attribute_row_table.png" class="absolute" style="top: 420px; left: 150px; width: 780px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://overpass-turbo.eu/s/19Y9">Overpass Turbo -Feature</a></p>
+</div>
+</section>
+<section id="gis---terminology-3" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Together, a <strong>Table</strong> consists of a set of data elements that has a horizontal dimension (rows) and a vertical dimension (columns) in a relational database system. A table has a specified number of columns but can have any number of rows. A table is often called a relation. Columns are also referred to Fields.</li>
+</ul>
+<p><img data-src="index_files/img/attribute_row_table.png" class="absolute" style="top: 420px; left: 150px; width: 780px; "></p>
+</section>
+<section id="gis---terminology-4" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Attribute Data organized via hierarchy</li>
+</ul>
+<p><img data-src="index_files/img/geo-data.structure.png" class="absolute" style="top: 170px; left: 220px; width: 600px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://www.vitalsource.com/products/gis-for-planning-and-the-built-environment-ed-ferrari-alasdair-rae-v9781350312098">GIS for Planning and the Built Environment - Ed Ferrari; Alasdair Rae</a></p>
+</div>
+</section>
+<section id="gis---terminology-5" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Attribute Data at its root is structured as <strong>primitive data types</strong></li>
+</ul>
+<p><img data-src="index_files/img/basic.number.types.png" class="absolute" style="top: 260px; left: 150px; width: 780px; "></p>
+<div class="footer">
+<p>Reference: <a href="https://en.wikipedia.org/wiki/Primitive_data_type">Primitive Data Types</a></p>
+</div>
+</section>
+<section id="gis---terminology-6" class="slide level2">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">Map Scale
+<ul>
+<li class="fragment">John Snow’s Map was a decidedly <strong>Large Scale</strong> analysis in an urban environment.</li>
+</ul></li>
+</ul>
+<p><img data-src="index_files/img/scale.png" class="absolute" style="top: 270px; left: 250px; width: 600px; "></p>
+</section>
+<section id="gis---terminology-7" class="slide level2" data-background="#43464B" data-background-image="index_files/img/stack.png">
+<h2>GIS - Terminology</h2>
+<ul>
+<li class="fragment">In GIS, multiple vector &amp; raster spatial datasets are organized by a ‘stacking principle’ referred to as <strong>Overlay</strong>.</li>
+</ul>
+<div class="footer">
+<p>Reference: <a href="http://wiki.gis.com/wiki/index.php/Overlay#:~:text=Overlay%20is%20a%20GIS%20operation,of%20the%20input%20data%20sets.">Overlay</a></p>
+</div>
+
+</section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
