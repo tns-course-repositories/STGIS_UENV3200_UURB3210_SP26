@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-01-29">
+
+<title>Class 2 Assignment 2: QGIS Orientation &amp; NYC Places Mapping</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c2_assignment_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c2_assignment_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c2_assignment_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c2_assignment_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c2_assignment_files/libs/quarto-html/popper.min.js"></script>
+<script src="c2_assignment_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c2_assignment_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c2_assignment_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c2_assignment_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c2_assignment_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c2_assignment_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c2_assignment_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c2_assignment_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link active" data-scroll-target="#preamble">🧾 Preamble</a></li>
+  <li><a href="#week-context-class-2" id="toc-week-context-class-2" class="nav-link" data-scroll-target="#week-context-class-2">🗓️ Week Context | Class 2</a></li>
+  <li><a href="#general-course-orientation-items-for-class-2-assignment-2" id="toc-general-course-orientation-items-for-class-2-assignment-2" class="nav-link" data-scroll-target="#general-course-orientation-items-for-class-2-assignment-2">General Course Orientation Items for Class 2 | Assignment 2</a></li>
+  <li><a href="#class-2-reading" id="toc-class-2-reading" class="nav-link" data-scroll-target="#class-2-reading">Class 2 Reading:</a></li>
+  <li><a href="#assignment-data-nyc-planning" id="toc-assignment-data-nyc-planning" class="nav-link" data-scroll-target="#assignment-data-nyc-planning">🗂️ Assignment Data (NYC Planning)</a>
+  <ul class="collapse">
+  <li><a href="#places-points" id="toc-places-points" class="nav-link" data-scroll-target="#places-points">Places (Points)</a></li>
+  <li><a href="#borough-boundaries-polygons---clipped-to-shoreline" id="toc-borough-boundaries-polygons---clipped-to-shoreline" class="nav-link" data-scroll-target="#borough-boundaries-polygons---clipped-to-shoreline">Borough Boundaries (Polygons - Clipped to Shoreline)</a></li>
+  </ul></li>
+  <li><a href="#part-i-project-setup-data-loading" id="toc-part-i-project-setup-data-loading" class="nav-link" data-scroll-target="#part-i-project-setup-data-loading">🧰 Part I — Project setup &amp; data loading</a></li>
+  <li><a href="#part-ii-qgis-interface-orientation" id="toc-part-ii-qgis-interface-orientation" class="nav-link" data-scroll-target="#part-ii-qgis-interface-orientation">🖥️ Part II — QGIS interface orientation</a></li>
+  <li><a href="#part-iii-selecting-features-using-attributes" id="toc-part-iii-selecting-features-using-attributes" class="nav-link" data-scroll-target="#part-iii-selecting-features-using-attributes">🎯 Part III — Selecting features using attributes</a>
+  <ul class="collapse">
+  <li><a href="#option-1" id="toc-option-1" class="nav-link" data-scroll-target="#option-1">Option #1:</a></li>
+  <li><a href="#option-2" id="toc-option-2" class="nav-link" data-scroll-target="#option-2">Option #2:</a></li>
+  <li><a href="#saving-your-selections" id="toc-saving-your-selections" class="nav-link" data-scroll-target="#saving-your-selections">Saving your selections</a></li>
+  </ul></li>
+  <li><a href="#part-iv-mapping-options-choose-one" id="toc-part-iv-mapping-options-choose-one" class="nav-link" data-scroll-target="#part-iv-mapping-options-choose-one">🗺️ Part IV — Mapping options (choose one)</a></li>
+  <li><a href="#part-v-cartographic-output" id="toc-part-v-cartographic-output" class="nav-link" data-scroll-target="#part-v-cartographic-output">🖨️ Part V — Cartographic output</a>
+  <ul class="collapse">
+  <li><a href="#required-elements" id="toc-required-elements" class="nav-link" data-scroll-target="#required-elements">Required elements</a></li>
+  <li><a href="#export" id="toc-export" class="nav-link" data-scroll-target="#export">Export</a></li>
+  </ul></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">📦 Submission</a></li>
+  <li><a href="#video-resource-for-qgis-map-layout-utilizing-global-dataset-from-demonstration-lab-2" id="toc-video-resource-for-qgis-map-layout-utilizing-global-dataset-from-demonstration-lab-2" class="nav-link" data-scroll-target="#video-resource-for-qgis-map-layout-utilizing-global-dataset-from-demonstration-lab-2">📐 Video Resource for QGIS Map Layout (utilizing global dataset from Demonstration Lab 2)</a></li>
+  <li><a href="#submission-examples" id="toc-submission-examples" class="nav-link" data-scroll-target="#submission-examples">📁 Submission Examples</a></li>
+  <li><a href="#grading-rubric-assignment-2" id="toc-grading-rubric-assignment-2" class="nav-link" data-scroll-target="#grading-rubric-assignment-2">🧮 Grading Rubric — Assignment 2</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 2 Assignment 2: QGIS Orientation &amp; NYC Places Mapping</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 29, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">🧾 Preamble</h2>
+<p>This assignment introduces core GIS workflows using <strong>QGIS</strong> and authoritative <strong>NYC Department of City Planning datasets</strong>. You will work at a <strong>large urban scale</strong>, focusing on New York City as a multi-borough region.</p>
+<p>The goals of this assignment are to:</p>
+<ul>
+<li>Become oriented to the QGIS interface<br>
+</li>
+<li>Load, inspect, and manage vector datasets<br>
+</li>
+<li>Perform <strong>attribute-based feature selection</strong><br>
+</li>
+<li>Make intentional cartographic decisions<br>
+</li>
+<li>Produce a clear, legible <strong>NYC-focused map</strong> exported to PDF</li>
+</ul>
+</section>
+<section id="week-context-class-2" class="level2">
+<h2 class="anchored" data-anchor-id="week-context-class-2">🗓️ Week Context | Class 2</h2>
+<p>This assignment aligns with:</p>
+<ul>
+<li>Class 2 Lecture<br>
+</li>
+<li>Class 2 Demonstration Lab<br>
+</li>
+<li>Class 2 discussion of core cartography principles, scale, and <strong>attribute-based feature selection</strong> fundamentals</li>
+</ul>
+<p>Complete the Demonstration Lab <strong>before</strong> beginning this assignment.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before proceeding to your work on the first assignment, pause and watch the Lecture recording. In addition to Class 1 &amp; 2 fundamentals, both terminology and some software items are discussed. Disregard ‘Class 1’ title; this is indeed designed for this week, Class 2.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1002297314"><img src="c2_assignment_files/img/v1a.png" class="img-fluid figure-img"></a></p>
+<figcaption>Lecture 1 Recording</figcaption>
+</figure>
+</div>
+</section>
+<section id="general-course-orientation-items-for-class-2-assignment-2" class="level2">
+<h2 class="anchored" data-anchor-id="general-course-orientation-items-for-class-2-assignment-2">General Course Orientation Items for Class 2 | Assignment 2</h2>
+<ul>
+<li><a href="https://tns-course-repositories.github.io/STGIS_UENV3200_UURB3210_SP26/agendas/c2_agenda.html">Class 2 Agenda</a></li>
+<li><a href="https://tns-course-repositories.github.io/STGIS_UENV3200_UURB3210_SP26/demos/c2_demo.html">Class 2 Demonstration Lab 2 (not graded)</a></li>
+<li><a href="https://tns-course-repositories.github.io/STGIS_UENV3200_UURB3210_SP26/assignments/c2_assignment.html">Class 2 Assignment</a></li>
+</ul>
+</section>
+<section id="class-2-reading" class="level2">
+<h2 class="anchored" data-anchor-id="class-2-reading">Class 2 Reading:</h2>
+<p>This week’s readings include 2 texts:</p>
+<ul>
+<li><p><a href="https://www.cooldavis.org/wp-content/uploads/2022/03/THE_IMAGE_OF_THE_CITY_Kevin_Lynch.pdf">Kevin Lynch | The Image of the City</a></p>
+<p>-PDF Page 40-50, three sections that include <strong>Nodes</strong>, <strong>Landmarks</strong> and <strong>Element Interrelations</strong></p></li>
+<li><p><a href="https://wustl.pressbooks.pub/geospatialthinking/chapter/chapter-4-the-nature-of-geospatial-data/">Geospatial Thinking</a></p>
+<ul>
+<li>Only read the following sections - <strong>Vector Data Models</strong>, <strong>Geometries</strong>, <strong>Lines</strong>, <strong>Polygons</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="assignment-data-nyc-planning" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-data-nyc-planning">🗂️ Assignment Data (NYC Planning)</h2>
+<p>For the preparation of Assignment 2, utilize the following datasets from NYC Department of City Planning:</p>
+<section id="places-points" class="level3">
+<h3 class="anchored" data-anchor-id="places-points">Places (Points)</h3>
+<ul>
+<li><a href="https://www.nyc.gov/content/planning/pages/resources/datasets/places">Download Location</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/places.png" class="img-fluid figure-img"></p>
+<figcaption>Places Features</figcaption>
+</figure>
+</div>
+<p>A curated dataset of named places across NYC (e.g., parks, cemeteries, airports), designed primarily for <strong>cartographic representation</strong>.</p>
+</section>
+<section id="borough-boundaries-polygons---clipped-to-shoreline" class="level3">
+<h3 class="anchored" data-anchor-id="borough-boundaries-polygons---clipped-to-shoreline">Borough Boundaries (Polygons - Clipped to Shoreline)</h3>
+<ul>
+<li><a href="https://www.nyc.gov/content/planning/pages/resources/datasets/borough-boundaries">Download Location</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/bb_boundary.png" class="img-fluid figure-img"></p>
+<figcaption>Boundary Features</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p><strong>CRS note:</strong><br>
+Both datasets are typically distributed in<br>
+<strong>NAD83 / New York Long Island (ftUS)</strong> — <strong>EPSG:2263</strong><br>
+Check that the <strong>project CRS</strong> is indeed snapped to EPSG:2263.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/nybb-shape.png" class="img-fluid figure-img"></p>
+<figcaption>Shapefile .shp file</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/nyc_places-shape.png" class="img-fluid figure-img"></p>
+<figcaption>Shapefile .shp file</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the preview images above, note the <code>.shp</code> files; these are the primary files that you will point QGIS to when you load the feature. Many of the other files in the feature directories are known as ‘side-car’ files or ‘helper’ files; they do attendant tasks, but are not necessarily vital to the geographic feature itself.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-i-project-setup-data-loading" class="level2">
+<h2 class="anchored" data-anchor-id="part-i-project-setup-data-loading">🧰 Part I — Project setup &amp; data loading</h2>
+<ol type="1">
+<li><p>Create a clearly named assignment folder, for example:</p>
+<ul>
+<li>assignment_02_nyc_map/
+<ul>
+<li>data_raw/<br>
+</li>
+<li>data_qgis/<br>
+</li>
+<li>exports/<br>
+</li>
+<li>qgis_project/</li>
+</ul></li>
+</ul></li>
+<li><p>Complete downloads noted above:</p>
+<ul>
+<li>NYC Places dataset<br>
+</li>
+<li>NYC Borough Boundaries dataset</li>
+</ul></li>
+<li><p>Open QGIS, create a new project, and set the <strong>Project CRS</strong> to <strong>EPSG:2263</strong> (this should happen automatically with the first feature load - either places points or borough boundaries.)</p></li>
+<li><p>Save the project file into <code>qgis_project/</code> directory (example: <code>assignment_01_nyc_map.qgs</code>).</p></li>
+<li><p>Load both datasets and confirm they align spatially.</p></li>
+</ol>
+</section>
+<section id="part-ii-qgis-interface-orientation" class="level2">
+<h2 class="anchored" data-anchor-id="part-ii-qgis-interface-orientation">🖥️ Part II — QGIS interface orientation</h2>
+<p>Before performing selections, ensure you are comfortable with:</p>
+<ul>
+<li>Layers panel vs Browser panel<br>
+</li>
+<li>Opening and reading attribute tables<br>
+</li>
+<li>Understanding field names and values<br>
+</li>
+<li>Basic symbology changes<br>
+</li>
+<li>Saving projects and managing file paths</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Tip</strong><br>
+Always inspect the attribute tables before selecting features.</p>
+</blockquote>
+</section>
+<section id="part-iii-selecting-features-using-attributes" class="level2">
+<h2 class="anchored" data-anchor-id="part-iii-selecting-features-using-attributes">🎯 Part III — Selecting features using attributes</h2>
+<section id="option-1" class="level3">
+<h3 class="anchored" data-anchor-id="option-1">Option #1:</h3>
+<p>Utilize <strong>Select Features by Expression</strong> to isolate subsets of the <strong>Places</strong> dataset.</p>
+<section id="where-this-happens-in-qgis" class="level4">
+<h4 class="anchored" data-anchor-id="where-this-happens-in-qgis">Where this happens in QGIS</h4>
+<ul>
+<li>Right-click <strong>Places</strong> → Open Attribute Table<br>
+</li>
+<li>Click <strong>Select features using an expression (ε)</strong><br>
+</li>
+<li>Enter an expression and apply the selection</li>
+</ul>
+</section>
+<section id="example-expression-1-select-one-borough" class="level4">
+<h4 class="anchored" data-anchor-id="example-expression-1-select-one-borough">Example expression 1 — Select one borough</h4>
+<p>Use the following expression template to select all places located in <strong>one borough</strong>:</p>
+<ul>
+<li>Example for Staten Island Borough:</li>
+</ul>
+<p><code>"Borough" = 'Staten Island'</code></p>
+<p>Alternatively, replace <code>'Staten Island'</code> with <strong>one</strong> of:</p>
+<ul>
+<li>Manhattan<br>
+</li>
+<li>Brooklyn<br>
+</li>
+<li>Queens<br>
+</li>
+<li>Bronx</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/sql_1.png" class="img-fluid figure-img"></p>
+<figcaption>Location of the <code>Borough</code> attribute in the attribute table</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/sql_2.png" class="img-fluid figure-img"></p>
+<figcaption>Select by Expression Example</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="option-2" class="level3">
+<h3 class="anchored" data-anchor-id="option-2">Option #2:</h3>
+<section id="example-expression-2-select-one-place-type-citywide" class="level4">
+<h4 class="anchored" data-anchor-id="example-expression-2-select-one-place-type-citywide">Example expression 2 — Select one place type (citywide)</h4>
+<p>Use the following expression to select <strong>one place type across all five boroughs</strong>:</p>
+<p><code>"TYPE" = 'Park'</code></p>
+<p>Alternatively, replace <code>'Park'</code> with another valid place type found in the attribute table.</p>
+<hr>
+</section>
+</section>
+<section id="saving-your-selections" class="level3">
+<h3 class="anchored" data-anchor-id="saving-your-selections">Saving your selections</h3>
+<p>After selecting features:</p>
+<ul>
+<li>Right-click <strong>Places</strong> → Export → Save Selected Features As…<br>
+</li>
+<li>Format: <strong>Shapefile (.shp)</strong><br>
+</li>
+<li>Save to <code>data_qgis/</code><br>
+</li>
+<li>Use clear names such as:
+<ul>
+<li>places_selected_borough.shp<br>
+</li>
+<li>places_selected_type.shp</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/sql_3.png" class="img-fluid figure-img"></p>
+<figcaption>Saving Selected Features</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="part-iv-mapping-options-choose-one" class="level2">
+<h2 class="anchored" data-anchor-id="part-iv-mapping-options-choose-one">🗺️ Part IV — Mapping options (choose one)</h2>
+<p>Choose <strong>one</strong> mapping strategy:</p>
+<section id="option-a-one-place-type-across-all-five-boroughs" class="level4">
+<h4 class="anchored" data-anchor-id="option-a-one-place-type-across-all-five-boroughs">Option A — One place type across all five boroughs</h4>
+<ul>
+<li>One place type (e.g., parks)<br>
+</li>
+<li>All five boroughs as base geography<br>
+</li>
+<li>Emphasis on <strong>citywide spatial pattern</strong></li>
+</ul>
+</section>
+<section id="option-b-one-borough-with-multiple-place-types" class="level4">
+<h4 class="anchored" data-anchor-id="option-b-one-borough-with-multiple-place-types">Option B — One borough with multiple place types</h4>
+<ul>
+<li>One borough<br>
+</li>
+<li>Multiple place types within that borough<br>
+</li>
+<li>Emphasis on <strong>intra-borough diversity</strong></li>
+</ul>
+<blockquote class="blockquote">
+<p>If Option B becomes visually dense, reduce the number of place types.</p>
+</blockquote>
+</section>
+</section>
+<section id="part-v-cartographic-output" class="level2">
+<h2 class="anchored" data-anchor-id="part-v-cartographic-output">🖨️ Part V — Cartographic output</h2>
+<p>Create a <strong>single-page map</strong> using <strong>Print Layout</strong>.</p>
+<section id="required-elements" class="level3">
+<h3 class="anchored" data-anchor-id="required-elements">Required elements</h3>
+<ul>
+<li>Borough boundary or boundaries</li>
+<li>Places Points Features w/ labels</li>
+<li>Title<br>
+</li>
+<li>Legend (minimal)<br>
+</li>
+<li>Author name, course, date</li>
+</ul>
+</section>
+<section id="export" class="level3">
+<h3 class="anchored" data-anchor-id="export">Export</h3>
+<ul>
+<li>Page size: 8.5 × 11 inches<br>
+</li>
+<li>Orientation: portrait or landscape<br>
+</li>
+<li>Format: PDF<br>
+</li>
+<li>Save to <code>exports/</code></li>
+</ul>
+</section>
+</section>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">📦 Submission</h2>
+<p>Submit:</p>
+<ol type="1">
+<li>One PDF map<br>
+</li>
+<li>Short comment section at Canvas Submission (3–5 bullets) explaining:
+<ul>
+<li>Option chosen (A or B)<br>
+</li>
+<li>Selection logic<br>
+</li>
+<li>One intentional cartographic decision</li>
+</ul></li>
+</ol>
+</section>
+<section id="video-resource-for-qgis-map-layout-utilizing-global-dataset-from-demonstration-lab-2" class="level2">
+<h2 class="anchored" data-anchor-id="video-resource-for-qgis-map-layout-utilizing-global-dataset-from-demonstration-lab-2">📐 Video Resource for QGIS Map Layout (utilizing global dataset from Demonstration Lab 2)</h2>
+<ul>
+<li>Utilize the following video guide along with the following steps to create, design and finalize your map deliverable:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1002447807"><img src="c2_assignment_files/img/map-layout-icon.png" class="img-fluid figure-img"></a></p>
+<figcaption>Assignment 2 - Video Guide - Map Layout</figcaption>
+</figure>
+</div>
+</section>
+<section id="submission-examples" class="level2">
+<h2 class="anchored" data-anchor-id="submission-examples">📁 Submission Examples</h2>
+<p>Option A Example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/example_2.png" class="img-fluid figure-img"></p>
+<figcaption>Option A</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://st-gis-materials.s3.us-east-2.amazonaws.com/c2_assignment-STGIS-example_2.pdf">Option A Example</a></li>
+</ul>
+<hr>
+<p>Option B Example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c2_assignment_files/img/example_1.png" class="img-fluid figure-img"></p>
+<figcaption>Option B</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://st-gis-materials.s3.us-east-2.amazonaws.com/c2_assignment-STGIS-example_1.pdf">Option B Example</a></li>
+</ul>
+</section>
+<section id="grading-rubric-assignment-2" class="level2">
+<h2 class="anchored" data-anchor-id="grading-rubric-assignment-2">🧮 Grading Rubric — Assignment 2</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 30%">
+<col style="width: 20%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criteria</th>
+<th>Excellent (100)</th>
+<th>Good (90)</th>
+<th>Needs Work (80)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Data &amp; CRS Handling (20%)</strong></td>
+<td>Correct datasets used; CRS handled properly; layers align as expected</td>
+<td>Minor CRS or layer issues</td>
+<td>Misaligned layers or incorrect CRS</td>
+</tr>
+<tr class="even">
+<td><strong>Feature Selection (25%)</strong></td>
+<td>Clear, intentional selections that directly support the map’s goal</td>
+<td>Basic but workable selection logic</td>
+<td>Selection unclear, arbitrary, or incorrect</td>
+</tr>
+<tr class="odd">
+<td><strong>Cartographic Design (30%)</strong></td>
+<td>Strong visual hierarchy; legible symbology; appropriate scale decisions</td>
+<td>Functional but visually weak or inconsistent</td>
+<td>Cluttered, hard to read, poor scale decisions</td>
+</tr>
+<tr class="even">
+<td><strong>Required Map Elements (15%)</strong></td>
+<td>All required elements present and well integrated</td>
+<td>One element weak or missing</td>
+<td>Multiple required elements missing</td>
+</tr>
+<tr class="odd">
+<td><strong>Conceptual Clarity (10%)</strong></td>
+<td>Map communicates a clear NYC-focused idea</td>
+<td>Purpose present but underdeveloped</td>
+<td>Map intent unclear</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Total: 100 points</strong></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c2_assignment_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
