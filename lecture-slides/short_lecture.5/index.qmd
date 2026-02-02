@@ -1,0 +1,122 @@
+---
+title: "Class 5 'Short' Lecture | Census Data: An Overview"
+subtitle: "Spring 2026 | [UENV 3200 - CRN 11009](https://courses.newschool.edu/courses/UENV3200/) + [UURB 3210 - CRN 111008](https://courses.newschool.edu/courses/UURB3210)"
+format:
+  revealjs: 
+    slide-number: true
+    theme: [index_files/custom.scss]
+    touch: true
+    incremental: true   
+resources:
+  - demo.pdf
+---
+
+## Census - Definition and Introduction
+
+- A **census** is an official, systematic count of a population
+  - In the 'modern' era, typically occurs every 10 years.
+  - Often includes information about age, sex, household, occupation and other demographic details.
+  - It ostensible purpose is to create a 'data snapshot' of society, at a particular given time.
+  - Stands as a critical data ecosystem to understand society, plan resources, and make 'fair' political decisions.
+
+::: footer
+Source: [US Census Introduction](https://www.census.gov/programs-surveys/censuses.html)
+:::
+
+## US Census - Current 
+
+![](index_files/img/2020-decennial-envelop.png){.absolute top="100" left="50" width="800"}
+
+
+::: footer
+Source: [US Census](https://www2.census.gov/programs-surveys/decennial/2020/resources/mailings/Envelopes/Outgoing-Envelope_D-EO-F1_ES.pdf)
+:::
+
+## US Census - Current
+
+**US Census Decennial Themes**
+<br>
+<br>
+
+| **Category**              | **Details Collected**                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Personal Demographics** | Name, relationship, sex, age, date of birth, Hispanic origin, race (with detailed origin write-in) |
+| **Household Count**       | How many people live/stay there, and any additional occupants                                      |
+| **Housing Info**          | Type of unit and occupancy status                                                                  |
+
+## US Census - Current
+
+- **The U.S. Decennial Census** is a headcount of every person in the country, done once every 10 years. It collects only basic information (age, sex, race, Hispanic origin, relationship, and housing occupancy) to determine representation in Congress and the distribution of federal funds.
+
+- **The American Community Survey (ACS)**, by contrast, is an ongoing yearly survey of a sample of households. It collects much more detailed information—such as education, income, employment, housing costs, and commuting patterns—to provide up-to-date social, economic, and housing data for communities between censuses.
+
+## US Census - Current
+
+US Decennial Census vs American Community Survey (ACS)
+
+![](index_files/img/census_vs_acs_infographic_simple.png){.absolute top="250" left="90" width="800"}
+
+## US Census - Geographies
+
+Standard US Census Hierarchy
+
+![](index_files/img/census_ALL_area_geography.png){.absolute top="200" left="40" width="1000"}
+
+::: footer
+Source: [census.gov](https://www2.census.gov/training-workshops/2022/2022-09-08-mdat-presentation.pdf)
+:::
+
+## US Census - Geographies
+
+![](index_files/img/census.entities.png){.absolute top="150" left="250" width="550"}
+
+::: footer
+Source: [BMC](https://www.bmc.com/blogs/data-analytics-vs-data-analysis/)
+:::
+
+
+## US Census - Geographies
+
+![](index_files/img/census_small_area_geography.png){.absolute top="200" left="170" width="700"}
+
+::: footer
+Source: [census.gov](https://www2.census.gov/training-workshops/2022/2022-09-08-mdat-presentation.pdf)
+:::
+
+## US Census - Geographies
+
+![](index_files/img/structure_characteristics.png){.absolute top="150" left="0" width="1300"}
+
+## US Census - Geographies
+
+![](index_files/img/fips-diagram.png){.absolute top="80" left="250" width="500"}
+
+
+## US Census - Geographies
+
+![](index_files/img/fips-diagram1.png){.absolute top="120" left="220" width="600"}
+
+::: footer
+Source: [census.gov](https://www.census.gov/programs-surveys/geography/guidance/geo-identifiers.html)
+:::
+
+## US Census - Geographies
+
+![](index_files/img/fips-diagram3.png){.absolute top="120" left="80" width="850"}
+
+::: footer
+Source: [tidycensus - basic usage](https://walker-data.com/tidycensus/articles/basic-usage.html)
+:::
+
+                                          
+## US Census - Choropleth Mapping
+
+![](index_files/img/chor_example1.png){.absolute top="130" left="10" width="1100"}
+
+
+::: footer
+Source: [US Census](https://www.census.gov/programs-surveys/sis/resources/maps/thematic-maps.html)
+:::
+
+
+
