@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-02-16">
+
+<title>Class 6 Assignment: The Raster Model</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c6_assignment_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c6_assignment_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c6_assignment_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c6_assignment_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c6_assignment_files/libs/quarto-html/popper.min.js"></script>
+<script src="c6_assignment_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c6_assignment_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c6_assignment_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c6_assignment_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c6_assignment_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c6_assignment_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c6_assignment_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c6_assignment_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link active" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#class-6-recorded-lecture" id="toc-class-6-recorded-lecture" class="nav-link" data-scroll-target="#class-6-recorded-lecture">Class 6 Recorded Lecture</a></li>
+  <li><a href="#class-6-reading" id="toc-class-6-reading" class="nav-link" data-scroll-target="#class-6-reading">Class 6 Reading</a></li>
+  <li><a href="#assignment-step-1" id="toc-assignment-step-1" class="nav-link" data-scroll-target="#assignment-step-1">Assignment Step 1</a></li>
+  <li><a href="#assignment-step-2" id="toc-assignment-step-2" class="nav-link" data-scroll-target="#assignment-step-2">Assignment Step 2</a></li>
+  <li><a href="#assignment-step-3" id="toc-assignment-step-3" class="nav-link" data-scroll-target="#assignment-step-3">Assignment Step 3</a>
+  <ul class="collapse">
+  <li><a href="#video-demonstration-guide-for-steps-1-3" id="toc-video-demonstration-guide-for-steps-1-3" class="nav-link" data-scroll-target="#video-demonstration-guide-for-steps-1-3">Video Demonstration Guide for Steps 1-3:</a></li>
+  </ul></li>
+  <li><a href="#assignment-step-4" id="toc-assignment-step-4" class="nav-link" data-scroll-target="#assignment-step-4">Assignment Step 4</a>
+  <ul class="collapse">
+  <li><a href="#video-demonstration-guide-for-step-4" id="toc-video-demonstration-guide-for-step-4" class="nav-link" data-scroll-target="#video-demonstration-guide-for-step-4">Video Demonstration Guide for Step 4:</a></li>
+  </ul></li>
+  <li><a href="#assignment-step-5" id="toc-assignment-step-5" class="nav-link" data-scroll-target="#assignment-step-5">Assignment Step 5</a></li>
+  <li><a href="#assignment-step-6" id="toc-assignment-step-6" class="nav-link" data-scroll-target="#assignment-step-6">Assignment Step 6</a></li>
+  <li><a href="#assignment-step-7---extra-credit-portion-of-assignment" id="toc-assignment-step-7---extra-credit-portion-of-assignment" class="nav-link" data-scroll-target="#assignment-step-7---extra-credit-portion-of-assignment">Assignment Step 7 - Extra Credit Portion of Assignment</a></li>
+  <li><a href="#assignment-step-8---map-layout-deliverable" id="toc-assignment-step-8---map-layout-deliverable" class="nav-link" data-scroll-target="#assignment-step-8---map-layout-deliverable">Assignment Step 8 - Map layout &amp; Deliverable</a></li>
+  <li><a href="#grading-rubric" id="toc-grading-rubric" class="nav-link" data-scroll-target="#grading-rubric">🧮 Grading Rubric</a>
+  <ul class="collapse">
+  <li><a href="#extra-credit-optional-summary-table-workflow-10" id="toc-extra-credit-optional-summary-table-workflow-10" class="nav-link" data-scroll-target="#extra-credit-optional-summary-table-workflow-10">⭐ Extra Credit (Optional) — Summary Table Workflow (+10)</a></li>
+  </ul></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks">Concluding Remarks</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 6 Assignment: The Raster Model</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 16, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/header.png" class="img-fluid figure-img"></p>
+<figcaption><em>The Raster Model Illustrated</em></figcaption>
+</figure>
+</div>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<p>New York City is located in a vulnerable coastal zone and has been in the path of powerful hurricanes before — on average, once every 75 years (Naparstek 2005). In 1821, a major hurricane caused tremendous destruction in Manhattan. A hurricane in 1893 removed the mile-long barrier Hog Island off the southern coast of the Rockaways while also razing southern Brooklyn and Queens via a 10-meter (m) storm surge. More recently, Hurricane Sandy (2012) hit the city hard, causing significant damage, requiring extensive repair and replacement of infrastructure.</p>
+<p>Global climate change has raised sea levels worldwide during the twentieth century at a rate of roughly 1.7 millimeters (mm) per year (Church and White 2006), a trend that will continue for many more decades. More alarming, the rate of sea level rise is accelerating. Recent satellite data shows sea level rise at an annual rate of 3.19 mm since 1993.</p>
+<p>Sea-level rise is caused by three major factors:</p>
+<ul>
+<li><p><strong>Total ocean water volume</strong> — Ocean volume increases as water currently locked up in frozen soils and land glaciers melts and flows into the ocean.</p></li>
+<li><p><strong>Sinking coastlines</strong> — Land can sink for a variety of reasons. For example, the Louisiana coastline is sinking due to subsidence of soft marsh soils combined with coastal erosion. This process is accelerated by resource extraction and the removal of wetlands. Melting land glaciers cause rebounding of the land mass, which can lead to a sinking on the other side of the geologic plate, as is happening along the northern coast of central Europe as Scandinavia is lifting.</p></li>
+<li><p><strong>Ocean temperature</strong> — Warmer water expands, so a warmer ocean will require more space than a cooler ocean. Ocean temperature, in turn, is a function of atmospheric greenhouse gas concentrations, as well as how well the ecosphere can remove greenhouse gases from the atmosphere.</p></li>
+</ul>
+<p>In this fifth assignment, you will utilize the <a href="https://apps.nationalmap.gov/datasets/">USGS 1 arc-second DEM Product</a> as input data by which to analyze land mass within the Manhattan Borough prone to inundation and storm surge, made increasingly worse by sea-level rise.</p>
+<p>You will determine the area of the Manhattan Borough subject to flooding under two sea-level rise scenarios (best case and worst case) and an extreme hurricane storm surge. The specific questions you want to answer with this project are as follows:</p>
+<ul>
+<li><strong>Question 1</strong>: <em>How much of Manhattan will be inundated by rising sea levels by 2100?</em></li>
+<li><strong>Question 2</strong>: <em>How much of Manhattan is at risk of a 10 m (30-foot) storm surge?</em></li>
+</ul>
+<p>A synopsis of the technical steps of the assignment listed as follows:</p>
+<ul>
+<li>Download <a href="https://www.dropbox.com/s/awin3i3p4jahfbk/c5_assignment_data.zip?dl=1">Class 6 assignment data (named c5)</a> which includes 2 DEM tiles + a vector outline of the Manhattan Borough, NYC.</li>
+<li>Mosaic the two raster datasets into one continuous raster dataset.</li>
+<li>Mask (clip) the mosaic raster via the NYC Manhattan Borough vector layer.</li>
+<li>Utilize <code>con</code> statements to isolate pixels that fall into potential flooding and storm surge thresholds.</li>
+<li>Utilize the <em>Raster Calculator</em> to derive a final layer with threshold categories.</li>
+<li>Utilize the <em>Field Calculator</em> to derive areal totals and percentages across scenario categories.</li>
+<li>Create an nominal thematic map and respective legend for the scenario categories.</li>
+<li>Incorporate a summary table into the final layout.</li>
+<li>Complete assignment submission layout; load to assignment 5 PDF at CANVAS.</li>
+</ul>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>The starter data utilized in this mapping includes a vector feature for the Borough of Manhattan and two USGS DEM raster tile coverage for Manhattan.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/1.png" class="img-fluid figure-img"></p>
+<figcaption><em>USGS NED DEM Metadata - https://apps.nationalmap.gov/datasets/</em></figcaption>
+</figure>
+</div>
+<p><a href="https://www.dropbox.com/s/awin3i3p4jahfbk/c5_assignment_data.zip?dl=1">Class 6 assignment data</a></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Class 6 assignment data</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="class-6-recorded-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="class-6-recorded-lecture">Class 6 Recorded Lecture</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1014068258"><img src="c6_assignment_files/img/lecture5-sg.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Class 6 Recorded Lecture - The Raster Model (named class 5)</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before proceeding with assignment steps below, review the posted lecture slides + lecture recording for an overview of this week’s concepts and themes.</p>
+</div>
+</div>
+</section>
+<section id="class-6-reading" class="level2">
+<h2 class="anchored" data-anchor-id="class-6-reading">Class 6 Reading</h2>
+<p>The following reading is a good resource to understanding the basics of the raster model. Quiz #6 upcoming will feature 10 questions on the full section <strong>6. Raster Data</strong>:</p>
+<ul>
+<li><a href="https://docs.qgis.org/3.40/en/docs/gentle_gis_introduction/raster_data.html">A Gentle Introduction to GIS | Raster Data</a></li>
+</ul>
+</section>
+<section id="assignment-step-1" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-1">Assignment Step 1</h2>
+<ul>
+<li>Download the <a href="https://www.dropbox.com/s/awin3i3p4jahfbk/c5_assignment_data.zip?dl=1">Class 6 assignment data (c5)</a></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The original DEM dataset comes from <a href="https://apps.nationalmap.gov/downloader/">USGS National Map</a>. See the animation below for the tile interface where you can download DEM tiles.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/3.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Original DEM Tiles @ The National Map</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Create an assignment <code>.qgs</code>, placing it within your assignment 5 directory. Establish both your vector and raster data connections to your assignment <code>.qgs</code>.</li>
+</ul>
+</section>
+<section id="assignment-step-2" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-2">Assignment Step 2</h2>
+<ul>
+<li>Load both DEM tiles and the vector feature representing the Manhattan Borough outline:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/4.png" class="img-fluid figure-img"></p>
+<figcaption><em>DEM tiles + vector feature</em></figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Notice that the Area of Interest (AOI) - Manhattan Borough - spans both DEM tiles. In this situation - where a AOI spans across multiple raster extents - the raster tiles need to be ‘merged’ into one continuous surface. In QGIS there are multiple ways to do this task, but the easiest and most accessible is the <em>Build Virtual Raster</em> tool. This tool creates the continuous surface in temporary memory. Once complete, this new raster can be ‘clipped’ to the edge of the vector feature representing the Manhattan Borough.</p></li>
+<li><p>Enact the tool:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/5.png" class="img-fluid figure-img"></p>
+<figcaption><em>Build Virtual Raster Tool Path</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Populate the tool:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/6.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Run Build Virtual Raster Tool</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Check the resulting statistics. The <code>max</code> value should be approximately <code>398.055</code> and the <code>min</code> value should be approximately <code>-40.542</code>. These values are measurements as meters. Depending on your QGIS version and processing environment, you may produce slightly different values - this is acceptable.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/7.png" class="img-fluid figure-img"></p>
+<figcaption><em>Check Raster Information</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="assignment-step-3" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-3">Assignment Step 3</h2>
+<ul>
+<li><p>Next, <em>Mask</em> the raster with the vector layer so that the full coverage raster is ‘clipped’ to the edge of Manhattan Borough. Going forward, this will be the input raster for initial processing steps below.</p></li>
+<li><p>Enact the tool:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/8.png" class="img-fluid figure-img"></p>
+<figcaption><em>Clip Raster by Mask Layer Tool Path</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Populate and run the tool:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/9.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Clip Raster by Mask Layer Tool</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Check output result; the <code>max</code> value is now <code>78.970</code> and <code>min</code> is now <code>-5.708</code>:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/10.png" class="img-fluid figure-img"></p>
+<figcaption><em>Clipped (masked) result</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Zoom into detail for the <code>Clipped (mask)</code> raster and run the <em>Value Tool</em>. Notice that values across the interior of the Manhattan Borough (land) are all positive, while values at edge (water) are either <code>0</code> or <code>&lt; 0</code>. In the following step, you will utilize the <em>Raster Calculator</em> to isolate the continuous values into meaningful threshold boolean rasters.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/11.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Run Value Tool over Clipped (mask) result</em></figcaption>
+</figure>
+</div>
+<section id="video-demonstration-guide-for-steps-1-3" class="level3">
+<h3 class="anchored" data-anchor-id="video-demonstration-guide-for-steps-1-3">Video Demonstration Guide for Steps 1-3:</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1014472680"><img src="c6_assignment_files/img/d1.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Building a Virtual Raster + Clipping/Masking Raster Data</em></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="assignment-step-4" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-4">Assignment Step 4</h2>
+<ul>
+<li>At this stage, the continuous raster that has been produced will now be transformed into a series of boolean rasters. You will set a series of conditions and then assign new values to cells meeting these boolean conditions.</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Whereas expressions denote mainly numbers in elementary algebra, in Boolean algebra, they denote the truth values <code>false</code> and <code>true</code>. These values are represented with binary digits, typically 0 and 1 <em>unless</em> a different binary scheme of two boolean values is chosen.</p>
+</div>
+</div>
+<ul>
+<li><p>Run the series of Conditional (CON) statements in order to isolate raster cells that meet scenario criteria as follows:</p>
+<ul>
+<li>Which land is already underwater (elevation ≤ 0 m)</li>
+<li>Which areas will flood under a best-case scenario (BCS) (≤ 0.28 m)</li>
+<li>Which will flood under the worst-case scenario (WCS) (≤ 1.12 m)</li>
+<li>Which will flood under an extreme storm surge (≤ 10 m)</li>
+<li>Which is safe from flooding under all scenarios (&gt; 10 m)</li>
+</ul></li>
+<li><p>With the <em>Raster Calculator</em>, utilize the following equation templates across the 5 scenario criteria.</p></li>
+<li><p>The first scenario is to isolate land from water. Here land will be set to <code>7</code> and water will be set to <code>0</code> whereby any pixel that is <code>≤ 0</code> is assigned <code>0</code> and any pixel <code>&gt; 0.1</code> is set to <code>7</code>:</p></li>
+</ul>
+<pre><code>("Clipped (mask)@1" &lt;= 0) * 0 + ("Clipped (mask)@1" &gt; 0) * 7</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the above equation, the input raster is <code>Clipped (mask)@1</code>; this is the output from the merge and clipped raster process detailed above. If your naming convention is different, certainly use your naming convention in place of <code>Clipped (mask)@1</code>.</p>
+</div>
+</div>
+<ul>
+<li><p>You will assign unique values so that you can merge all grids in the final processing step: best-case scenario (value = 1), worst-case scenario (value = 3), flooded by storm surge (value = 5), area currently underwater (value = 0), and land currently above sea level (value = 7). Odd numbers are chosen so that their sums will produce an unique value scheme with complete separation between conditions.</p></li>
+<li><p>To start, open the <em>Raster Calculator</em> and populate the equation as shown above. Output the result as <code>land</code> into the <code>exports</code> folder within the original data directory:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/12.png" class="img-fluid figure-img"></p>
+<figcaption><em>Access the Raster Calculator</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/13.png" class="img-fluid figure-img"></p>
+<figcaption><em>Populate Raster Calculator</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>As the new raster <code>land</code> is produced, go to symbology and set the <em>Render Type</em> to <code>Paletted/Unique values</code>; any color combination is fine as long as they are contrasting in hue and/or saturation to see the difference between to the coverage types:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/14.png" class="img-fluid figure-img"></p>
+<figcaption><em>Set Symbology to Paletted/Unique values</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Once complete, and additional attribute table can be created for the layer if desired. This step should be done for this assignment so that you have experience with this functionality; however, its an optional capacity, not an requirement of conditional rasters.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/att.table1.png" class="img-fluid figure-img"></p>
+<figcaption><em>New Attribute Table (Create Raster Attribute Table) is now available for raster layers via right-click at layer</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/att.table2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Chose to create the <code>VAT.DBF file</code> option, give it a name, and save it in the directory that holds the raster layer</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/17.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Attribute Table Results</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/18.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Output results for the first conditions land vs water</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In previous versions of QGIS, the <em>RasterAttributeTable</em> plugin was used to create a new attribute table for a raster file. However, the latest version <strong>QGIS 3.40 ‘Bratislava’</strong> attribute table capacity has been built into the release as default. Do note however, the raster must first be classified in symbology using <em>Render Type</em> set to <code>Paletted/Unique values</code> . Once compete, it will allow for the creation of the attribute table for the raster.</p>
+</div>
+</div>
+<ul>
+<li>Next, move to the best-case scenario (BCS). This is flooding that would occur at the threshold of <code>≤ 0.28</code> meters. Save the output as <code>flood_BCS</code>:</li>
+</ul>
+<pre><code>(("Clipped (mask)@1" &gt; 0) AND ("Clipped (mask)@1" &lt;= 0.28)) * 1</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/20.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Calculator Equation for BCS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/19.png" class="img-fluid figure-img"></p>
+<figcaption><em>Light ring of TRUE 1 value cells is the result in the BCS</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Next, move to the worst-case scenario (WCS). This is flooding that would occur at the threshold of <code>≤ 1.12</code> meters. Here set the TRUE value to <code>3</code>. Save the output as <code>flood_WCS</code>:</li>
+</ul>
+<pre><code>(("Clipped (mask)@1" &gt; 0) AND ("Clipped (mask)@1" &lt;= 1.12)) * 3</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/21.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Calculator Equation for WCS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/22.png" class="img-fluid figure-img"></p>
+<figcaption><em>Thicker ring of TRUE 3 value cells is the result in the WCS</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Next, move to the storm surge scenario. This is flooding that would occur at the threshold of <code>≤ 10</code> meters. Here set the TRUE value to <code>5</code>. Save the output as <code>flood_storm</code>:</li>
+</ul>
+<pre><code>(("Clipped (mask)@1" &gt; 0) AND ("Clipped (mask)@1" &lt;= 10)) * 5</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/23.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Calculator Equation for Storm Surge</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/24.png" class="img-fluid figure-img"></p>
+<figcaption><em>Extensive flooded areas TRUE 5 value cells is the result for Storm Surge</em></figcaption>
+</figure>
+</div>
+<section id="video-demonstration-guide-for-step-4" class="level3">
+<h3 class="anchored" data-anchor-id="video-demonstration-guide-for-step-4">Video Demonstration Guide for Step 4:</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1014490520"><img src="c6_assignment_files/img/d2.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Working with the Raster Calculator + Building Conditions for Discrete Raster Outputs</em></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="assignment-step-5" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-5">Assignment Step 5</h2>
+<ul>
+<li>With the scenario outputs complete, utilize the <em>Raster Calculator</em> to create a final output raster using the following formula. Output as <code>dem_final</code>:</li>
+</ul>
+<pre><code>"flood_storm@1"+"flood_BCS@1"+"flood_WCS@1"+"land@1"</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/25.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Calculator Equation for all scenario final raster</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="assignment-step-6" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-6">Assignment Step 6</h2>
+<ul>
+<li><p>Symbolize <code>dem_final</code> for the final count tabulations via <code>Paletted/Unique values</code>. Add to the <code>Value</code> column an additional nominal <code>Label</code> as follows. Choose a color scheme that is appropriate for each scenario:</p>
+<ul>
+<li>Water</li>
+<li>Dry Land: all scenarios</li>
+<li>Storm Surge scenario</li>
+<li>Worst Case scenario</li>
+<li>Best Case scenario</li>
+</ul></li>
+<li><p>Proceed to creating a Raster Attribute Table for this layer as was done for the first conditional raster for land vs.&nbsp;water, Step 4 above.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/26.png" class="img-fluid figure-img"></p>
+<figcaption><em>Symbolization of <code>dem_final</code></em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Make sure to save the <code>.qgs</code> before moving to final summarization and design steps.</li>
+</ul>
+</section>
+<section id="assignment-step-7---extra-credit-portion-of-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-7---extra-credit-portion-of-assignment">Assignment Step 7 - Extra Credit Portion of Assignment</h2>
+<ul>
+<li><p>The next section is strongly encouraged, but if you choose <em>NOT</em> to continue with the summarization process to quantity the original project questions, you can proceed to the assignment layout (Step 8) as the next step and skip this section. Top score without summarization will be 90 points; with the summarization top score is 100 points.</p></li>
+<li><p>With all scenarios complete, turn to developing a summary table to help answer the original project questions:</p></li>
+<li><p><strong>Question 1</strong>: <em>How much of Manhattan will be inundated by rising sea levels by 2100?</em></p></li>
+<li><p><strong>Question 2</strong>: <em>How much of Manhattan is at risk of a 10 m (30-foot) storm surge?</em></p></li>
+<li><p>To do answer these questions, you will need an areal calculation for the total land area and land areas for each scenario.</p></li>
+<li><p>To start, open the attribute table for <code>dem_final</code>. Note columns that are available. However, we do not have access to the areal qualities of each class via this attribute table output - a limitation of the default attribute table tool in the latest version of QGIS. There is a tool entitled <strong>Raster layer unique values report</strong> that will report areal quantities and counts of pixels per discrete class. This is another good option for summarization. However, for this assignment, we will determine the areal extent of each class through a process known as <em>polygonization</em> in the following workflow.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/27.png" class="img-fluid figure-img"></p>
+<figcaption><em>Note the attributes of the <code>dem_final</code> attribute table</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>To start, initiate a <em>Polygonize</em> transformation, i.e.&nbsp;transform the pixels in the raster into polygon features. Proceed to <em>Processing Toolbox &gt; raster pixels to polygons</em>:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/28.png" class="img-fluid figure-img"></p>
+<figcaption><em>Processing Toolbox &gt; raster pixels to polygons</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Populate the tool with defaults including Field name of <code>VALUE</code>:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/29.png" class="img-fluid figure-img"></p>
+<figcaption><em>Populate tool with defaults</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/30.png" class="img-fluid figure-img"></p>
+<figcaption><em>Resulting Polygon Features</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Next, proceed to the <em>Dissolve Tool</em> where the individual pixels will be merged into zones sharing the same <code>Value</code>. Input the <code>Vector polygons</code> layer to the tool:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/31.png" class="img-fluid figure-img"></p>
+<figcaption><em>Dissolve Tool Location</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Make sure to point <em>Choose Dissove field(s)</em> to <code>VALUE</code>; if this option is not activated, the result will be one polygon, not multiple polygons representing each <em>Zone</em>, i.e.&nbsp;the <code>VALUE</code> attribute.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/dissolve.2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Choose Dissove field(s) as <code>VALUE</code> and runs as a temporary layer</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/32.png" class="img-fluid figure-img"></p>
+<figcaption><em>Dissolve Tool Zone Result as temporary layer</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Next, open <code>Dissolved</code> layer’s attribute table and utilize the <em>Field Calculator</em> to create a new column <code>Class</code> as a <code>Text (string)</code> with a <code>field length</code> of <code>30</code>. Set the field content as a holder value of <code>'test'</code>:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/33.png" class="img-fluid figure-img"></p>
+<figcaption><em>New <code>Class</code> Field</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/34.png" class="img-fluid figure-img"></p>
+<figcaption><em>Attribute Table Result</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Within the new field <code>Class</code> manually select each row, utilizing the <code>VALUE</code> column to point the <em>Field Calculator</em> to each row’s respective <code>Class</code> nominal value, i.e.&nbsp;its class name. Use <em>Update existing field</em> to place the new <code>Class</code> nominal value:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/35.png" class="img-fluid figure-img"></p>
+<figcaption><em>For row with <code>VALUE</code> = <code>7</code>, the new <code>Class</code> nominal value = <code>'Dry Land: All Scenarios'</code> </em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Continue with the same process, until all <code>Class</code> nominal values are complete. Make sure to <strong>REMOVE</strong> <code>VALUE</code> <code>0</code> - the water value. In the final summary table, water must be removed to get the correct sum value for land alone. To follow, a preview of the 4 final scenario classes shown in table format:</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Value</th>
+<th style="text-align: center;">Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>7</td>
+<td style="text-align: center;">Above Water (No Flooding)</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td style="text-align: center;">Land flooded by a storm surge</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td style="text-align: center;">worst-case scenario</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td style="text-align: center;">best-case scenario</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/36.png" class="img-fluid figure-img"></p>
+<figcaption><em>the new <code>Class</code> nominal values now complete in <code>Dissolved</code> attribute table</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure to fully remove from the <code>Dissolved</code> layer the <code>VALUE</code> <code>0</code> which is water before proceeding. You can do this when actively editing the layer, using the red ‘trash can’ <code>Delete selected features</code> with an active row selected manually. See the graphic <em>Attribute Table Result</em> 3 graphics above for location of red ‘trash can’ as well as upper-left ‘yellow pencil’ editing tool.</p>
+</div>
+</div>
+<ul>
+<li>Next, create a new column in <code>Dissolved</code> layer named <code>SQ Meter</code>; <code>Decimal number (real)</code> as the number type; setting the Expression to <code>$area</code> under the Geometry expression tab:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/37.png" class="img-fluid figure-img"></p>
+<figcaption><em>New Column <code>SQ Meter</code></em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Next create a new column of the same type as <code>SQ Meter</code>, but name as <code>SQ Mile</code> using the following expression to populate the new column:</li>
+</ul>
+<pre><code>"SQ Meter"*0.0000003861</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/38.png" class="img-fluid figure-img"></p>
+<figcaption><em>New Column <code>SQ Meter</code></em></figcaption>
+</figure>
+</div>
+<p>Next, point to the <em>Statistics Summary Tool</em> on the top menu and run the tool for the <code>Dissolved</code> layer, <code>SQ Mile</code> attribute:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/39.png" class="img-fluid figure-img"></p>
+<figcaption><em>Statistics Summary Tool</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/40.png" class="img-fluid figure-img"></p>
+<figcaption><em>Statistics Summary Tool</em></figcaption>
+</figure>
+</div>
+<ul>
+<li><p>The resulting <code>Sum</code> value is the total area in square mile units; in this example 24.883 (your value may be slightly different on your machine, and your exact version of QGIS).</p></li>
+<li><p>Next, create a new column for percent land area for each scenario class. The expression for this new column is:</p></li>
+</ul>
+<pre><code>"SQ Mile" / 24.883 * 100</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The value <code>24.883</code> is the total square miles for the land area in the raster; your value may be slightly different.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/41.png" class="img-fluid figure-img"></p>
+<figcaption><em>% Land Column</em></figcaption>
+</figure>
+</div>
+<p>When complete, close the editing session in the attribute table via the upper left ‘yellow pencil’ tool; Toggle to <strong>OFF</strong> and save the layer when prompted:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/42.png" class="img-fluid figure-img"></p>
+<figcaption><em>Toggle <strong>OFF</strong> editing mode</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Export the results of the preceeding editing process from <code>Dissolved</code> layer in temporary memory to <code>table.shp</code> into the <code>exports</code> folder:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/43.png" class="img-fluid figure-img"></p>
+<figcaption><em>Save table results to new layer <code>table.shp</code></em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Save the <code>.qgs</code> and initiate a new layout. Within <em>Layout Canvas</em>, towards the bottom of the main vertical-left toolbar, enact the <code>Add Attribute Table</code>:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/44.png" class="img-fluid figure-img"></p>
+<figcaption><em>Layout Canvas &gt; Add Attribute Table</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Within <em>Layout Canvas</em>, the new table item can be significantly revised in content and format. Make sure to point <em>Layer</em> to <code>table</code>:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/45.png" class="img-fluid figure-img"></p>
+<figcaption><em>Layout Canvas &gt; Add Attribute Table</em></figcaption>
+</figure>
+</div>
+<p>Within the new table element, the rows can also be resorted; see the <a href="https://weekly-materials.s3-us-west-1.amazonaws.com/c5.DEM_NYC_map.example.pdf">map example</a> as a resorted table appearance:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/46.png" class="img-fluid figure-img"></p>
+<figcaption><em>Attribute options - including resorting - with the table item</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="assignment-step-8---map-layout-deliverable" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-8---map-layout-deliverable">Assignment Step 8 - Map layout &amp; Deliverable</h2>
+<ul>
+<li><p>To development the final map design, utilize the map example PDF below to help guide your process.</p>
+<ul>
+<li>Final map layout will include the following elements on either a 11x17” or 8.5x11” Portrait/Landscape 300 DPI:</li>
+<li>Main map frame featuring your cartographic output</li>
+<li>Insert summary table (Extra credit portion of assignment)</li>
+<li>A map title</li>
+<li>Legend representing each nominal scenario category</li>
+<li>Simple scale bar tailored to a meaningful distance(s) for Manhattan, NYC (optional)</li>
+<li>North Arrow</li>
+<li>Data source &amp; Author tag</li>
+</ul></li>
+<li><p>Utilize the following Map Examples to guide your design process:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_assignment_files/img/map.example.png" class="img-fluid figure-img"></p>
+<figcaption>Assignment Map Example</figcaption>
+</figure>
+</div>
+<ul>
+<li><a href="https://weekly-materials.s3-us-west-1.amazonaws.com/c5.DEM_NYC_map.example.pdf">Map Example</a></li>
+</ul>
+</section>
+<section id="grading-rubric" class="level2">
+<h2 class="anchored" data-anchor-id="grading-rubric">🧮 Grading Rubric</h2>
+<blockquote class="blockquote">
+<p><strong>Scoring:</strong> Core mapping deliverable = <strong>90 points</strong>.<br>
+<strong>Extra credit:</strong> Summary table workflow = <strong>+10 points</strong> (max total = <strong>100</strong>)</p>
+</blockquote>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Criteria</th>
+<th>Excellent</th>
+<th>Satisfactory</th>
+<th style="text-align: right;">Needs Work</th>
+<th style="text-align: right;">Pts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1) Project setup + data management</strong></td>
+<td>Correct folder structure; <code>.qgs</code> saved in the correct assignment directory; rasters + vector connected cleanly; exports written to <code>exports/</code>; sensible layer names</td>
+<td>Minor organization/naming issues, but project opens/runs and outputs are findable</td>
+<td style="text-align: right;">Broken paths, missing files, unclear organization, or project won’t open cleanly</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="even">
+<td><strong>2) Mosaic + clip (mask) workflow</strong></td>
+<td>Virtual raster created correctly; masked/clipped raster matches Manhattan AOI; key raster stats checked and reasonable; workflow is reproducible</td>
+<td>Mostly correct, but minor parameter issues or incomplete checking of results</td>
+<td style="text-align: right;">Mosaic/clip incorrect; AOI wrong; outputs missing or unusable</td>
+<td style="text-align: right;">15</td>
+</tr>
+<tr class="odd">
+<td><strong>3) Conditional rasters (scenario logic)</strong></td>
+<td>Correct <code>CON</code> / Raster Calculator logic for <strong>land vs water</strong>, <strong>BCS</strong>, <strong>WCS</strong>, <strong>storm surge</strong>; outputs saved as instructed; values match assignment scheme and produce meaningful spatial patterns</td>
+<td>One expression/value slightly off, but intent is clear and results mostly usable</td>
+<td style="text-align: right;">Multiple incorrect expressions/thresholds; missing scenario layers; results not interpretable</td>
+<td style="text-align: right;">30</td>
+</tr>
+<tr class="even">
+<td><strong>4) Final raster (<code>dem_final</code>) + classification</strong></td>
+<td><code>dem_final</code> produced using the correct formula; symbology set to <strong>Paletted/Unique values</strong>; labels added for scenario categories; classes clearly distinguishable</td>
+<td><code>dem_final</code> works but classification/labels incomplete or slightly confusing</td>
+<td style="text-align: right;">Final raster missing/incorrect; classes not separated; labels absent</td>
+<td style="text-align: right;">20</td>
+</tr>
+<tr class="odd">
+<td><strong>5) Raster Attribute Table (RAT) competency</strong></td>
+<td>RAT created successfully for <code>dem_final</code> (or equivalent); student demonstrates they can access/inspect counts/classes as part of QA</td>
+<td>RAT attempted with partial success or minimal QA use</td>
+<td style="text-align: right;">RAT not attempted and no evidence of checking class structure</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td><strong>6) Map layout + export (core deliverable)</strong></td>
+<td>Layout includes required elements: title, legend for nominal categories, author/data source, north arrow; readable typography; clean legend/category naming; exported to correct size (8.5x11 or 11x17) at 300 DPI</td>
+<td>All required elements present but layout hierarchy/readability needs refinement</td>
+<td style="text-align: right;">Missing required elements and/or export settings wrong; poor readability</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td><strong>7) Cartographic clarity + communication</strong></td>
+<td>Map clearly communicates scenario differences (good color choices, contrast, labeling); composition supports interpretation; minimal clutter</td>
+<td>Understandable but visually uneven (contrast, spacing, labeling)</td>
+<td style="text-align: right;">Hard to interpret; misleading symbology or cluttered composition</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><strong>Core total</strong></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"><strong>90</strong></td>
+</tr>
+</tbody>
+</table>
+<section id="extra-credit-optional-summary-table-workflow-10" class="level3">
+<h3 class="anchored" data-anchor-id="extra-credit-optional-summary-table-workflow-10">⭐ Extra Credit (Optional) — Summary Table Workflow (+10)</h3>
+<p>If completed, this section adds <strong>up to 10 points</strong> beyond the 90-point core.</p>
+</section>
+</section>
+<section id="concluding-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-remarks">Concluding Remarks</h2>
+<ul>
+<li><p>In this assignment, you have covered several fundamental raster-based processes to achieve a meaningful quantitative result for a pressing climate-related spatial problem. Returning to the original questions, we can now answer them both through the spatial patterns seen in the cartographic output as well as the summary table result of the assignment.</p></li>
+<li><p>For the first question <em>How much of Manhattan will be inundated by rising sea levels by 2100?</em> we can answer that the best case scenario is approximately <code>7.3%</code> of Manhattan’s land mass. In the worst case scenario, both the map and the summary result report back <code>3.0%</code>; however, inundation would be additive in the worst case scenario so it really would be both scenarios together for approximately <code>10.3%</code> in the worst case scenario.</p></li>
+<li><p>For the second question <em>How much of Manhattan is at risk of a 10 m (30-foot) storm surge?</em> both mapping and summary table found a very significant spatial extent at <code>44.07%</code>. Following the additive logic of the worst case scenario for sea level rise, the 10 m storm surge equates to the <code>10.3%</code> land mass given over to sea level rise coupled with the storm surge <code>44.07%</code> for a total of <code>54.37%</code>, literally more than half of Manhattan land mass. We need to keep in mind that this is an unprecedented value; Hurricane Sandy, for as bad as it was, amounted to a 14-foot storm surge.</p></li>
+<li><p>Of important note, both cartographic and summary results are limited in total accuracy due to the relatively large cell size of the assignment DEM input. We utilized this relatively course pixel size (30-meter) in order to speed up the assignment processing. If we were to use 10-meter, 1-meter or even sub-meter resolution DEM, we would certainly achieve more accurate results across all scenarios - it would just take more processing resources to process the more resolute raster data.</p></li>
+<li><p>Finally, our Manhattan Borough boundary included the administrative boundary including water areas. In order to better represent land area, NYC Planning does offer an accurate <a href="https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">shoreline dataset for all 5 boroughs</a>. If we were to use this vector boundary coupled with more resolute DEM raster pixels, we would be able to achieve a significantly more accurate final result in both cartographic and summary table output.</p></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c6_assignment_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
