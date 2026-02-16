@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-02-16">
+
+<title>Class 6 Lecture Demonstration Lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c6_demo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c6_demo_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c6_demo_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c6_demo_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c6_demo_files/libs/quarto-html/popper.min.js"></script>
+<script src="c6_demo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c6_demo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c6_demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c6_demo_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c6_demo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c6_demo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c6_demo_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="c6_demo_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction-to-raster-data-gridded-world-population" id="toc-introduction-to-raster-data-gridded-world-population" class="nav-link active" data-scroll-target="#introduction-to-raster-data-gridded-world-population">Introduction to Raster Data | Gridded World Population</a></li>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1</a></li>
+  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2</a></li>
+  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3</a></li>
+  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4</a></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks">Concluding Remarks</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 6 Lecture Demonstration Lab</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 16, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction-to-raster-data-gridded-world-population" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-to-raster-data-gridded-world-population">Introduction to Raster Data | Gridded World Population</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/1.png" class="img-fluid figure-img"></p>
+<figcaption>Population Distribution - JRC/GHSL/P2016/POP_GPW_GLOBE_V1 - accessed via Google Earth Engine</figcaption>
+</figure>
+</div>
+</section>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<p>The field of human population mapping is constantly evolving, leveraging the increasing availability of high-resolution satellite imagery and the advancements in the field of machine learning. In recent years, the emergence of global built-area datasets that accurately describe the extent, location, and characteristics of human settlements has facilitated the production of new population grids, with improved quality, accuracy, and spatial resolution.</p>
+<p>In this demonstration lab, we will utilize the <a href="https://sedac.ciesin.columbia.edu/data/collection/gpw-v4">GPW v4 Population Count Dataset</a> hosted by Columbia University. This dataset features a estimated population value (count) per grid cell of approximately 5km spatial resolution (2.5 minute). The following short video introduces the data and its production methodology:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://youtu.be/aSjuFXX7CNM"><img src="c6_demo_files/img/2.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>GPW Introduction</em></figcaption>
+</figure>
+</div>
+<p>We will explore raster symbolization and utilize the <em>Raster Calculator</em> to produce a difference value between 2010 and 2020 across the GPW dataset. Once we achieve our raster result, we will then classify the raster values into an ordinal scale of population decline/growth between the years 2010 and 2020.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<ul>
+<li><p><a href="https://www.dropbox.com/s/smdpko87clf3lh8/c5.lab.data.gpw-v4-pop_count_2010_2020.zip?dl=1">Demonstration Lab Data</a></p></li>
+<li><p>There are two raster datasets in the data directory. They originate from the <a href="https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-count-rev11/data-download">Gridded Population of the World V4 (GPW)</a> based on two temporal variables - 2010 and 2020 population counts (number of persons per pixel).</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/3.png" class="img-fluid figure-img"></p>
+<figcaption><em>Gridded GPW Interface</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-1" class="level2">
+<h2 class="anchored" data-anchor-id="step-1">Step 1</h2>
+<p>Open QGIS and point <em>Data Source Manager</em> to the <code>c5.lab.data.gpw-v4-pop_count_2010_2020</code> lab data. Remember to uncompress (unzip) the data directory before proceeding. Unlike previous week’s <em>Vector</em> and <em>Delimited Text</em> file types, we will utilize the <em>Raster</em> option:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/4.png" class="img-fluid figure-img"></p>
+<figcaption><em>Point Data Source Manager to <code>Raster</code></em></figcaption>
+</figure>
+</div>
+<p><strong>Import</strong> both <code>2010</code> and <code>2020</code> Gridded Population Rasters into <em>TOC</em>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/5.png" class="img-fluid figure-img"></p>
+<figcaption><em>Rasters imported to QGIS project</em></figcaption>
+</figure>
+</div>
+<p><strong>Download</strong> the <strong>Value Tool</strong> plugin from <em>main menu &gt; plugins &gt; value tool</em>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/6.png" class="img-fluid figure-img"></p>
+<figcaption><em>Value Tool Plugin</em></figcaption>
+</figure>
+</div>
+<p>With both rasters loaded, install the tool and enable it in lower right of the map canvas. Find cell areas at/near a large urban area and move the tool over this geography. Notice that the values for 2010 will typically be smaller than 2020 representing urban population gain:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/7.png" class="img-fluid figure-img"></p>
+<figcaption><em>Value Tool Plugin Interface</em></figcaption>
+</figure>
+</div>
+<p>In this demonstration lab, this difference between <code>2010</code> and <code>2020</code> across both raster extents will be derived and mapped. Prior to calculating difference, symbolization will be explored.</p>
+</section>
+<section id="step-2" class="level2">
+<h2 class="anchored" data-anchor-id="step-2">Step 2</h2>
+<p>Within the 2010 layer, <strong>navigate</strong> to <em>layer properties &gt; symbology</em>. Choose <em>Singleband pseudocolor renderer</em>. Expand the <code>Min / Max</code> Value Settings and choose the <code>Cumulative count cut</code> option. The standard data range is set from 2% to 98% of the data values, meaning that the outliers will not be used to set the minimum and maximum values, resulting in a much more representative visualization. Typically this makes sense for visualization; however, when conducting symbolization, keep in mind the actual data distribution (use the histogram to determine data distribution) determines the <em>color ramp</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/8.png" class="img-fluid figure-img"></p>
+<figcaption><em>Continuous Value Symbolization</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are three modes of interpolation of values:</p>
+<ul>
+<li>Linear (<code>INTERPOLATED</code>): resulting color is linearly interpolated from the color map entries above and below the actual pixel value.</li>
+<li>Discrete (<code>DISCRETE</code>): color is used from the color map entry with equal or higher value.</li>
+<li>Exact (<code>EXACT</code>): color is not interpolated, only the pixels with value equal to color map entries are drawn.</li>
+</ul>
+</div>
+</div>
+<p><strong>Check</strong> results:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/9.png" class="img-fluid figure-img"></p>
+<figcaption><em>Continuous Value Symbolization Result</em></figcaption>
+</figure>
+</div>
+<p>Next, Copy the applied style in the <code>2010 layer</code>, and apply Paste to the <code>2020 layer</code>. <strong>Toogle</strong> the two layers <strong>ON/OFF</strong>; note the population gains at/near high population urban geographies:</p>
+<p><strong>Copy</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/10.png" class="img-fluid figure-img"></p>
+<figcaption><em>Copy Style</em></figcaption>
+</figure>
+</div>
+<p><strong>Paste</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/11.png" class="img-fluid figure-img"></p>
+<figcaption><em>Paste Style</em></figcaption>
+</figure>
+</div>
+<p><strong>Toogle Results</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/12.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Symbolization Result</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-3" class="level2">
+<h2 class="anchored" data-anchor-id="step-3">Step 3</h2>
+<p><strong>Save</strong> project before moving to the calculations. <strong>Open</strong> the <em>Raster Calculator</em> via <em>Main Menu &gt; Raster &gt; Raster Calculator</em>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/13.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Calculator Location from Top Menu</em></figcaption>
+</figure>
+</div>
+<p>Within the <strong>Raster Calculator</strong>, bands are named after the raster name followed by @ and band number. Since each of our rasters have only 1 band, you will the names with <span class="citation" data-cites="1">@1</span> appended to the layer name. The calculation that will be utilized to derive change is simple raster math - in this case subtraction formatted as follows:</p>
+<p><span class="math display">\[
+Population Raster2020 - Population Raster2010
+\]</span></p>
+<p><code>"gpw_v4_population_count_rev11_2020_2pt5_min@1" - "gpw_v4_population_count_rev11_2010_2pt5_min@1"</code></p>
+<p><strong>Output</strong> the layer as <code>population_change_2010_2020.tif</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/14.png" class="img-fluid figure-img"></p>
+<figcaption><em>Raster Calculator Inputs &amp; Output</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-4" class="level2">
+<h2 class="anchored" data-anchor-id="step-4">Step 4</h2>
+<ul>
+<li><p><strong>Visualize</strong> the results not with continuous values per se, but discrete values. Here we give an ordinal value to the colors beyond their original position within the dataset. Four discrete values with corresponding unique colors will be used to break the broad theme of <em>population change</em> into meaningful categories:</p>
+<ul>
+<li>Decline | <code>-100</code></li>
+<li>Neutral | <code>100</code></li>
+<li>Growth | <code>1,000</code></li>
+<li>High Growth | <code>1,000,000</code></li>
+</ul></li>
+</ul>
+<p>Within the <code>population_change_2010_2020.tif</code> layer , <strong>navigate</strong> to <em>layer properties &gt; symbology</em>. Choose <em>Singleband pseudocolor renderer</em>. Select the Interpolation method as <code>Discrete</code>. Remove any values using the <em>minus button</em> (red minus sign):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/16.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Discrete Symbolization Interface</em></figcaption>
+</figure>
+</div>
+<p>Each of the four discrete breaks will be entered manually. Start with <em>Decline</em>, setting the break to <code>-100</code> and color to dark blue, then selecting <em>Apply</em>. Continue with the other values in the proposed ordinal scale from <em>Decline</em> to <em>High Growth</em>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/17.png" class="img-fluid figure-img"></p>
+<figcaption><em>Discrete Breaks Applied</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/18.png" class="img-fluid figure-img"></p>
+<figcaption><em>Ordinal Scale Applied</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/19.png" class="img-fluid figure-img"></p>
+<figcaption><em>Cartographic Result</em></figcaption>
+</figure>
+</div>
+<p><strong>Zoom</strong> into larger scale geographies (the northeast US shown below) and notice population spatial patterns. ‘Rustbelt’ cities in the northeast US feature prominently in the Decline class:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/20.png" class="img-fluid figure-img"></p>
+<figcaption><em>Explore Results</em></figcaption>
+</figure>
+</div>
+<p><strong>Zoom</strong> further to the <em>City of Detroit</em> and <em>City of Flint</em> to see the large scale pattern <code>2010 - 2020</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c6_demo_files/img/20.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Explore Results</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>To install a basemap for locational comparison and context of the <em>Population Difference Raster</em>, utilize the <a href="https://plugins.qgis.org/plugins/quick_map_services/">QuickMapServices</a> plugin and choose the <code>OSM Standard</code> basemap product.</p>
+</div>
+</div>
+</section>
+<section id="concluding-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-remarks">Concluding Remarks</h2>
+<p>In this fifth demonstration lab, we explored important dimensions of raster data; conducted a simple overlay analysis via the <em>Raster Calculator</em>, and applied an ordinal scale to discrete class breaks to produce a global population result that helps us understand both decline and growth at both small and regional scales.</p>
+<p>The <em>Gridded Population of the World (GPW), v4</em> used in this demonstration lab is one of several global population datasets readily available for GIS analysis. Two products worth exploring further are as follows:</p>
+<ul>
+<li><a href="https://www.worldpop.org/">WorldPop - Open Spatial Demographic Data and Research</a></li>
+<li><a href="https://dataforgood.facebook.com/dfg/tools/high-resolution-population-density-maps#overview">Data for Good - High Resolution Population Density Maps</a></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c6_demo_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
