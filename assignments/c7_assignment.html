@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-03-07">
+<meta name="dcterms.date" content="2026-03-08">
 
 <title>Class 7 Assignment: Map Projections</title>
 <style>
@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -56,14 +91,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#assignment-step-1" id="toc-assignment-step-1" class="nav-link" data-scroll-target="#assignment-step-1">Assignment Step 1</a></li>
   <li><a href="#video-guide-i-step-i" id="toc-video-guide-i-step-i" class="nav-link" data-scroll-target="#video-guide-i-step-i">Video Guide I | Step I:</a></li>
-  <li><a href="#assignment-step-2" id="toc-assignment-step-2" class="nav-link" data-scroll-target="#assignment-step-2">Assignment Step 2</a></li>
+  <li><a href="#assignment-step-2" id="toc-assignment-step-2" class="nav-link" data-scroll-target="#assignment-step-2">Assignment Step 2</a>
+  <ul class="collapse">
+  <li><a href="#part-ii" id="toc-part-ii" class="nav-link" data-scroll-target="#part-ii">Part II</a></li>
+  <li><a href="#part-iii" id="toc-part-iii" class="nav-link" data-scroll-target="#part-iii">Part III</a></li>
+  </ul></li>
   <li><a href="#assignment-step-3" id="toc-assignment-step-3" class="nav-link" data-scroll-target="#assignment-step-3">Assignment Step 3</a></li>
   <li><a href="#assignment-step-4" id="toc-assignment-step-4" class="nav-link" data-scroll-target="#assignment-step-4">Assignment Step 4</a></li>
   <li><a href="#assignment-step-5" id="toc-assignment-step-5" class="nav-link" data-scroll-target="#assignment-step-5">Assignment Step 5</a></li>
-  <li><a href="#video-guide-ii-steps-ii---v" id="toc-video-guide-ii-steps-ii---v" class="nav-link" data-scroll-target="#video-guide-ii-steps-ii---v">Video Guide II | Steps II - V:</a></li>
   <li><a href="#assignment-step-6" id="toc-assignment-step-6" class="nav-link" data-scroll-target="#assignment-step-6">Assignment Step 6</a></li>
+  <li><a href="#video-guide-ii-steps-ii---v" id="toc-video-guide-ii-steps-ii---v" class="nav-link" data-scroll-target="#video-guide-ii-steps-ii---v">Video Guide II | Steps II - V:</a></li>
   <li><a href="#assignment-step-7" id="toc-assignment-step-7" class="nav-link" data-scroll-target="#assignment-step-7">Assignment Step 7</a></li>
-  <li><a href="#assignment-step-7-1" id="toc-assignment-step-7-1" class="nav-link" data-scroll-target="#assignment-step-7-1">Assignment Step 7</a></li>
+  <li><a href="#assignment-step-9" id="toc-assignment-step-9" class="nav-link" data-scroll-target="#assignment-step-9">Assignment Step 9</a></li>
   <li><a href="#map-layout-deliverable" id="toc-map-layout-deliverable" class="nav-link" data-scroll-target="#map-layout-deliverable">Map layout &amp; Deliverable:</a></li>
   <li><a href="#further-references" id="toc-further-references" class="nav-link" data-scroll-target="#further-references">Further References:</a></li>
   </ul>
@@ -85,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 7, 2026</p>
+      <p class="date">March 8, 2026</p>
     </div>
   </div>
   
@@ -106,8 +145,8 @@ ul.task-list li input[type="checkbox"] {
 <section id="preamble" class="level2">
 <h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
 <p>Map projections and datums are fundamental to the core framework of GIS systems. Both raster and vector data types can be displayed in GIS <em>without</em> projection information; however, it is only with correct map projections that any analysis between raster and vector layers can be conducted. In other words, anything beyond simple visibility within GIS requires associated map projection information for all analysis layers in a GIS project.</p>
-<p>In this week’s assignment, both vector features and raster tiles will be procured online; as is the case with most data posted online, the attendant projection system will be a geographic coordinate system (GCS). Early processing in this assignment will utilize this GCS, but towards the end of the project, a map projection transformation will be performed in order to achieve a planar, projected coordinate system for areal calculations; and importantly preserves the actual shape of a city well as it is a <em>Conformal</em> map system.</p>
-<p>This week’s assignment will draw on the primary concepts covered in Class 6 lecture &amp; lab sessions:</p>
+<p>In this week’s assignment, both vector features and raster tiles will be procured online; as is the case with most data posted online, the attendant projection system will be a geographic coordinate system (GCS) - most likely <code>WGS84</code>. Early processing in this assignment will utilize this particular GCS, but towards the end of the project, a map projection transformation will be performed in order to achieve a planar, projected coordinate system for areal calculations; and importantly preserves the actual shape of a city (the target AOI - Area of Interest) via a <em>Conformal</em> CRS, namely the UTM system.</p>
+<p>This week’s assignment will draw on the primary concepts covered in Class 7 lecture &amp; lab sessions:</p>
 <ul>
 <li>Overview of Map Projections</li>
 <li>Small Scale vs.&nbsp;Large Scale mapping techniques for Map Projections</li>
@@ -131,7 +170,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Dissolve to land use categories; reproject the vector feature to its appropriate <code>UTM Zone</code> - projected coordinate system.</li>
 <li>Create an nominal thematic map and respective legend for land use categories.</li>
 <li>Incorporate a summary table into the final layout.</li>
-<li>Complete assignment submission layout; load to assignment 6 PDF at CANVAS.</li>
+<li>Complete assignment submission layout; load to assignment 7 PDF at CANVAS.</li>
 </ul>
 </section>
 <section id="class-7-recorded-lecture" class="level2">
@@ -161,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
 <p>The <strong>Class 7 quiz</strong> will feature 10 questions covering content from the textbook, Chapter 3, <strong>An Introduction to Geospatial Thinking and Open Source GIS</strong> by Jennifer Moore as noted below:</p>
 <ul>
 <li><p><a href="https://weekly-reading-research.s3.us-east-1.amazonaws.com/chapter-3_Location-Location-Location_Jennifer_Moore.pdf">Chapter 3: Location, Location, Location</a></p></li>
-<li><p>Supplemental reading directory (these materials will not be covered by <strong>Class 7 quiz</strong>:</p></li>
+<li><p>Supplemental reading directory (these materials will <strong>not</strong> be covered by <strong>Class 7 quiz</strong>:</p></li>
 <li><p><a href="https://www.dropbox.com/s/jzlodwkq02kecss/C6_Readings.zip?dl=1">Class 7 Supplemental Reading Directory</a></p></li>
 <li><p>Included Supplemental Readings:</p>
 <ul>
@@ -208,12 +247,28 @@ Note
 <section id="assignment-step-1" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-step-1">Assignment Step 1</h2>
 <ul>
-<li><p>Download the <a href="https://www.dropbox.com/s/9o2mymccyxxdady/c6_UTM-zones.zip?dl=1">Class 7 assignment data - named <code>c6_UTM-zones.zip</code></a></p></li>
-<li><p>Create an assignment <code>.qgs</code>, placing it within your assignment 6 directory.</p></li>
+<li>Download the <a href="https://www.dropbox.com/s/9o2mymccyxxdady/c6_UTM-zones.zip?dl=1">Class 7 assignment data - named <code>c6_UTM-zones.zip</code></a></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For inclass demonstration purposes, Atlanta, GA vector feature and landcover has been already processed. Utilize this data only for testing; follow the steps for your own city of choice.</p>
+</div>
+</div>
+<ul>
+<li><p><a href="https://weekly-materials.s3.us-west-1.amazonaws.com/c7_atlanta_ga_example_data.zip">Atlanta, GA Test Bundle</a></p></li>
+<li><p>Create an assignment <code>.qgs</code>, placing it within your assignment 7 directory.</p></li>
 </ul>
 <p>Next, navigate via web browser to <a href="https://www.openstreetmap.org">OpenStreetMap (OSM)</a>. In the assignment example below, the city of Atlanta, Georgia will be used. In your own assignment submission choose a global city that features the following characteristics:</p>
 <ol type="1">
-<li>A very large city.</li>
+<li>A very large city (this ensures multiple land cover types).</li>
 <li>Multiple land uses in addition to impervious, high urban surfaces.</li>
 <li>Falls within 1 UTM Zone.</li>
 </ol>
@@ -266,6 +321,19 @@ Tip
 <figcaption><em>Overpass Turbo Extraction for Atlanta, GA</em></figcaption>
 </figure>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Chatbots like ChatGPT are very good with Overpass Turbo code. If you are having problems getting your query code to run sucessfully, consider a structured prompt at a chatbot to return a code chunk that you can then run in Overpass Turbo.</p>
+</div>
+</div>
 <p>At this juncture, <em>Export</em> the selection(s) for your city to the <code>geojson</code> format:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -294,7 +362,7 @@ Note
 <figcaption><em>Data Source Manager &gt; Vector &gt; export.geojson</em></figcaption>
 </figure>
 </div>
-<p>Its critical to disregard any polyline or points features, and just keep only the polygon feature. Once this is complete, <em>Import</em> the polygon feature to your <code>.qgs</code> project:</p>
+<p>Its critical to disregard any polyline or points features, and just keep only the <strong>polygon</strong> feature. Once this is complete, <em>Import</em> the polygon feature to your <code>.qgs</code> project:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c7_assignment_files/img/replace.2.png" class="img-fluid figure-img"></p>
@@ -340,37 +408,99 @@ Warning
 </section>
 <section id="assignment-step-2" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-step-2">Assignment Step 2</h2>
-<p>We will be using the Copernicus Land Cover Raster Classification product which requires a login account. You can start that first here. Once situated as a login user, you can proceed to the product download.</p>
+<p>We will be using the Copernicus Land Cover 2019 Raster product, V3 from the European Space Agency for our land cover types in this assignment. There is also a 10m version of this product. However, for our purposes, we’ll keep to the 100m product so as to save disk space. Note that we’ll use the default <code>EPSG: 4326 CRS</code> when downloading the product.</p>
+<p><img src="c7_assignment_files/img/7_1.png" class="img-fluid" alt="ESA Copernicus Land Cover Raster"> ### Part I</p>
+<p>To access the Copernicus Land Cover (100 m, 2019, Collection 3) we will be using Google Earth Engine (GEE) and exporting to Google Drive.</p>
+<blockquote class="blockquote">
+<p>⚠️ Students must use a <strong>personal Gmail account</strong>; TNS university accounts are blocked.</p>
+</blockquote>
+<p>https://console.cloud.google.com/earth-engine/configuration</p>
 <ul>
-<li><p><a href="https://land.copernicus.eu/login">Copernicus Login Portal</a></p></li>
-<li><p>Next, navigate to the <a href="https://land.copernicus.eu/en/products/global-dynamic-land-cover/copernicus-global-land-service-land-cover-100m-collection-3-epoch-2019-globe">Copernicus Global Land Cover- Land Cover 2019 (raster 100 m), global, yearly – version 3</a></p></li>
-<li><p>Choose the <code>Download by area</code> button; then choose <code>Go to download by area</code>.</p></li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="c7_assignment_files/img/7_1.png" class="img-fluid figure-img"></p>
-<figcaption><em>Download Option - upper left</em></figcaption>
-</figure>
-</div>
+<li><p>Go to GEE and first create a login event with your personal gmail email and password. Continue with the <em>2-Step Verification</em> or another validation method at lower right of interface.</p>
 <ul>
-<li><code>Go to download by area</code> will bring you to a map interface. At the left, make sure that you have the 2019 100m product checked. Also ensure you have checked on <code>Discrete Classification</code>. You will see a small green download icon. Enact that icon.</li>
+<li><a href="https://console.cloud.google.com/earth-engine/configuration">GEE Configuration</a></li>
+</ul></li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="c7_assignment_files/img/7_2.png" class="img-fluid figure-img"></p>
-<figcaption><em>Download Icon - enact</em></figcaption>
-</figure>
-</div>
+<ol type="1">
+<li>Start a New Project (choose Non-Commercial Use if prompted)</li>
+<li>Declare a project name and tap <strong>Create</strong></li>
+<li>After creating your project, go to the <strong>Overview tab</strong>.<br>
+</li>
+<li>Click <strong>Connect → Code Editor</strong> to open the Code Editor in a new tab.</li>
+</ol>
+<section id="part-ii" class="level3">
+<h3 class="anchored" data-anchor-id="part-ii">Part II</h3>
 <ul>
-<li><p>At this juncture, you will have several choices to choose your area. You can draw a rectangle; you can pick via country. Either will work fine. The smaller the area, the quicker the product will queue and deliver. BUT you need to make sure that you have more raster coverage than your chosen urban area boundary in order to mask the land cover product correctly. Don’t go too small if you use a custom rectangle size; and again, not too large so as to create unnecessary file size that is difficult to download and load to QGIS.</p></li>
-<li><p>Add your selection to the cart after enacting the Download Icon. Once complete, you should see the following product in your cart. Note that we’ll use the default <code>EPSG: 4326 CRS</code>:</p></li>
+<li>Draw Your AOI (Area of Interest)</li>
 </ul>
-<p><img src="c7_assignment_files/img/7_3.png" class="img-fluid" alt="Product in Cart ready for order"> Once the order is set by clicking the left check box to <strong>Process download request</strong>, an email will be generated to your email account that will have a link to the compressed data in <code>.zip</code> format.</p>
+<ol type="1">
+<li>Navigate to your city location and center the map on the city given ample room at edges of the map frame <em>beyond</em> the city.</li>
+<li>In the Code Editor map, click the <strong>polygon tool</strong> (top-left). Make sure to draw the polygon <em>beyond</em> the boundary of the city; we will clip to the city boundary in QGIS later.</li>
+<li>Draw a rectangle or polygon around your city AOI, again capturing more area than the city itself.<br>
+</li>
+<li>The variable created is: <code>geometry</code> in the <strong>New Script</strong> top middle section of the code editor.</li>
+</ol>
+</section>
+<section id="part-iii" class="level3">
+<h3 class="anchored" data-anchor-id="part-iii">Part III</h3>
+<ul>
+<li>Immediately under the <code>geometry</code> variable, <em>copy/paste</em> the following code which calls the raster product and then exports it to your Google Drive under the named gmail address:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Copernicus Land Cover 100 m (2019)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> lc <span class="op">=</span> ee<span class="op">.</span><span class="fu">ImageCollection</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"COPERNICUS/Landcover/100m/Proba-V-C3/Global"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">filterDate</span>(<span class="st">"2019-01-01"</span><span class="op">,</span> <span class="st">"2019-12-31"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="op">.</span><span class="fu">first</span>()<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Center map on your AOI</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">centerObject</span>(geometry<span class="op">,</span> <span class="dv">9</span>)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Add land cover layer</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">Map</span><span class="op">.</span><span class="fu">addLayer</span>(lc<span class="op">,</span> {}<span class="op">,</span> <span class="st">"Land Cover 2019"</span>)<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">// === Export AOI to Google Drive ===</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>Export<span class="op">.</span><span class="at">image</span><span class="op">.</span><span class="fu">toDrive</span>({</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">image</span><span class="op">:</span> lc<span class="op">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">description</span><span class="op">:</span> <span class="st">'landcover_subset'</span><span class="op">,</span>  <span class="co">// filename in Drive</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">region</span><span class="op">:</span> geometry<span class="op">,</span>                 <span class="co">// your AOI</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">scale</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span>                       <span class="co">// 100 m resolution</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="dt">crs</span><span class="op">:</span> <span class="st">'EPSG:4326'</span><span class="op">,</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="dt">maxPixels</span><span class="op">:</span> <span class="fl">1e13</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ol type="1">
+<li>Once the code is placed into the <strong>New Script</strong> section, choose the <strong>Run</strong> tab.</li>
+<li>Under the <strong>Tasks</strong> tab at far right, check that indeed the task shows under <strong>Submitted Tasks</strong> as <code>landcover_subset</code>. If it shows as <strong>Unsubmitted</strong> go ahead at run the task.</li>
+<li>Wait a few minutes (the larger the area, the more time involved); then check your Google Drive under the <strong>Recents</strong> tab; you should see <code>landcover_subset</code> there.</li>
+<li>Proceed to downloading the <code>landcover_subset</code> to your assignment folder for further work in QGIS.</li>
+</ol>
+</section>
 </section>
 <section id="assignment-step-3" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-step-3">Assignment Step 3</h2>
 <ul>
-<li>Next, uncompress the raster classification data to your assignment directory; then import the land cover raster to QGIS. <em>Mask by Layer</em> the raster with the vector layer so that the full coverage raster tile is ‘clipped’ to the edge of the vector city feature. Going forward, this will be the input raster for initial processing steps below:</li>
+<li>Use the <em>Raster Calculator</em> tool to extract the first band for the discrete classification:</li>
+</ul>
+<ol type="1">
+<li>Click <strong>Raster → Raster Calculator</strong>.<br>
+</li>
+<li>In the <strong>Raster Calculator dialog</strong>:
+<ul>
+<li>In the <strong>Raster bands</strong> list, find your layer and select the band you want (e.g., <code>landcover_subset@1</code> for Band 1).<br>
+</li>
+<li>In the <strong>Raster Calculator Expression</strong> box, type the band name (e.g., <code>“landcover_subset@1”</code>).<br>
+</li>
+<li>Under <strong>Output layer</strong>, click <strong>…</strong> to set the output file name and location (e.g., <code>landcover_band1.tif</code>).<br>
+</li>
+</ul></li>
+<li>Click <strong>OK</strong> to run the calculation.</li>
+<li>Verify that a new layer is produced; you will see a continuous, grayscale representation of the pixel values in the layers panel once imported correctly to QGIS via <em>Data Source Manager</em>.</li>
+</ol>
+</section>
+<section id="assignment-step-4" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-4">Assignment Step 4</h2>
+<ul>
+<li>Import the land cover raster to QGIS. <em>Mask by Layer</em> the raster with the vector layer so that the full coverage raster tile is ‘clipped’ to the edge of the vector city feature. Going forward, this will be the input raster for initial processing steps below:</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -409,17 +539,11 @@ Important
 <figcaption><em>Cutline polygon is invalid error notice</em></figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="c7_assignment_files/img/mask3.png" class="img-fluid figure-img"></p>
-<figcaption><em>Fix geometries via Processing Toolbox</em></figcaption>
-</figure>
-</div>
-<p>Once the administrative polygon (Atlanta, GA as example) is deemed valid by QGIS, move along to step 4 to follow. Utilize the fixed polygon going forward.</p>
+<p><img src="c7_assignment_files/img/mask3.png" class="img-fluid" alt="Fix geometries via Processing Toolbox"> Once the administrative polygon (Atlanta, GA as example) is deemed valid by QGIS, move along to step 5 to follow. Utilize the fixed polygon going forward.</p>
 </section>
-<section id="assignment-step-4" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-4">Assignment Step 4</h2>
-<p>As discussed earlier, utilize the <em>UTM Zones</em> feature to determine which zone encapsulates to full extent of your global city. If by chance your city straddles two <em>UTM Zones</em>, you are advised for this assignment to simply choose a different global city that indeed falls fully within one <em>UTM Zone</em>. As noted prior, the relevant UTM zone for Atlanta, Georgia is <code>UTM Zone 16N</code>. <em>Reproject</em> this vector feature and output to the assignment folder using the correct UTM Zone for your city:</p>
+<section id="assignment-step-5" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-5">Assignment Step 5</h2>
+<p>As discussed earlier, utilize the <em>UTM Zones</em> feature to determine which zone encapsulates to full extent of your global city. If by chance your city straddles two <em>UTM Zones</em>, you are advised for this assignment to simply choose a different global city that indeed falls fully within one <em>UTM Zone</em>. As noted prior, the relevant UTM zone for Atlanta, Georgia is <code>UTM Zone 16N</code>. <em>Reproject</em> this vector feature (city boundary, not the raster data) and output to the assignment folder using the correct UTM Zone for your city:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c7_assignment_files/img/project1.png" class="img-fluid figure-img"></p>
@@ -458,8 +582,8 @@ Note
 </div>
 </div>
 </section>
-<section id="assignment-step-5" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-5">Assignment Step 5</h2>
+<section id="assignment-step-6" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-6">Assignment Step 6</h2>
 <p>Next, <em>Polygonize</em> the raster cells within the new clipped raster for your city.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -489,18 +613,10 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If <code>.dbf</code> errors are evident, the dissolve should still be valid.</p>
+<p>If <code>.dbf</code> errors are evident, the result should still be valid.</p>
 </div>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="c7_assignment_files/img/poly4.png" class="img-fluid figure-img"></p>
-<figcaption><em>Note the <code>DN</code> number produced for each polygonized raster cell</em></figcaption>
-</figure>
-</div>
-<ul>
-<li><em>Dissolve</em> the new polygon feature, utilizing the <em>attribute</em> <code>DN</code> as the dissolve field:</li>
-</ul>
+<p><img src="c7_assignment_files/img/poly4.png" class="img-fluid" alt="Note the DN number produced for each polygonized raster cell"> - <em>Dissolve</em> the new polygon feature, utilizing the <em>attribute</em> <code>DN</code> as the dissolve field:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c7_assignment_files/img/dissolve1.png" class="img-fluid figure-img"></p>
@@ -558,12 +674,12 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note: In the video guide, a previous web interace was available for the input raster classification data. However, this is no longer available; the replacement steps are noted above in Assignment Step 2.</p>
+<p>Note: In the video guide, a previous web interace was available for the input raster classification data. However, this is no longer available; the replacement steps are noted above using the GEE code editor process.</p>
 </div>
 </div>
 </section>
-<section id="assignment-step-6" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-6">Assignment Step 6</h2>
+<section id="assignment-step-7" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-7">Assignment Step 7</h2>
 <ul>
 <li>Once the <em>Dissolve</em> is complete, <em>Reproject</em> the new <em>Dissolve</em> vector layer to its correct <em>UTM Zone</em>, followed by an export to the assignment folder:</li>
 </ul>
@@ -573,15 +689,7 @@ Important
 <figcaption><em>Note the UTM Zone 16N output coordinate system for the dissolved feature</em></figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="c7_assignment_files/img/dissolve7.png" class="img-fluid figure-img"></p>
-<figcaption><em>Export the projected feature to the assignment folder</em></figcaption>
-</figure>
-</div>
-</section>
-<section id="assignment-step-7" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-7">Assignment Step 7</h2>
+<p><img src="c7_assignment_files/img/dissolve7.png" class="img-fluid" alt="Export the projected feature to the assignment folder"> ## Assignment Step 8</p>
 <p>Utilize the <em>Field Calculator</em> to create 2 new columns within the new vectorized land cover feature resulting from Step 6 above:</p>
 <ol start="2" type="1">
 <li><code>Class</code> as a <em>text</em> column; enter default value as <code>'test'</code> and set the <em>output field length</em> to <code>60</code></li>
@@ -669,7 +777,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Utilize the Assignment Step 7 legend reference table below for the correct <code>DN</code> to <code>Class</code> pairings.</p>
+<p>Utilize the Assignment Step 9 legend reference table below for the correct <code>DN</code> to <code>Class</code> pairings.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -684,7 +792,7 @@ Note
 <figcaption><em>Entering <code>Class</code> value for second record in the attribute table</em></figcaption>
 </figure>
 </div>
-<p>With all classes complete with corresponding <code>DN</code> values, you will incorporate the output table into the final cartographic layout (use the same process as Assignment 5).</p>
+<p>With all classes complete with corresponding <code>DN</code> values, you will incorporate the output table into the final cartographic layout (use the same process as Assignment 6, extra credit section).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -695,12 +803,12 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you would like to add an additional column for total land, unit square miles (as seen in the example map), you will need to create another column using the multiplication factor for converting square meters to square miles: <code>m² * 0.00000038610</code></p>
+<p>If you would like to add an additional column for total land, unit square miles (as seen in the example map), you will need to create another column using the multiplication factor for converting square meters to square miles: <code>m² * 0.00000038610</code>. The UTM system always uses meters for linear and areal measurements.</p>
 </div>
 </div>
 </section>
-<section id="assignment-step-7-1" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-7-1">Assignment Step 7</h2>
+<section id="assignment-step-9" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-9">Assignment Step 9</h2>
 <p>Before proceeding, save the current <code>.qgs</code>. Open a new, blank <code>.qgs</code> and import just the adminstrative boundary feature and the vectorized land use with your attribute table work complete. Make sure that the new <code>.qgs</code> project snaps NOT TO <code>WGS84</code>, But rather your correct UTM Zone.</p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -869,7 +977,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>To incorporate the summary table with the % of each land cover category for your city (Assignment Step 7 above), use the <em>extra credit</em> section of <a href="https://tns-course-repositories.github.io/STGIS_UENV3200_UURB3210_SP26/assignments/c6_assignment.html">assignment 6</a> as a guide. Start towards the end of the <em>extra credit</em> section wherein <code>Add Attribute Table</code> to map layout is detailed.</p>
+<p>To incorporate the summary table with the % of each land cover category for your city (Assignment Step 8 above), use the <em>extra credit</em> section of <a href="https://tns-course-repositories.github.io/STGIS_UENV3200_UURB3210_SP26/assignments/c6_assignment.html">assignment 6</a> as a guide. Start towards the end of the <em>extra credit</em> section wherein <code>Add Attribute Table</code> to map layout is detailed.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
