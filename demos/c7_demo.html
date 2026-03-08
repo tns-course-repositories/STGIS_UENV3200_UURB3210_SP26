@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-03-07">
+
+<title>Class 7 Lecture Demonstration Lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c7_demo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c7_demo_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c7_demo_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c7_demo_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c7_demo_files/libs/quarto-html/popper.min.js"></script>
+<script src="c7_demo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c7_demo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c7_demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c7_demo_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c7_demo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c7_demo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c7_demo_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c7_demo_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-projections-matter" id="toc-why-projections-matter" class="nav-link active" data-scroll-target="#why-projections-matter">Why Projections Matter</a></li>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#topic-1" id="toc-topic-1" class="nav-link" data-scroll-target="#topic-1">Topic 1</a></li>
+  <li><a href="#topic-2" id="toc-topic-2" class="nav-link" data-scroll-target="#topic-2">Topic 2</a></li>
+  <li><a href="#step-1" id="toc-step-1" class="nav-link" data-scroll-target="#step-1">Step 1:</a></li>
+  <li><a href="#step-2" id="toc-step-2" class="nav-link" data-scroll-target="#step-2">Step 2:</a></li>
+  <li><a href="#step-3" id="toc-step-3" class="nav-link" data-scroll-target="#step-3">Step 3:</a></li>
+  <li><a href="#step-4" id="toc-step-4" class="nav-link" data-scroll-target="#step-4">Step 4:</a></li>
+  <li><a href="#step-5" id="toc-step-5" class="nav-link" data-scroll-target="#step-5">Step 5:</a></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks">Concluding Remarks</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References:</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 7 Lecture Demonstration Lab</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 7, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="why-projections-matter" class="level2">
+<h2 class="anchored" data-anchor-id="why-projections-matter">Why Projections Matter</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/header.gif" class="img-fluid figure-img"></p>
+<figcaption><em>Map Projections Impact Area, Shape, Distance &amp; Direction</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<p>Map projections and datums are fundamental to the core framework of GIS systems. While there are many components, mathematical formulas, theories and assumptions in the larger world of <a href="https://en.wikipedia.org/wiki/Geodesy">geodesy</a> - of which map projections are a part - this week’s demonstration lab and assignment will cover practicalities that face the GIS analyst. As we are working through several typical map projection scenarios, keep in mind the following core principles:</p>
+<p><strong>Principle 1</strong>:</p>
+<p>A map projection is a mathematical formula used to transfer all or part of the curved surface of the earth onto the flat surface of a map.</p>
+<p><strong>Principle 2</strong>:</p>
+<p>Conversion of the spherical coordinates to a Cartesian coordinate system is necessary if we want to accurately measure distances in meaningful units such as meters or feet; or if we want to accurately derive areas of features in our mapping.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<ul>
+<li><a href="https://www.dropbox.com/s/ryzjv5upis5mi1o/c6.lecture.demo.data.zip?dl=1">Class 7 Demonstration Lab Data</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/data.png" class="img-fluid figure-img"></p>
+<figcaption><em>Class 7 Data</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Demo Lab 1: Tissot’s indicatrix
+<ul>
+<li><code>TI.demo.qgs</code></li>
+</ul></li>
+<li>Demo Lab 2: CRS + Missing CRS scenario:
+<ul>
+<li><code>bb.projections.qgs</code></li>
+</ul></li>
+<li>Demo Lab 3: Reprojecting Map Layers
+<ul>
+<li><code>states.reprojection.qgs</code></li>
+</ul></li>
+<li>Demo Lab 4: CRS + Areal Measurements
+<ul>
+<li><code>area.demo.qgs</code></li>
+</ul></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The following link will be utilized for the Class 7 Assignment preparation. Herein is the <code>geojson</code> file for Atlanta, GA; as well as the GEE extract raster data for the region in, and surrounding, Atlanta, GA.</p>
+</div>
+</div>
+<ul>
+<li><a href="https://weekly-materials.s3.us-west-1.amazonaws.com/c7_atlanta_ga_example_data.zip">Class 7 Assignment Atlanta, GA demonstration files download</a></li>
+</ul>
+</section>
+<section id="topic-1" class="level2">
+<h2 class="anchored" data-anchor-id="topic-1">Topic 1</h2>
+<p>Before we start, below are several prompts to ask yourself when choosing a map projection:</p>
+<ul>
+<li><p>What distortion can you give up in favor of the one(s) you really need?</p></li>
+<li><p>How big is your project area?</p></li>
+<li><p>What unit of measure (feet, inches, degrees…) would you like your map to be measured in?</p></li>
+<li><p>What is the typical or common map projection utilized for mapping at/near your project area?</p></li>
+<li><p>What is the end goal of your project?</p></li>
+</ul>
+</section>
+<section id="topic-2" class="level2">
+<h2 class="anchored" data-anchor-id="topic-2">Topic 2</h2>
+<p>CRS within QGIS are organized across several principles:</p>
+<ul>
+<li>First, there is a ‘built-in’ database of 7000+ unique CRS, so there’s a pretty good chance the map projection needed for a project already exists in the system.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/crs_overview.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS standard database</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Second, there are multiple formats by which to attach projection information that QGIS can interpret and operate a CRS:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/crs_properties.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS formats</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Third, the QGIS database for CRS closely aligns with the <a href="https://spatialreference.org/">EPSG Lookup Table</a>; and its easy to find the current CRS for both a project and a layer:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/crs_table.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS at project level</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Fourth, CRS information is easily accessible via the layer properties; and its readily apparent in the TOC when a layer is outright missing CRS information:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/crs_missing.png" class="img-fluid figure-img"></p>
+<figcaption><em>Missing CRS</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>Fifth, The CRS Selector has gone through years of development and is quite mature and user-friendly. It contains 4 core components related to picking the appropriate CRS for a project:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/crs_selector.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS Selector</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/crs_selector_2.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS Selector - Filter | Recents | Database | <code>PROJ</code> text</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-1" class="level2">
+<h2 class="anchored" data-anchor-id="step-1">Step 1:</h2>
+<p>Open the <em>Demo Lab 1: Tissot’s indicatrix</em> <code>TI.demo.qgs</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/tissot_1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Tissot Indicatrix</em></figcaption>
+</figure>
+</div>
+<p>Next, utilize the <em>CRS Selector</em> at lower-right of <em>Map Canvas</em> to transform the current project CRS default <code>WGS84</code> to <code>ESRI:54021</code> or <code>World Polyconic</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/CRS_selector_toggle.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS Selector Shortcut</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/transformation_1.png" class="img-fluid figure-img"></p>
+<figcaption><em>CRS Selector input for World Polyconic</em></figcaption>
+</figure>
+</div>
+<p>Note the advantages and disadvantages of the <code>World Polyconic</code> projection:</p>
+<p><em>The <a href="https://pro.arcgis.com/en/pro-app/latest/help/mapping/properties/polyconic.htm">polyconic projection</a> is not recommended for regional maps. Because there is no distortion along the central meridian, the projection is appropriate for regions of predominant north-south extent. It was used for topographic USGS quad sheets from 1886 until approximately 1957.</em></p>
+<p>Note the <em>Tissot’s indicatrix</em> differences between the QGIS default <code>WGS84</code> and the <code>World Polyconic</code> CRS:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/ti_1.png" class="img-fluid figure-img"></p>
+<figcaption><em><code>WGS84</code></em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/ti_2.png" class="img-fluid figure-img"></p>
+<figcaption><em><code>World Polyconic</code></em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-2" class="level2">
+<h2 class="anchored" data-anchor-id="step-2">Step 2:</h2>
+<p>Next, open <em>Demo Lab 2: CRS + Missing CRS scenario</em> <code>bb.projections.qgs</code></p>
+<p>Note the warnings for a layer that does not have proper, or any, CRS information:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/missing.1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Missing CRS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/missing.2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Missing CRS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/missing.3.png" class="img-fluid figure-img"></p>
+<figcaption><em>Missing CRS &gt; set layer CRS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/missing.4.png" class="img-fluid figure-img"></p>
+<figcaption><em>Input <code>WGS84</code> to the CRS Selector Panel</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-3" class="level2">
+<h2 class="anchored" data-anchor-id="step-3">Step 3:</h2>
+<p>Next, open Demo Lab 3 <code>states.reprojection.qgs</code>. In order to correctly project data into a specific target CRS, either your data must contain information about its coordinate reference system or you will need to manually assign the correct CRS to the layer. Utilize the <em>Reproject Layer</em> tool for this task:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/reproject1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Reprojecting a Feature within QGIS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/reproject2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Searching for WGS84 in the QGIS CRS Selector within the Reproject Layer tool</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-4" class="level2">
+<h2 class="anchored" data-anchor-id="step-4">Step 4:</h2>
+<p>Open <em>Demo Lab 4: CRS + Areal Measurements</em> <code>area.demo.qgs</code></p>
+<p>As default, <code>ESPG 4326 WGS 84</code> project CRS will be used to calculate areal units via Field Calculator. The Field Calculator will use $area to determine areal calculations in square meters. In the current QGIS LTR, the default areal unit for calculations is indeed square meters unless it is changed to a different unit:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/area.1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Vector &gt; Geometry Tools &gt; Add Geometry Attributes</em></figcaption>
+</figure>
+</div>
+<p>If the Layer CRS is chosen when creating Geometry Attributes, the resulting area calculations will be in degrees based on <code>ESPG 4326 WGS 84</code> layer and project CRS:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/area.2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Vector &gt; Geometry Tools &gt; Add Geometry Attributes &gt; Layer CRS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/area.3.png" class="img-fluid figure-img"></p>
+<figcaption><em>Vector &gt; Geometry Tools &gt; Add Geometry Attributes &gt; Layer CRS &gt; resulting degree areal calculation</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/area.A.png" class="img-fluid figure-img"></p>
+<figcaption><em>Project CRS &gt; pick <code>EPSG:102745</code></em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/area.B.png" class="img-fluid figure-img"></p>
+<figcaption><em>Areal calculation based on <code>ESRI:102745</code> results in area ins Square Meters</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Square Meters and Square Feet can be expressed as Square Miles using the following factors, respectively:</p>
+<p><code>mi² * 0.00000038610</code></p>
+<p><code>ft² * 0.000000035870</code></p>
+</div>
+</div>
+</section>
+<section id="step-5" class="level2">
+<h2 class="anchored" data-anchor-id="step-5">Step 5:</h2>
+<p>Using the same <code>area.demo.qgs</code> project, set the layer, not the project, to <code>ESRI:102745</code>. As this is done, a <em>Datum Transformation</em> needs to be done by QGIS from the <code>WGS84 Datum</code> to the <code>NAD83 Datum</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/datum1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Datum Transformations in QGIS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/datum2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Datum Transformations in QGIS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c7_demo_files/img/datum3.png" class="img-fluid figure-img"></p>
+<figcaption><em>Datum Transformations in QGIS &gt; Layer Properties &gt; Warnings</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="concluding-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-remarks">Concluding Remarks</h2>
+<p>In this sixth demonstration lab, we explored important dimensions of map projections and datums within QGIS. Getting a handle on both the foundational concepts of map projections and the various tools and interfaces within QGIS to manage and transform them is critical to both vector and raster processing. In upcoming assignments and in the final student projects, we will utilize map projections to our benefit in both cartographic and quantitative results.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References:</h2>
+<ul>
+<li><a href="https://docs.qgis.org/3.22/en/docs/user_manual/working_with_projections/working_with_projections.html?highlight=projections">QGIS Map Projections Manual</a></li>
+<li><a href="http://www.mibsar.com/LandNav/Datums/Eye4SoftwareMapDatumList.pdf">Global Datum List</a></li>
+<li><a href="https://spatialreference.org/ref/epsg/">EPSG Spatial Reference List</a></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c7_demo_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
