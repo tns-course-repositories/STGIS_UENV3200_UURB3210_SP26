@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-03-22">
+
+<title>Class 8 Assignment: Spatial Analysis &amp; Geoprocessing</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c8_assignment_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c8_assignment_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c8_assignment_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c8_assignment_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c8_assignment_files/libs/quarto-html/popper.min.js"></script>
+<script src="c8_assignment_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c8_assignment_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c8_assignment_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c8_assignment_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c8_assignment_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c8_assignment_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c8_assignment_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c8_assignment_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link active" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#class-8-recorded-lecture-titled-class-7-lecture" id="toc-class-8-recorded-lecture-titled-class-7-lecture" class="nav-link" data-scroll-target="#class-8-recorded-lecture-titled-class-7-lecture">Class 8 Recorded Lecture (Titled Class 7 Lecture):</a></li>
+  <li><a href="#class-8-readings" id="toc-class-8-readings" class="nav-link" data-scroll-target="#class-8-readings">Class 8 Readings:</a></li>
+  <li><a href="#assignment-8-data-overview" id="toc-assignment-8-data-overview" class="nav-link" data-scroll-target="#assignment-8-data-overview">Assignment 8 Data Overview:</a></li>
+  <li><a href="#data-sources-overview" id="toc-data-sources-overview" class="nav-link" data-scroll-target="#data-sources-overview">📦 Data Sources Overview</a>
+  <ul class="collapse">
+  <li><a href="#part-1-project-setup-layer-preparation" id="toc-part-1-project-setup-layer-preparation" class="nav-link" data-scroll-target="#part-1-project-setup-layer-preparation">🗽 Part 1: Project Setup &amp; Layer Preparation</a></li>
+  <li><a href="#part-2-create-environmental-hazard-buffers-proximity-analysis" id="toc-part-2-create-environmental-hazard-buffers-proximity-analysis" class="nav-link" data-scroll-target="#part-2-create-environmental-hazard-buffers-proximity-analysis">🌫️ Part 2: Create Environmental Hazard Buffers (Proximity Analysis)</a></li>
+  <li><a href="#part-3-combine-the-hazard-buffers-into-one-exposure-layer" id="toc-part-3-combine-the-hazard-buffers-into-one-exposure-layer" class="nav-link" data-scroll-target="#part-3-combine-the-hazard-buffers-into-one-exposure-layer">🧩 Part 3: Combine the Hazard Buffers into One Exposure Layer</a></li>
+  <li><a href="#part-4-intersect-exposure-areas-with-pumas" id="toc-part-4-intersect-exposure-areas-with-pumas" class="nav-link" data-scroll-target="#part-4-intersect-exposure-areas-with-pumas">✂️ Part 4: Intersect Exposure Areas with PUMAs</a></li>
+  <li><a href="#part-5-calculate-exposure-area-by-puma" id="toc-part-5-calculate-exposure-area-by-puma" class="nav-link" data-scroll-target="#part-5-calculate-exposure-area-by-puma">📐 Part 5: Calculate Exposure Area by PUMA</a></li>
+  <li><a href="#part-6-calculate-percent-exposure-by-puma-normalization" id="toc-part-6-calculate-percent-exposure-by-puma-normalization" class="nav-link" data-scroll-target="#part-6-calculate-percent-exposure-by-puma-normalization">📊 Part 6: Calculate Percent Exposure by PUMA (Normalization)</a></li>
+  <li><a href="#part-7-normalize-hazard-and-youth-variables" id="toc-part-7-normalize-hazard-and-youth-variables" class="nav-link" data-scroll-target="#part-7-normalize-hazard-and-youth-variables">🏭⚠️ + 👶 Part 7: Normalize Hazard and Youth Variables</a></li>
+  <li><a href="#part-8-create-combined-risk-score" id="toc-part-8-create-combined-risk-score" class="nav-link" data-scroll-target="#part-8-create-combined-risk-score">🧮 Part 8: Create Combined Risk Score</a></li>
+  <li><a href="#part-9-classify-final-risk-for-mapping-only" id="toc-part-9-classify-final-risk-for-mapping-only" class="nav-link" data-scroll-target="#part-9-classify-final-risk-for-mapping-only">🏷️ Part 9: Classify Final Risk (for Mapping Only)</a></li>
+  <li><a href="#part-10-final-thematic-map" id="toc-part-10-final-thematic-map" class="nav-link" data-scroll-target="#part-10-final-thematic-map">🗺️ Part 10: Final Thematic Map</a></li>
+  <li><a href="#part-11-interpretation-prompts" id="toc-part-11-interpretation-prompts" class="nav-link" data-scroll-target="#part-11-interpretation-prompts">📝 Part 11: Interpretation Prompts</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 8 Assignment: Spatial Analysis &amp; Geoprocessing</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/header.png" class="img-fluid figure-img"></p>
+<figcaption><em>Overlay Relationships</em></figcaption>
+</figure>
+</div>
+<section id="preamble" class="level3">
+<h3 class="anchored" data-anchor-id="preamble">Preamble</h3>
+<p>Spatial analysis and more narrowly geoprocessing is a core component, capacity and function of GIS. Here the goal is to <em>identify</em>, <em>manipulate</em>, <em>transform</em> and <em>operate</em> both within and amongst spatial layers in order to solve spatial problems. Early in the assignment you will operate within single layers - known simply as <em>single layer analysis</em>. Here you will want to create <em>proximity distances</em> from a geographic feature that is deemed toxic, a danger to avoid via distance. Later in the assignment you will utilize <em>overlay analysis</em> between two layers of spatial data. Overlay analysis is operation(s) in GIS for superimposing multiple spatial layers representing different themes together for analyzing or identifying relationships <em>between</em> each of the layers. As discussed in the lecture, Boolean logic will be utilized throughout these analysis steps. In the overlay analysis steps, new spatial data sets will be created; in some instances, these new data sets will become the <em>input</em> for yet another step in the larger assignment methodology.</p>
+<p>Once complete, this proximity-based spatial analysis will be combined with vulnerable populations (% Children via ACS Census data) for a final risk analysis.</p>
+<p>This week’s assignment will draw on the primary concepts covered in Class 8 lecture &amp; lab sessions:</p>
+<ul>
+<li>Geoprocessing - Proximity and Overlay</li>
+<li>Calculating Geometry</li>
+<li>Assigning Field Values and ranks</li>
+<li>Joining Tabular data to Feature Data</li>
+<li>Thematic Map Design for Hazard &amp; Risk Ranking</li>
+</ul>
+<p>In this eighth assignment, you will be utilizing <em>input</em> data representing environmental toxicity throughout NYC. We will also be using US Census ACS data contained in Public Use Microdata Areas (PUMAs). These geographies are larger than census tracts, smaller than counties. They adhere relatively well to NYC neighborhood boundaries and Community District boundaries; however, do note they are unique to the US Census.</p>
+<p>A synopsis of the technical steps of the assignment listed as follows:</p>
+<ul>
+<li>Download and access necessary data for both administrative, census and environmental toxicity for NYC. These features will all be vector features in the same coordinate system for NYC - the state plane zone known as <code>NAD83 / New York Long Island (ftUS)</code> by code <code>FIPS 3104</code>, <code>EPSG:2263</code>with units in <code>US Foot</code>. Any measurement in this week’s assignment will first be recorded in units <code>US Foot</code>.</li>
+<li>Create Proximity Buffers for toxicity features using different zone distances.</li>
+<li>Union and Dissolve these distances into one final layer of toxicity risk.</li>
+<li>Clip the newly created toxicity risk geographies to meaningful administration boundaries - the PUMAs; once complete each PUMA now has a portion of contamination that ‘starts and stops’ at the polygon edge of each respective PUMA.</li>
+<li>Once clipped, each PUMA will have a certain area calculation of toxicity risk; and some PUMAs could have no risk reported back as <code>NULL</code>.</li>
+<li>With area and % of PUMA calculations complete in a PUMA table, this tabular structure will be joined back to the original feature geometry for PUMAS.<br>
+</li>
+<li>With a completed feature for PUMAS, an ordinal value will then be given for those PUMAS with % Children coupled with % Toxicity Risk.</li>
+<li>A final thematic map will be created that shows those PUMAS most at risk of environmental impact to a vulnerable population.</li>
+</ul>
+</section>
+<section id="class-8-recorded-lecture-titled-class-7-lecture" class="level3">
+<h3 class="anchored" data-anchor-id="class-8-recorded-lecture-titled-class-7-lecture">Class 8 Recorded Lecture (Titled Class 7 Lecture):</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1019010906"><img src="c8_assignment_files/img/L7.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Class 8 Recorded Lecture (titled Lecture 7) - Spatial Analysis &amp; Geoprocessing</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before proceeding with assignment steps below, review the posted lecture slides + lecture recording for an overview of this week’s concepts and themes. Towards the end of the lecture, stop at the discussion of contamination risk in Kosovo. This section of the lecture pertains to another assignment which assesses ERW - Explosive Remanants of War - an ongoing phenomena in war-torn regions.</p>
+</div>
+</div>
+</section>
+<section id="class-8-readings" class="level3">
+<h3 class="anchored" data-anchor-id="class-8-readings">Class 8 Readings:</h3>
+<p>The Class 8 quiz which will open 03/30/26 will feature 10 questions covering <a href="https://weekly-reading-research.s3.us-east-1.amazonaws.com/Maantay_Health_and_Place_full_text.pdf">Asthma and air pollution in the Bronx: methodological and data considerations in using GIS for environmental justice and health research</a> - a hallmark research study that utilizes spatial analysis for risk within Bronx County, New York.</p>
+<blockquote class="blockquote">
+<p>This study uses GIS to examine how environmental hazards—such as highways, industrial land uses, waste facilities, and power plants—are spatially related to high asthma rates in the South Bronx. By applying vector-based methods like buffering and overlay, the analysis identifies areas where multiple environmental exposures are concentrated. These exposure zones are then compared with demographic patterns, showing that vulnerable populations, especially children, are more likely to live in high-risk areas. The study demonstrates how GIS can reveal spatial patterns of environmental inequality and support environmental justice analysis.</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/maantay.png" class="img-fluid figure-img"></p>
+<figcaption><em>Spatial Analysis Proximity Buffers - Maantay Study</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="assignment-8-data-overview" class="level3">
+<h3 class="anchored" data-anchor-id="assignment-8-data-overview">Assignment 8 Data Overview:</h3>
+<p><a href="https://st-gis-materials.s3.us-east-2.amazonaws.com/c8_assignment_data.zip">Location of Class 8 Prepared Data Directory</a></p>
+<p>To begin the assignment, download the data directory and find the following spatial data resources therein:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/data.stack.png" class="img-fluid figure-img"></p>
+<figcaption><em>Class 8 Data Directory</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="data-sources-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources-overview">📦 Data Sources Overview</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 13%">
+<col style="width: 24%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Theme</th>
+<th>Dataset Name</th>
+<th>Source</th>
+<th>Geometry</th>
+<th>Key Attribute(s)</th>
+<th>Role in Analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>⚡ Power Facilities</td>
+<td>OSM Power Infrastructure (via Overpass)</td>
+<td>OpenStreetMap / Overpass Turbo (informed by EIA context)</td>
+<td>Point</td>
+<td><code>power</code>, <code>plant:source</code> (if available)</td>
+<td>Represents stationary energy generation sites contributing to localized environmental exposure</td>
+</tr>
+<tr class="even">
+<td>♻️ Waste Facilities</td>
+<td>Solid Waste Management Facilities</td>
+<td>NYC Department of Sanitation (DSNY) / NYC Open Data</td>
+<td>Point</td>
+<td>Facility type, operator</td>
+<td>Represents waste handling and transfer sites associated with truck traffic and localized pollution</td>
+</tr>
+<tr class="odd">
+<td>🚧 Limited Access Highways</td>
+<td>LION Street Centerline (filtered <code>RW_TYPE = 2</code>)</td>
+<td>NYC Department of City Planning (DCP)</td>
+<td>Line</td>
+<td><code>RW_TYPE</code>, <code>NonPed</code></td>
+<td>Represents high-volume regional traffic corridors and continuous pollution exposure</td>
+</tr>
+<tr class="even">
+<td>🏭 Industrial Land Use</td>
+<td>PLUTO Land Use (filtered <code>LandUse = 07</code>)</td>
+<td>NYC Department of City Planning (DCP)</td>
+<td>Polygon</td>
+<td><code>LandUse</code></td>
+<td>Represents industrial zoning areas associated with environmental burdens</td>
+</tr>
+<tr class="odd">
+<td>👶 Population Vulnerability (PUMAs)</td>
+<td>ACS 2022 5-Year Estimates (PUMAs)</td>
+<td>U.S. Census Bureau (ACS)</td>
+<td>Polygon</td>
+<td>% Children (under 18)</td>
+<td>Represents socially vulnerable populations used to assess exposure overlap</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note the local, projected coordinate system (<code>EPSG:2263 - NAD83 / New York Long Island (ftUS)</code>) and its unit of measurement that will be used throughout the assignment. It is critical that all features used in the geoprocessing framework partake of the same coordinate system to avoid any processing errors.</p>
+</div>
+</div>
+<section id="part-1-project-setup-layer-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="part-1-project-setup-layer-preparation">🗽 Part 1: Project Setup &amp; Layer Preparation</h3>
+<section id="step-a-add-the-required-layers" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-add-the-required-layers">Step A: Add the Required Layers</h4>
+<p>Add the prepared vector datasets from the assignment data folder into your QGIS project. Your working layers should include:</p>
+<ul>
+<li><strong>Power Facilities</strong></li>
+<li><strong>Waste Facilities</strong></li>
+<li><strong>Limited Access Highways</strong></li>
+<li><strong>Industrial Land Use</strong></li>
+<li>prepared <strong>PUMA demographic table</strong> containing <strong>% children</strong> from <strong>ACS 2022</strong></li>
+</ul>
+</section>
+<section id="step-b-review-geometry-types" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-review-geometry-types">Step B: Review Geometry Types</h4>
+<p>Before proceeding, confirm the geometry type for each layer: - <strong>Points</strong>: Power Facilities, Waste Facilities - <strong>Lines</strong>: Limited Access Highways - <strong>Polygons</strong>: Industrial Land Use, PUMAs</p>
+</section>
+<section id="step-c-create-an-exports-folder" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-create-an-exports-folder">Step C: Create an Exports Folder</h4>
+<ul>
+<li>Create a subfolder titled <code>exports</code> inside your assignment folder.</li>
+<li>Save all newly created geoprocessing outputs into this folder as you progress through the assignment.</li>
+</ul>
+</section>
+</section>
+<section id="part-2-create-environmental-hazard-buffers-proximity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="part-2-create-environmental-hazard-buffers-proximity-analysis">🌫️ Part 2: Create Environmental Hazard Buffers (Proximity Analysis)</h3>
+<section id="step-a-buffer-power-facilities" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-buffer-power-facilities">Step A: Buffer Power Facilities</h4>
+<p>Use the <strong>Buffer</strong> tool to create a proximity zone around the <strong>Power Facilities</strong> layer. - Distance: <strong>3,000 feet</strong> - Save the result as: <code>power_buffer.shp</code></p>
+</section>
+<section id="step-b-buffer-waste-facilities" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-buffer-waste-facilities">Step B: Buffer Waste Facilities</h4>
+<p>Use the <strong>Buffer</strong> tool to create a proximity zone around the <strong>Waste Facilities</strong> layer. - Distance: <strong>2,000 feet</strong> - Save the result as: <code>waste_buffer.shp</code></p>
+</section>
+<section id="step-c-buffer-limited-access-highways" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-buffer-limited-access-highways">Step C: Buffer Limited Access Highways</h4>
+<p>Use the <strong>Buffer</strong> tool to create a proximity zone around the <strong>Truck Routes</strong> layer. - Distance: <strong>800 feet</strong> - Save the result as: <code>highway_buffer.shp</code></p>
+</section>
+<section id="step-d-buffer-industrial-land-use" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-buffer-industrial-land-use">Step D: Buffer Industrial Land Use</h4>
+<p>Use the <strong>Buffer</strong> tool to create a proximity zone around the <strong>Industrial Land Use</strong> polygons. - Distance: <strong>600 feet</strong> - Save the result as: <code>industrial_buffer.shp</code></p>
+</section>
+<section id="step-f-check-your-buffer-results" class="level4">
+<h4 class="anchored" data-anchor-id="step-f-check-your-buffer-results">Step F: Check Your Buffer Results</h4>
+<ul>
+<li>Turn each buffer layer on and off in the map canvas.</li>
+<li>Confirm that each output is a polygon feature layer.</li>
+<li>Make sure all buffers align correctly with the source data and that no layer appears misplaced due to CRS mismatch.</li>
+</ul>
+</section>
+<section id="proximity-analysis-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="proximity-analysis-parameters">📏 Proximity Analysis Parameters</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 16%">
+<col style="width: 38%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Theme</th>
+<th>Geometry</th>
+<th>Proximity Distance (ft)</th>
+<th>Conceptual Assumption</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>⚡ Power Facilities</td>
+<td>Point</td>
+<td>3,000 ft</td>
+<td>Power plants act as stationary emission sources, with environmental impacts extending outward into surrounding areas; larger buffers reflect broader dispersion of pollutants.</td>
+</tr>
+<tr class="even">
+<td>♻️ Waste Facilities</td>
+<td>Point</td>
+<td>2,000 ft</td>
+<td>Waste facilities generate localized environmental burdens (e.g., emissions, truck activity), with impacts concentrated near the site but affecting nearby neighborhoods.</td>
+</tr>
+<tr class="odd">
+<td>🚧 Limited Access Highways</td>
+<td>Line</td>
+<td>800 ft</td>
+<td>Traffic corridors concentrate diesel traffic and associated emissions, with exposure strongest near routes and decreasing with distance.</td>
+</tr>
+<tr class="even">
+<td>🏭 Industrial Land Use</td>
+<td>Polygon</td>
+<td>600 ft</td>
+<td>Industrial zones represent clusters of potential environmental hazards, with impacts extending beyond parcel boundaries into adjacent areas.</td>
+</tr>
+</tbody>
+</table>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/buff_tool.png" class="img-fluid figure-img"></p>
+<figcaption><em>Access Vector Buffer Tool</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure to insert a higher <code>Segments</code> value; recommended at least <strong>30</strong>; this increased value ‘smooths’ the resulting polygon so that its very accurate and no significant generalization results in the buffer.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Batch Processing</em> is allowed at the bottom of the parameters dialog box; this can speed up your processing but make sure all your parameter entries are sound and correct.</p>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/buffer.stack.png" class="img-fluid figure-img"></p>
+<figcaption><em>Buffer Process Result</em></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="part-3-combine-the-hazard-buffers-into-one-exposure-layer" class="level3">
+<h3 class="anchored" data-anchor-id="part-3-combine-the-hazard-buffers-into-one-exposure-layer">🧩 Part 3: Combine the Hazard Buffers into One Exposure Layer</h3>
+<section id="step-a-union-the-buffer-layers" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-union-the-buffer-layers">Step A: Union the Buffer Layers</h4>
+<p>Use the <strong>Union</strong> tool to combine your buffered hazard layers into one multipart environmental exposure dataset.</p>
+<p>You may do this in stages if needed:</p>
+<ol type="1">
+<li>Union <code>power_buffer</code> with <code>waste_buffer</code></li>
+<li>Union that result with <code>truck_buffer</code></li>
+<li>Union that result with <code>industrial_buffer</code></li>
+</ol>
+<ul>
+<li>Save the final union result as: <code>hazard_union.shp</code></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Vector Overlay &gt; Union (Multiple)</em> is a sound option by which you can easily union several layers at once to save time over the stages approach noted above.</p>
+</div>
+</div>
+</section>
+<section id="step-b-review-the-union-output" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-review-the-union-output">Step B: Review the Union Output</h4>
+<ul>
+<li>Open the attribute table of the union result.</li>
+<li>Confirm that the new layer contains many features and inherited attributes from multiple hazard sources.</li>
+<li>This layer represents all environmental hazard buffers before simplification.</li>
+</ul>
+</section>
+<section id="step-c-create-a-dissolve-field" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-create-a-dissolve-field">Step C: Create a Dissolve Field</h4>
+<p>To prepare for dissolve, add a new integer field to the union layer: - Field name: <code>dissolve_c</code> - Type: <strong>Integer</strong> - Set every record value to: <code>1</code></p>
+</section>
+<section id="step-d-dissolve-the-union-result" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-dissolve-the-union-result">Step D: Dissolve the Union Result</h4>
+<p>Use the <strong>Dissolve</strong> tool to dissolve all unioned polygons into one final environmental exposure area. - Dissolve based on the <code>dissolve_c</code> field - Save the result as: <code>hazard_dissolve.shp</code></p>
+</section>
+<section id="step-e-validate-the-dissolve" class="level4">
+<h4 class="anchored" data-anchor-id="step-e-validate-the-dissolve">Step E: Validate the Dissolve</h4>
+<ul>
+<li>Open the attribute table of the dissolved layer.</li>
+<li>Confirm that the dissolve has reduced the union result to one merged environmental exposure layer.</li>
+<li>This final dissolved layer will serve as the main exposure zone for the remaining workflow.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/union-tool.png" class="img-fluid figure-img"></p>
+<figcaption><em>Union Tool</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/dissolve_c.png" class="img-fluid figure-img"></p>
+<figcaption><em><code>dissolve_c</code> new field</em></figcaption>
+</figure>
+</div>
+<p>Next, search within the <em>Processing Toolbox</em> for <em>Vector geometry &gt; Dissolve</em>. In the parameters, make sure to add the new field <code>dissolve_c</code> as the <em>Dissolve field(s)</em>.</p>
+<p>When complete the dissolve process should result in one polygon feature representing all the hazard inputs. Make sure this is also just ONE (1) record in the attribute table; the exact fields data doesn’t matter, but it must be dissolved to just one feature/record before proceeding to the next section in the analysis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/dissolve.stack.png" class="img-fluid figure-img"></p>
+<figcaption><em>Dissolve Process Result</em></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="part-4-intersect-exposure-areas-with-pumas" class="level3">
+<h3 class="anchored" data-anchor-id="part-4-intersect-exposure-areas-with-pumas">✂️ Part 4: Intersect Exposure Areas with PUMAs</h3>
+<section id="step-a-prepare-the-puma-layer" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-prepare-the-puma-layer">Step A: Prepare the PUMA Layer</h4>
+<ul>
+<li>Use the <strong>NYC PUMAs</strong> layer as the main geographic unit for this analysis.</li>
+<li>Each PUMA will serve as a unit for measuring environmental exposure and storing the vulnerability variable <strong>% children</strong>.</li>
+</ul>
+</section>
+<section id="step-b-fix-geometry-if-needed" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-fix-geometry-if-needed">Step B: Fix Geometry if Needed</h4>
+<p>If QGIS reports invalid geometry in either the PUMA or dissolved hazard layer:</p>
+<ul>
+<li>Use <strong>Fix Geometries</strong></li>
+<li>Save repaired outputs as needed, such as:
+<ul>
+<li><code>pumas_fixed.shp</code></li>
+<li><code>hazard_dissolve_fixed.shp</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="step-c-intersect-exposure-areas-with-pumas" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-intersect-exposure-areas-with-pumas">Step C: Intersect Exposure Areas with PUMAs</h4>
+<p>Use the <strong>Intersect</strong> tool to combine:</p>
+<ul>
+<li>the dissolved hazard exposure layer</li>
+<li>the PUMA layer</li>
+</ul>
+<p>Save the result as: - <code>hazard_puma_intersect.shp</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/intersect.stack.png" class="img-fluid figure-img"></p>
+<figcaption><em>Intersect Result</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that the Intersection result (grey with blue outline in the diagram) is composed of original dissolved hazard geography, but now with ‘breaks’ along the PUMA boundaries. In other words, through intersection we have ‘cut’ the hazard dissolve along the PUMA boundaries so that we can calculate % of hazard within each unique PUMA boundary.</p>
+</div>
+</div>
+</section>
+<section id="step-d-review-the-intersect-output" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-review-the-intersect-output">Step D: Review the Intersect Output</h4>
+<ul>
+<li>Open the map canvas and compare the intersect result to the dissolved hazard layer.</li>
+<li>Each feature should now represent the portion of hazard exposure located inside a specific PUMA.</li>
+</ul>
+</section>
+</section>
+<section id="part-5-calculate-exposure-area-by-puma" class="level3">
+<h3 class="anchored" data-anchor-id="part-5-calculate-exposure-area-by-puma">📐 Part 5: Calculate Exposure Area by PUMA</h3>
+<section id="step-a-add-geometry-information-to-the-intersect-layer" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-add-geometry-information-to-the-intersect-layer">Step A: Add Geometry Information to the Intersect Layer</h4>
+<p>Use <strong>Add Geometry Attributes</strong> for <code>hazard_puma_intersect</code>.</p>
+<ul>
+<li>This field will represent the area of environmental exposure inside each PUMA.</li>
+<li>In the attribute table, look for the new field <code>area_2</code>; note that this measurement is square feet assuming we have chosen to calculate area based on the layer CRS.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/aga.png" class="img-fluid figure-img"></p>
+<figcaption><em>Add Geometry Attributes Tool (Vector &gt; Geometry Tools &gt; Add Geometry Attributes)</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="step-b-confirm-the-exposure-area-field" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-confirm-the-exposure-area-field">Step B: Confirm the Exposure Area Field</h4>
+<ul>
+<li>Open the attribute table and confirm that an area field (<code>area_2</code>) now exists for the intersected polygons.</li>
+<li>Rename the field so that it will be differentiated from the PUMA total area. Here we will rename as <code>haz_area</code>.</li>
+</ul>
+</section>
+<section id="step-c-drop-fields-and-save" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-drop-fields-and-save">Step C: Drop Fields and Save</h4>
+<ul>
+<li><p>Open the attribute table and note that the following fields are the only fields necessary for further analysis:</p></li>
+<li><p><code>haz_area</code></p></li>
+<li><p><code>GEOIDFQ20</code></p></li>
+<li><p>use <strong>Drop Fields</strong> to drop all fields except the two noted above. Run as <em>Temporary Layer</em>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Run <strong>Drop Fields</strong> cautiously; however, its important to remove fields that are irrelevant to the analysis purpose. This will ensure that the forthcoming table join will be clean and successful.</p>
+</div>
+</div>
+</section>
+<section id="step-c-calculate-total-puma-area" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-calculate-total-puma-area">Step C: Calculate Total PUMA Area</h4>
+<ul>
+<li>Switch active layer to the original PUMA layer.</li>
+<li>Repeat the same process <strong>Add Geometry Attributes</strong> using the layer CRS.</li>
+<li>Keep the same field name <code>area</code>; this is the total area of each PUMA on a square footage basis.</li>
+</ul>
+</section>
+<section id="step-d-join-total-puma-area-into-the-intersect-layer" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-join-total-puma-area-into-the-intersect-layer">Step D: Join Total PUMA Area into the Intersect Layer</h4>
+<ul>
+<li><p>Start with the PUMA layer with the new <code>area</code> field attribute. Conduct a table join with the <em>Temporary Layer</em> that houses both - <code>haz_area</code> + <code>GEOIDFQ20</code>, and all other fields removed.</p></li>
+<li><p>Utilize the <code>GEOIDFQ20</code> field as the unique join ID. In the results, we need at least the following:</p></li>
+<li><p>A PUMA Unique ID and/or name</p></li>
+<li><p>exposure area within the PUMA (square feet)</p></li>
+<li><p>total PUMA area (square feet)</p></li>
+<li><p>Save this table join as: <code>hazard_puma.shp</code></p></li>
+</ul>
+</section>
+</section>
+<section id="part-6-calculate-percent-exposure-by-puma-normalization" class="level3">
+<h3 class="anchored" data-anchor-id="part-6-calculate-percent-exposure-by-puma-normalization">📊 Part 6: Calculate Percent Exposure by PUMA (Normalization)</h3>
+<section id="step-a-create-a-new-percent-exposure-field" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-create-a-new-percent-exposure-field">Step A: Create a New Percent Exposure Field</h4>
+<p>Open the attribute table for the summarized PUMA exposure layer and add a new decimal field:</p>
+<ul>
+<li>Field name: <code>pct_expos</code> (percent exposure)</li>
+</ul>
+</section>
+<section id="step-b-calculate-percent-exposure" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-calculate-percent-exposure">Step B: Calculate Percent Exposure</h4>
+<p>Use the Field Calculator with an expression such as:</p>
+<p><code>("haz_area" / "puma_area") * 100</code></p>
+<p>Use the actual field names present in your table.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the actual field names present in your table that represent the dissolved hazard area and the total PUMA area. The logic remains the same regardless the name: the hazard area is the nominator and the total PUMA area is the denominator.</p>
+</div>
+</div>
+</section>
+<section id="step-c-review-the-results" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-review-the-results">Step C: Review the Results</h4>
+<ul>
+<li>Sort the <code>pct_expos</code> field from highest to lowest.</li>
+<li>Observe which PUMAs have the greatest share of land area demarcated as hazard exposure zones.</li>
+</ul>
+</section>
+<section id="step-d-interpret-the-meaning" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-interpret-the-meaning">Step D: Interpret the Meaning</h4>
+<ul>
+<li>This step normalizes exposure by total PUMA size, making comparison more meaningful than raw area alone.</li>
+<li>Once normalized, we can see a distinct pattern of hazard exposure concentration across NYC PUMAs.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/haz.result.png" class="img-fluid figure-img"></p>
+<figcaption><em>Normalized Hazard Exposure Result</em></figcaption>
+</figure>
+</div>
+<ul>
+<li>We can also map the vulnerability <code>pct_youth</code> to quickly compare the spatial pattern against the hazard exposure.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/pct_youth-result.png" class="img-fluid figure-img"></p>
+<figcaption><em>Percent Youth Result</em></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="part-7-normalize-hazard-and-youth-variables" class="level3">
+<h3 class="anchored" data-anchor-id="part-7-normalize-hazard-and-youth-variables">🏭⚠️ + 👶 Part 7: Normalize Hazard and Youth Variables</h3>
+<section id="step-a-review-input-fields" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-review-input-fields">Step A: Review Input Fields</h4>
+<p>Your dataset should now include:</p>
+<ul>
+<li><code>pct_expos</code> → percent environmental hazard exposure<br>
+</li>
+<li><code>pct_youth</code> → percent youth population</li>
+</ul>
+<p>These variables are measured on different scales and must be normalized before combining.</p>
+</section>
+<section id="conceptual-model-normalization-combination-mapping" class="level4">
+<h4 class="anchored" data-anchor-id="conceptual-model-normalization-combination-mapping">🔄 Conceptual Model: Normalization → Combination → Mapping</h4>
+<pre class="text"><code>pct_expos ──────────────┐
+                        ├──► normalize to 0–1 ───► haz_norm ───┐
+pct_expos ──────────────┘                                      │
+                                                               ├──► average both ───► risk_score ───► graduated thematic map
+pct_youth ──────────────┐                                      │
+                        ├──► normalize to 0–1 ───► youth_norm ─┘
+pct_youth ──────────────┘</code></pre>
+</section>
+<section id="step-b-create-normalized-hazard-field" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-create-normalized-hazard-field">Step B: Create Normalized Hazard Field</h4>
+<p>Add a new decimal field:</p>
+<ul>
+<li>Field name: <code>haz_norm</code></li>
+<li>Utilize the <em>Field Calculator</em> to calculate the first <strong>Min-Max Normalization</strong> using the following equation:</li>
+</ul>
+<p><code>("pct_expos" - minimum("pct_expos")) / (maximum("pct_expos") - minimum("pct_expos"))</code></p>
+</section>
+<section id="step-c-create-normalized-youth-field" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-create-normalized-youth-field">Step C: Create Normalized Youth Field</h4>
+<p>Add a new decimal field:</p>
+<ul>
+<li><p>Field name: <code>youth_norm</code></p></li>
+<li><p>Utilize the <em>Field Calculator</em> to calculate the first <strong>Min-Max Normalization</strong> using the following equation:</p></li>
+</ul>
+<p><code>("pct_youth" - minimum("pct_youth")) / (maximum("pct_youth") - minimum("pct_youth"))</code></p>
+</section>
+<section id="step-d-confirm-normalization" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-confirm-normalization">Step D: Confirm Normalization</h4>
+<ul>
+<li>Values for both <code>haz_norm</code> and <code>youth_norm</code> should now range between <strong>0 and 1</strong></li>
+<li>0 = lowest observed value<br>
+</li>
+<li>1 = highest observed value</li>
+</ul>
+</section>
+</section>
+<section id="part-8-create-combined-risk-score" class="level3">
+<h3 class="anchored" data-anchor-id="part-8-create-combined-risk-score">🧮 Part 8: Create Combined Risk Score</h3>
+<section id="step-a-conceptual-model-overview" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-conceptual-model-overview">Step A: Conceptual Model Overview</h4>
+<p>The combined risk score represents the overlap between:</p>
+<ul>
+<li>environmental burden (<code>pct_expos</code>)</li>
+<li>population vulnerability (<code>pct_youth</code>)</li>
+</ul>
+<p>Both variables are first normalized and then averaged.</p>
+</section>
+<section id="step-b-create-risk-score-field" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-create-risk-score-field">Step B: Create Risk Score Field</h4>
+<p>Add a new decimal field:</p>
+<ul>
+<li><p>Field name: <code>risk_score</code></p></li>
+<li><p>Utilize the <em>Field Calculator</em> to calculate the <strong>Risk Score</strong> using the following equation:</p></li>
+</ul>
+<p><code>("haz_norm" + "youth_norm") / 2</code></p>
+</section>
+<section id="step-c-review-results" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-review-results">Step C: Review Results</h4>
+<ul>
+<li>Sort the resulting<code>risk_score</code> from highest to lowest<br>
+</li>
+<li>Identify PUMAs with the greatest combined environmental and demographic vulnerability</li>
+</ul>
+</section>
+</section>
+<section id="part-9-classify-final-risk-for-mapping-only" class="level3">
+<h3 class="anchored" data-anchor-id="part-9-classify-final-risk-for-mapping-only">🏷️ Part 9: Classify Final Risk (for Mapping Only)</h3>
+<section id="step-a-apply-graduated-symbology" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-apply-graduated-symbology">Step A: Apply Graduated Symbology</h4>
+<ul>
+<li>Open Layer Properties → Symbology<br>
+</li>
+<li>Choose <strong>Graduated</strong></li>
+</ul>
+<p>Field:</p>
+<ul>
+<li><code>risk_score</code></li>
+</ul>
+</section>
+<section id="step-b-choose-classification-method" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-choose-classification-method">Step B: Choose Classification Method</h4>
+<p>Recommended: - <strong>Quantile (Equal Count)</strong> OR - <strong>Natural Breaks (Jenks)</strong></p>
+<p>Number of classes:</p>
+<ul>
+<li>3 or 5</li>
+</ul>
+<p>Suggested label Structure:</p>
+<ul>
+<li>Low Risk<br>
+</li>
+<li>Moderate Risk<br>
+</li>
+<li>High Risk</li>
+</ul>
+</section>
+<section id="step-c-apply-color-ramp" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-apply-color-ramp">Step C: Apply Color Ramp</h4>
+<p>Use a sequential ramp:</p>
+<ul>
+<li>light → dark<br>
+</li>
+<li>or yellow → orange → red</li>
+</ul>
+</section>
+<section id="step-d-interpret-the-pattern" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-interpret-the-pattern">Step D: Interpret the Pattern</h4>
+<p>As you view the map, consider:</p>
+<ul>
+<li>where high hazard and high youth populations overlap<br>
+</li>
+<li>which PUMAs stand out as highest risk<br>
+</li>
+<li>whether patterns cluster geographically</li>
+</ul>
+</section>
+</section>
+<section id="part-10-final-thematic-map" class="level3">
+<h3 class="anchored" data-anchor-id="part-10-final-thematic-map">🗺️ Part 10: Final Thematic Map</h3>
+<section id="step-a-create-map-layout" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-create-map-layout">Step A: Create Map Layout</h4>
+<p>Include:</p>
+<ul>
+<li>title<br>
+</li>
+<li>legend<br>
+</li>
+<li>scale bar<br>
+</li>
+<li>north arrow<br>
+</li>
+<li>data sources<br>
+</li>
+<li>your name and course</li>
+</ul>
+</section>
+<section id="step-b-emphasize-key-layers" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-emphasize-key-layers">Step B: Emphasize Key Layers</h4>
+<p>Your final map should clearly show:</p>
+<ul>
+<li>PUMA boundaries<br>
+</li>
+<li>graduated <code>risk_score</code><br>
+</li>
+<li>visual hierarchy prioritizing high-risk areas</li>
+</ul>
+</section>
+<section id="step-c-export-map" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-export-map">Step C: Export Map</h4>
+<p>Export as:</p>
+<ul>
+<li>PDF<br>
+</li>
+<li>PNG</li>
+</ul>
+<p>Suggested filename:</p>
+<ul>
+<li><p><code>lastname_assignment8_combined_risk_map.pdf</code></p></li>
+<li><p><a href="https://st-gis-materials.s3.us-east-2.amazonaws.com/c8_assignment_example.pdf">Example Layout PDF</a></p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_assignment_files/img/nyc_risk_map.png" class="img-fluid figure-img"></p>
+<figcaption><em>Example Layout - Assignment 8</em></figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="part-11-interpretation-prompts" class="level3">
+<h3 class="anchored" data-anchor-id="part-11-interpretation-prompts">📝 Part 11: Interpretation Prompts</h3>
+<section id="step-a-review-method" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-review-method">Step A: Review Method</h4>
+<ul>
+<li>hazard and youth variables were normalized<br>
+</li>
+<li>combined into a continuous risk score</li>
+</ul>
+</section>
+<section id="step-b-interpret-results" class="level4">
+<h4 class="anchored" data-anchor-id="step-b-interpret-results">Step B: Interpret Results</h4>
+<ul>
+<li>Which PUMAs have the highest risk scores?<br>
+</li>
+<li>Do high-risk areas cluster spatially?<br>
+</li>
+<li>How does the combined score differ from hazard alone?</li>
+</ul>
+</section>
+<section id="step-c-reflect-on-limitations" class="level4">
+<h4 class="anchored" data-anchor-id="step-c-reflect-on-limitations">Step C: Reflect on Limitations</h4>
+<ul>
+<li>normalization is relative to the dataset<br>
+</li>
+<li>equal weighting assumes both variables are equally important<br>
+</li>
+<li>proximity does not measure actual pollutant levels</li>
+</ul>
+</section>
+<section id="step-d-environmental-justice-connection" class="level4">
+<h4 class="anchored" data-anchor-id="step-d-environmental-justice-connection">Step D: Environmental Justice Connection</h4>
+<p>Reflect on how the combined risk surface highlights areas where:</p>
+<ul>
+<li>environmental burdens concentrate</li>
+<li>vulnerable populations reside</li>
+</ul>
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c8_assignment_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
