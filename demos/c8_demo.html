@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-03-22">
+
+<title>Class 8 Lecture Demonstration Lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c8_demo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c8_demo_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c8_demo_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c8_demo_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c8_demo_files/libs/quarto-html/popper.min.js"></script>
+<script src="c8_demo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c8_demo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c8_demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c8_demo_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c8_demo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c8_demo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c8_demo_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c8_demo_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#spatial-analysis-geoprocessing---vector-data" id="toc-spatial-analysis-geoprocessing---vector-data" class="nav-link active" data-scroll-target="#spatial-analysis-geoprocessing---vector-data">Spatial Analysis &amp; Geoprocessing - Vector Data</a></li>
+  <li><a href="#preamble" id="toc-preamble" class="nav-link" data-scroll-target="#preamble">Preamble</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#demo-step-1---preparing-a-project-environment-for-geoprocessing" id="toc-demo-step-1---preparing-a-project-environment-for-geoprocessing" class="nav-link" data-scroll-target="#demo-step-1---preparing-a-project-environment-for-geoprocessing">Demo Step 1 - Preparing a Project Environment for Geoprocessing</a></li>
+  <li><a href="#demo-step-2---lower-level-selections" id="toc-demo-step-2---lower-level-selections" class="nav-link" data-scroll-target="#demo-step-2---lower-level-selections">Demo Step 2 - Lower Level Selections</a></li>
+  <li><a href="#demo-step-3---single-layer-analysis---proximity-buffers" id="toc-demo-step-3---single-layer-analysis---proximity-buffers" class="nav-link" data-scroll-target="#demo-step-3---single-layer-analysis---proximity-buffers">Demo Step 3 - Single Layer Analysis - Proximity Buffers</a></li>
+  <li><a href="#demo-step-4---multiple-layer-analysis---clip" id="toc-demo-step-4---multiple-layer-analysis---clip" class="nav-link" data-scroll-target="#demo-step-4---multiple-layer-analysis---clip">Demo Step 4 - Multiple Layer Analysis - Clip</a></li>
+  <li><a href="#demo-step-5---multiple-layer-analysis---union" id="toc-demo-step-5---multiple-layer-analysis---union" class="nav-link" data-scroll-target="#demo-step-5---multiple-layer-analysis---union">Demo Step 5 - Multiple Layer Analysis - Union</a></li>
+  <li><a href="#demo-step-6---single-layer-analysis---dissolve" id="toc-demo-step-6---single-layer-analysis---dissolve" class="nav-link" data-scroll-target="#demo-step-6---single-layer-analysis---dissolve">Demo Step 6 - Single Layer Analysis - Dissolve</a></li>
+  <li><a href="#demo-step-7---single-layer-analysis---selections-assignments" id="toc-demo-step-7---single-layer-analysis---selections-assignments" class="nav-link" data-scroll-target="#demo-step-7---single-layer-analysis---selections-assignments">Demo Step 7 - Single Layer Analysis - Selections &amp; Assignments</a></li>
+  <li><a href="#concluding-remarks" id="toc-concluding-remarks" class="nav-link" data-scroll-target="#concluding-remarks">Concluding Remarks</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References:</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 8 Lecture Demonstration Lab</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 22, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="spatial-analysis-geoprocessing---vector-data" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-analysis-geoprocessing---vector-data">Spatial Analysis &amp; Geoprocessing - Vector Data</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/header.png" class="img-fluid figure-img"></p>
+<figcaption><em>A selection of Vector Geoprocessing Tools</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="preamble" class="level2">
+<h2 class="anchored" data-anchor-id="preamble">Preamble</h2>
+<p>Within the vector model, a core GIS capacity is the ability to <em>identify</em>, <em>manipulate</em>, <em>transform</em> and <em>aggregate</em> both within (single-layer) and between (multi-layer) feature(s).</p>
+<p>To do this, lower level tools - <em>Select by Expression</em> and <em>Select by Location</em> - are extended by higher level tools that will be explored in this week’s demonstration lab and assignment. These tools are deployed in order to solve specific spatial problems. In this demonstration lab, the spatial problems will be rather limited to simply demonstrate how the tools work. In the assignment, relatively complex spatial problems will be solved for a real-life challenge poised by <em>Explosive Remnants of War (ERW)</em> based on data from the late 1990’s Kosovo War.</p>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<ul>
+<li><a href="https://www.dropbox.com/s/7cap1w8798dfjrc/c7_lecture.demo.lab.data.zip?dl=1">Class 8 Demonstration Lab Data</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/data.png" class="img-fluid figure-img"></p>
+<figcaption><em>Class 8 Demonstration Lab Data</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="demo-step-1---preparing-a-project-environment-for-geoprocessing" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-1---preparing-a-project-environment-for-geoprocessing">Demo Step 1 - Preparing a Project Environment for Geoprocessing</h2>
+<p>In order to ensure geoprocessing results in a GIS project are consistent and manageable, it is critical to ensure that both the project file and each spatial layer is consistent in the same projection system. For this demonstation lab, all data will be projected to New York’s local CRS - <code>EPSG:2263 - NAD83/New York Long Island (ftUS)</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/projection.png" class="img-fluid figure-img"></p>
+<figcaption><em>Class 8 Demonstration Lab Data CRS</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/project-area.png" class="img-fluid figure-img"></p>
+<figcaption><em>Lower East Side NTA with lab spatial layers</em></figcaption>
+</figure>
+</div>
+<p>Second, a consistent output location should be determined. This can be the <code>temporary memory</code> or a particular directory - for this lab we will use a folder in the data directory titled <code>exports</code>.</p>
+</section>
+<section id="demo-step-2---lower-level-selections" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-2---lower-level-selections">Demo Step 2 - Lower Level Selections</h2>
+<p>Import all vector spatial layers from the data folder to a project <code>.qgs</code>. Once complete, make a <code>Select by Location</code> query for the <code>intersect</code> operation; save to temporary memory:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/location.1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Select by Location, Operation Intersection</em></figcaption>
+</figure>
+</div>
+<p>After reviewing the selection, repeat but this time using <code>disjoint</code>. Point result to temporary memory.</p>
+<p>All selections - by attribute or by location - have an important characteristic in common: they retain both the original feature geometry and the original feature attributes. The tools only create subsets of the original data; they don’t fundamentally change the character of the original data. That is not the case with the higher level geoprocessing tools that we will now turn our attention towards in the next steps.</p>
+</section>
+<section id="demo-step-3---single-layer-analysis---proximity-buffers" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-3---single-layer-analysis---proximity-buffers">Demo Step 3 - Single Layer Analysis - Proximity Buffers</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/buffer.png" class="img-fluid figure-img"></p>
+<figcaption><em>Buffer Operation</em></figcaption>
+</figure>
+</div>
+<p>To start, we will conduct a proximity buffer on the Lower East Side NTA feature. Here we will draw out a proximity distance <code>.5</code> miles from the feature:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/buffer1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Buffer Operation Input</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/buffer-result.png" class="img-fluid figure-img"></p>
+<figcaption><em>Buffer Result</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="demo-step-4---multiple-layer-analysis---clip" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-4---multiple-layer-analysis---clip">Demo Step 4 - Multiple Layer Analysis - Clip</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/clip.png" class="img-fluid figure-img"></p>
+<figcaption><em>Clip Operation</em></figcaption>
+</figure>
+</div>
+<p>In the next geoprocessing example, we will utilize the Lower East Side administrative boundary to ‘cut’ or ‘clip’ the Manhattan Parcel layer. Once complete, we will review the results together to understand what the tool can accomplish:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/clip-input.png" class="img-fluid figure-img"></p>
+<figcaption><em>Clip Operation Input</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/clip-output.png" class="img-fluid figure-img"></p>
+<figcaption><em>Clip Output</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="demo-step-5---multiple-layer-analysis---union" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-5---multiple-layer-analysis---union">Demo Step 5 - Multiple Layer Analysis - Union</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/union.png" class="img-fluid figure-img"></p>
+<figcaption><em>Union Operation</em></figcaption>
+</figure>
+</div>
+<p>In the next geoprocessing example, we will utilize the Manhattan Buildings and the Manhattan Parcel Layer in a Union process. In this process it is often the case that we are trying to ‘merge’ attributes into one attribute table; and we don’t prioritize the resulting geometry. Unions are often used as intermediate steps in an analysis methodology, or they can be the very last stage prior to selecting by attributes some particular combination condition.</p>
+<p>We might want to answer a simple question: <em>according to the NYC parcel and buildings dataset, which building is the tallest, and who owns it?</em></p>
+<p>With a union, we can easily answer this question in one place.</p>
+<p>To start, we will need to ‘fix’ the geometry of the buildings. QGIS is very sensitive to any topology mistake in a dataset in a geoprocessing environment; fixing the geometry is easy and corrects typical geometry errors:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/invalid_geometry.png" class="img-fluid figure-img"></p>
+<figcaption><em>Geometry Error</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/fix-geo.png" class="img-fluid figure-img"></p>
+<figcaption><em>Fix Geometry</em></figcaption>
+</figure>
+</div>
+<p>With the building geometry fixed, the Union input parameters are simple and do not follow a certain order, i.e.&nbsp;any of two layers can be on top:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/union-input.png" class="img-fluid figure-img"></p>
+<figcaption><em>Union Tool Parameters</em></figcaption>
+</figure>
+</div>
+<p>Once the result has been produced, we can sort on building height and easily acquire additional the ownership attribute:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/tall.png" class="img-fluid figure-img"></p>
+<figcaption><em>Query Result for Tallest Building</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/tall2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Query Result for Tallest Building</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="demo-step-6---single-layer-analysis---dissolve" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-6---single-layer-analysis---dissolve">Demo Step 6 - Single Layer Analysis - Dissolve</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/dissolve.png" class="img-fluid figure-img"></p>
+<figcaption><em>Dissolve Operation</em></figcaption>
+</figure>
+</div>
+<p>The next geoprocessing example is the Dissolve which involved just one layer. Here the goal is to aggregated all features and attributes into just one record and one polygon. There are many stages of geoprocessing were a dissolve is useful in solving a spatial problem. For instance, to find the total square area of buildings within the Lower East Side boundary, we first clip the buildings to the boundary, then dissolve and create geometry attributes within the dissolved feature.</p>
+<p>To start, clip the buildings layer to the LES boundary:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/clip-build.png" class="img-fluid figure-img"></p>
+<figcaption><em>Clip Input</em></figcaption>
+</figure>
+</div>
+<p>Next dissolve the clipped buildings:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/dissolve-input.png" class="img-fluid figure-img"></p>
+<figcaption><em>Dissolve Input</em></figcaption>
+</figure>
+</div>
+<p>Next add geometry attributes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/add-geom.png" class="img-fluid figure-img"></p>
+<figcaption><em>Add Geometry Attributes Input</em></figcaption>
+</figure>
+</div>
+<p>The result is as follows:</p>
+<p><code>5460235.08 Square Feet</code> is produced as a Geometry Areal Attribute, or <code>0.195 Square Miles</code>. The total square feet area of the LES boundary is <code>23299597.15 Square Feet</code> or <code>0.835 Square Miles</code>. Thus the result within LES boundary for the buildings footprints is <code>23.3%</code> of the total area.</p>
+</section>
+<section id="demo-step-7---single-layer-analysis---selections-assignments" class="level2">
+<h2 class="anchored" data-anchor-id="demo-step-7---single-layer-analysis---selections-assignments">Demo Step 7 - Single Layer Analysis - Selections &amp; Assignments</h2>
+<p>A typical geoprocessing scenario will culminate in some type of ordinal scale to thematically map the analysis results into a meaningful measurement. For instance, we might want to order the LES buildings into a small vs large categorization. To do this, a threshold condition is met for both ‘typical’ and ‘tall’ buildings and then an assignment is made for each.</p>
+<p>We can run a statistics report and find the third quartile at <code>69.345</code>; we’ll use this as the threshold to meet for ‘tall’ buildings:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/stat.png" class="img-fluid figure-img"></p>
+<figcaption><em>Statistics for Field <code>HEIGHTROOF</code></em></figcaption>
+</figure>
+</div>
+<p>To start, we will make an active selection for all buildings to be assigned ‘typical’ within the LES buildings:</p>
+<p><code>"HEIGHTROOF"&lt;69.345</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/selection1-typical.png" class="img-fluid figure-img"></p>
+<figcaption><em>Selection by Expression for ‘typical’</em></figcaption>
+</figure>
+</div>
+<p>Next, a new column is created titled <code>HEIGHT</code>, type as <code>Text</code> with a default value of <code>'test'</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/new-column.png" class="img-fluid figure-img"></p>
+<figcaption><em>New Column Creation</em></figcaption>
+</figure>
+</div>
+<p>Within the new column with the selection active, the ‘typical’ assignment is made:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/typical-assignment.png" class="img-fluid figure-img"></p>
+<figcaption><em>Typical Assignment - updates 894 selected features</em></figcaption>
+</figure>
+</div>
+<p>Make sure to fully clear the selection, and then make an active selection for all buildings to be assigned ‘tall’ within the LES buildings:</p>
+<p><code>"HEIGHTROOF"&gt;=69.345</code></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/selection2-tall.png" class="img-fluid figure-img"></p>
+<figcaption><em>Tall Selection</em></figcaption>
+</figure>
+</div>
+<p>Within the new column with the selection active, the ‘tall’ assignment is made:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/tall-assignment.png" class="img-fluid figure-img"></p>
+<figcaption><em>Tall Assignment - Updates 298 selected features </em></figcaption>
+</figure>
+</div>
+<p>With assignments complete, and all selections cleared, thematic symbolize the layer:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/symbol1.png" class="img-fluid figure-img"></p>
+<figcaption><em>Thematic Symbolization</em></figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c8_demo_files/img/symbol2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Thematic Symbolization Mapped</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="concluding-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-remarks">Concluding Remarks</h2>
+<p>In this seventh demonstration lab, we explored both low and high level geoprocessing tools available in QGIS. These tools will be used extensively in the seventh assignment to solve an important problem - setting priority geography for a toxic or contamination. GIS is used extensively to solve proximity-based environmental exposure scenarios; while this lab didn’t specifically address this topic, the tools used here are core analysis tools used across a myriad of spatial problems, including environmental exposure.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References:</h2>
+<ul>
+<li><p><a href="https://www.lehman.edu/academics/eggs/documents/2007_Health_and_Place_Maantay.pdf">New York Based ‘classic’ environmental geoprocessing study - Juliana Maantay, 2007</a></p></li>
+<li><p><a href="https://morphocode.com/making-urban-layers/">New York Building Interactive Mapping Project - Morphocode</a></p></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c8_demo_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
