@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2026-03-28">
+<meta name="dcterms.date" content="2026-03-30">
 
 <title>Class 9 Assignment: Spatial Analysis of Raster Data + Suitability Model</title>
 <style>
@@ -86,7 +86,6 @@ window.Quarto = {
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data:</a></li>
   <li><a href="#part-i-data-acquisition-setup" id="toc-part-i-data-acquisition-setup" class="nav-link" data-scroll-target="#part-i-data-acquisition-setup">🧭 Part I — Data Acquisition &amp; Setup</a></li>
   <li><a href="#part-ii-land-cover-suitability-surface" id="toc-part-ii-land-cover-suitability-surface" class="nav-link" data-scroll-target="#part-ii-land-cover-suitability-surface">🌍 Part II — Land Cover Suitability Surface</a></li>
-  <li><a href="#step-a-reclassify-land-cover-import-the-layer-esa_worldcover_10m_2021_v200_n39w075_map_2263_usfoot.-this-is-the-esa-landcover-dataset.-note-the-following-table-landcover-dn-and-descriptions" id="toc-step-a-reclassify-land-cover-import-the-layer-esa_worldcover_10m_2021_v200_n39w075_map_2263_usfoot.-this-is-the-esa-landcover-dataset.-note-the-following-table-landcover-dn-and-descriptions" class="nav-link" data-scroll-target="#step-a-reclassify-land-cover-import-the-layer-esa_worldcover_10m_2021_v200_n39w075_map_2263_usfoot.-this-is-the-esa-landcover-dataset.-note-the-following-table-landcover-dn-and-descriptions">Step A — Reclassify Land Cover import the layer <code>ESA_WorldCover_10m_2021_v200_N39W075_Map_2263_USFOOT</code>. This is the ESA LandCover dataset. Note the following table LandCover DN and descriptions:</a></li>
   <li><a href="#part-iii-dem-slope-suitability" id="toc-part-iii-dem-slope-suitability" class="nav-link" data-scroll-target="#part-iii-dem-slope-suitability">🏔️ Part III — DEM &amp; Slope Suitability</a></li>
   <li><a href="#part-iv-flood-distance-suitability" id="toc-part-iv-flood-distance-suitability" class="nav-link" data-scroll-target="#part-iv-flood-distance-suitability">🌊 Part IV — Flood Distance Suitability</a></li>
   <li><a href="#part-v-align-raster-grids-warp-method" id="toc-part-v-align-raster-grids-warp-method" class="nav-link" data-scroll-target="#part-v-align-raster-grids-warp-method">🧩 Part V — Align Raster Grids (Warp Method)</a></li>
@@ -114,7 +113,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 28, 2026</p>
+      <p class="date">March 30, 2026</p>
     </div>
   </div>
   
@@ -240,7 +239,7 @@ Note
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="c9_assignment_files/img/CRS.png" class="img-fluid figure-img"></p>
+<p><img src="c9_assignment_files/img/crs.png" class="img-fluid figure-img"></p>
 <figcaption><em>CRS for Assignment</em></figcaption>
 </figure>
 </div>
@@ -376,13 +375,12 @@ Note
 <section id="step-f-reproject-raster-inputs-to-the-common-crs" class="level4">
 <h4 class="anchored" data-anchor-id="step-f-reproject-raster-inputs-to-the-common-crs">Step F — Reproject Raster Inputs to the common CRS</h4>
 <blockquote class="blockquote">
-<p>This steps has already been done for the download dataset. For the reprojection step we use the following methods depending on the data type:</p>
+<p>This steps has already been done for the download dataset. For the reprojection step we use the following methods to resample the cell values depending on the data type:</p>
 </blockquote>
-<ul>
-<li>Categorical → Nearest Neighbor<br>
-</li>
-<li>Continuous → Bilinear</li>
-</ul>
+<blockquote class="blockquote">
+<p>Categorical → Nearest Neighbor<br>
+Continuous → Bilinear</p>
+</blockquote>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c9_assignment_files/img/assignment_setup.png" class="img-fluid figure-img"></p>
@@ -390,11 +388,14 @@ Note
 </figure>
 </div>
 <ul>
+<li>Dataset Details:
+<ul>
 <li>DEM → Digital Elevation Model used for Slope Calculations (RASTER)</li>
 <li>FEMA 100-year Flood → Flood extents in NYC region (VECTOR)</li>
 <li>LandCover → ESA LandCover categorical data (RASTER)</li>
 <li>nybb_26a → NYC Borough Boundary (VECTOR)</li>
 <li>exports → Location for assignment outputs + backup data in case of QGIS fatal errors while processing</li>
+</ul></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -406,16 +407,17 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In the <code>exports</code> directory there is <em>backup &gt; aligned</em>; these are processed layers in case QGIS returns fatal processing errors in assignment steps. Only use these layers as last result.</p>
+<p>In the <code>exports</code> directory there is <em>backup &gt; aligned</em>; these are processed layers in case QGIS returns fatal processing errors in assignment steps. Only use these layers as last resort if your processing results in errors that we are unable to fix during class time.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="part-ii-land-cover-suitability-surface" class="level3">
 <h3 class="anchored" data-anchor-id="part-ii-land-cover-suitability-surface">🌍 Part II — Land Cover Suitability Surface</h3>
-</section>
-<section id="step-a-reclassify-land-cover-import-the-layer-esa_worldcover_10m_2021_v200_n39w075_map_2263_usfoot.-this-is-the-esa-landcover-dataset.-note-the-following-table-landcover-dn-and-descriptions" class="level3">
-<h3 class="anchored" data-anchor-id="step-a-reclassify-land-cover-import-the-layer-esa_worldcover_10m_2021_v200_n39w075_map_2263_usfoot.-this-is-the-esa-landcover-dataset.-note-the-following-table-landcover-dn-and-descriptions">Step A — Reclassify Land Cover import the layer <code>ESA_WorldCover_10m_2021_v200_N39W075_Map_2263_USFOOT</code>. This is the ESA LandCover dataset. Note the following table LandCover DN and descriptions:</h3>
+<section id="step-a-reclassify-land-cover" class="level4">
+<h4 class="anchored" data-anchor-id="step-a-reclassify-land-cover">Step A — Reclassify Land Cover</h4>
+<p>Import the layer <code>ESA_WorldCover_10m_2021_v200_N39W075_Map_2263_USFOOT</code>.</p>
+<p>This is the ESA LandCover dataset. Note the following table LandCover DN and descriptions:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -468,6 +470,7 @@ Note
 <figcaption><em>ESA Landcover prior to reclass</em></figcaption>
 </figure>
 </div>
+</section>
 <section id="step-b-reclassify-land-cover" class="level4">
 <h4 class="anchored" data-anchor-id="step-b-reclassify-land-cover">Step B — Reclassify Land Cover</h4>
 <blockquote class="blockquote">
@@ -590,9 +593,8 @@ Note
 <section id="step-c-save-output" class="level4">
 <h4 class="anchored" data-anchor-id="step-c-save-output">Step C — Save Output</h4>
 <ul>
-<li>Make sure to create an <code>Exports</code> directory folder for the various outputs that will be produced leading to the suitability ranking.<br>
-</li>
-<li>Export as <code>landcover_suitability_10m</code> in the <em>GeoTiff</em> format. this will add the suffix <code>.tif</code> to the layer name.</li>
+<li><p>Make sure to create an <code>Exports</code> directory folder for the various outputs that will be produced leading to the suitability ranking.</p></li>
+<li><p>Export as <code>landcover_suitability_10m</code> in the <em>GeoTiff</em> format. The suffix <code>.tif</code> will be added by the tool as default to the layer name.</p></li>
 </ul>
 </section>
 </section>
@@ -705,7 +707,7 @@ Note
 <p>✔ Output type: Float32</p>
 <p>✔ Range: min ≤ value ≤ max</p>
 <p>✔ Upper bound (90) safely captures all values</p>
-<p>✔ Because slope values are continuous and stored as floating point numbers, values near class boundaries (e.g., 5°) may not fall exactly on those thresholds. Using very small offsets (e.g., 5.000001 instead of 5.0001) helps avoid gaps where values would otherwise not be assigned to any class.</p>
+<p>✔ Because slope values are continuous and stored as floating point numbers, values near class boundaries (e.g., 5) may not fall exactly on those thresholds. Using very small offsets (e.g., 5.0000001 instead of 5.1) helps avoid gaps where values would otherwise not be assigned to any class.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -716,7 +718,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sanity Check: we can run the <strong>Raster layer unique values report</strong> toolset on the slope raster to ensure we have only cells that meet our assigned Output Values. This produces an <code>.html</code> overview that we can review easily; run as a temporary file and close after viewing. Our values should be limited to our chosen Output values; no pixel values should ‘stray’ from the strict reclassification scheme.</p>
+<p>Sanity Check: we can run the <strong>Raster layer unique values report</strong> toolset on the slope raster to ensure we have only cells that meet our assigned <em>Output Values</em>. This produces an <code>.html</code> overview that we can review easily; run as a temporary file and close after viewing. Our values should be limited to our chosen <em>Output Values</em>; no pixel values should ‘stray’ from the strict reclassification scheme.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -742,7 +744,7 @@ Note
 <li>Ensure that the vector layer <code>FEMA_A-AE-VE_2263_USFOOT</code> is loaded to the layers panel.</li>
 </ul>
 <blockquote class="blockquote">
-<p>This layer has been clipped to just land within the brough boundary file. However, we must convert to raster format before creating a <em>Proximity Distance Raster</em>.</p>
+<p>This layer has been clipped to just land within the brough boundary file. However, we must convert to raster format before creating a <em>Proximity Distance Raster</em> as the input for the tool takes a raster input.</p>
 </blockquote>
 </section>
 <section id="step-b-rasterize-the-fema-flood-zones" class="level4">
@@ -751,7 +753,7 @@ Note
 <li>Enact the tool <strong>Raster &gt; Conversion &gt; Rasterize</strong></li>
 </ul>
 <p>In this step, the vector features will be rasterized in preparation for a Euclidean Distance output which is a <a href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/understanding-euclidean-distance-analysis.htm"><em>Global</em> processing function</a>:</p>
-<p>To Start, input the <code>FEMA_A-AE-VE_2263_USFOOT</code> and populate the <em>Rasterize tool</em> with the following parameters:</p>
+<p>To start, input the <code>FEMA_A-AE-VE_2263_USFOOT</code> and populate the <em>Rasterize tool</em> with the following parameters:</p>
 <ul>
 <li><code>1</code> as the <em>A fixed value to burn</em></li>
 <li>Geoferenced units as the <em>Output raster size units</em></li>
@@ -896,11 +898,12 @@ Note
 </li>
 <li>pixel alignment</li>
 </ul>
+<p>Once the target grid layer is determined, the other raster layers then are ‘warped’ to match the target layer.</p>
 </section>
 <section id="step-b-open-warp-reproject-tool" class="level4">
 <h4 class="anchored" data-anchor-id="step-b-open-warp-reproject-tool">Step B — Open Warp (Reproject) Tool</h4>
 <p>Navigate to:<br>
-Raster → Projections → <strong>Raster &gt; Projections &gt; Warp (Reproject)</strong><br>
+<strong>Raster &gt; Projections &gt; Warp (Reproject)</strong><br>
 (or Processing Toolbox → search “Warp”)</p>
 </section>
 <section id="step-c-set-input-raster" class="level4">
@@ -913,23 +916,27 @@ Raster → Projections → <strong>Raster &gt; Projections &gt; Warp (Reproject)
 </section>
 <section id="step-e-match-resolution" class="level4">
 <h4 class="anchored" data-anchor-id="step-e-match-resolution">Step E — Match Resolution</h4>
-<p>Set: - <strong>Output file resolution</strong> → match your reference raster<br>
-- Make sure to use <code>27.007</code> which is the resolution of the LandCover Raster</p>
+<p>Set: - <strong>Output file resolution</strong> → match your reference raster</p>
+<blockquote class="blockquote">
+<p>Make sure to use <code>27.007</code> which is the resolution of the LandCover Raster</p>
+</blockquote>
 </section>
 <section id="step-f-match-extent" class="level4">
 <h4 class="anchored" data-anchor-id="step-f-match-extent">Step F — Match Extent</h4>
 <p>Under <strong>Output extent</strong>:</p>
 <ul>
-<li>Click the dropdown → <strong>Calculate from Layer</strong></li>
+<li>Click the dropdown → <strong>Calculate from Layer</strong>
+<ul>
 <li>Select your reference raster (LandCover Raster)</li>
+</ul></li>
 </ul>
 <p>This ensures identical spatial coverage.</p>
 </section>
 <section id="step-h-set-resampling-method" class="level4">
 <h4 class="anchored" data-anchor-id="step-h-set-resampling-method">Step H — Set Resampling Method</h4>
-<p>Because rasters are now classified suitability layers, not composed of continuous values:</p>
+<p>Because rasters are now classified suitability layers, no longer containing any continuous values:</p>
 <ul>
-<li>Use <strong>Nearest Neighbor</strong></li>
+<li>Use <strong>Nearest Neighbor</strong> resampling method</li>
 </ul>
 </section>
 <section id="step-i-set-output" class="level4">
@@ -947,7 +954,9 @@ Raster → Projections → <strong>Raster &gt; Projections &gt; Warp (Reproject)
 <ul>
 <li>flood distance suitability raster</li>
 </ul>
+<blockquote class="blockquote">
 <p>All rasters must be aligned to the same reference grid.</p>
+</blockquote>
 </section>
 <section id="step-l-verify-alignment" class="level4">
 <h4 class="anchored" data-anchor-id="step-l-verify-alignment">Step L — Verify Alignment</h4>
@@ -957,14 +966,19 @@ Raster → Projections → <strong>Raster &gt; Projections &gt; Warp (Reproject)
 </li>
 <li>no visible offsets between rasters</li>
 </ul>
+<blockquote class="blockquote">
 <p>Aligned rasters are now ready for final Raster Calculator combination.</p>
+</blockquote>
 </section>
 </section>
 <section id="part-vi-weighted-overlay" class="level3">
 <h3 class="anchored" data-anchor-id="part-vi-weighted-overlay">🧮 Part VI — Weighted Overlay</h3>
 <section id="step-a-confirm-inputs" class="level4">
 <h4 class="anchored" data-anchor-id="step-a-confirm-inputs">Step A — Confirm Inputs</h4>
-<p>All rasters scaled 0–1 ALL rasters aligned</p>
+<ul>
+<li>All rasters scaled 0–1</li>
+<li>ALL rasters aligned with same cell size resolution</li>
+</ul>
 </section>
 <section id="step-b-apply-equation-via-raster-calculator" class="level4">
 <h4 class="anchored" data-anchor-id="step-b-apply-equation-via-raster-calculator">Step B — Apply Equation via <em>Raster Calculator</em></h4>
@@ -976,10 +990,12 @@ Raster → Projections → <strong>Raster &gt; Projections &gt; Warp (Reproject)
 <li>Drop-in equation for <strong>Raster Calculator</strong>; ensure layer names match your project naming conventions to avoid <em>Invalid Expression</em> error:</li>
 </ul>
 <p><code>(0.30 * "landcover@1") +(0.35 * "slope@1") +(0.35 * "flood@1")</code></p>
+<p>:::</p>
 </section>
 <section id="step-c-clip-suitability-to-nyc-borough-boundary" class="level4">
 <h4 class="anchored" data-anchor-id="step-c-clip-suitability-to-nyc-borough-boundary">Step C — Clip Suitability to NYC Borough Boundary</h4>
-<p>Before final classification, clip the suitability raster result to the NYC borough boundary. First <strong>Dissolve</strong> the borough boundary; use the dissolved result as the <em>Mask layer</em>:</p>
+<p>Before final classification, clip the suitability raster result to the NYC borough boundary.</p>
+<p>First <strong>Dissolve</strong> the borough boundary; use the dissolved result as the <em>Mask layer</em>:</p>
 <ul>
 <li><p>Navigate to <strong>Raster &gt; Raster Extraction &gt; Clip Raster by Mask Layer</strong></p></li>
 <li><p>Input Layer &gt; Suitability Raster</p></li>
@@ -1139,7 +1155,7 @@ Raster → Projections → <strong>Raster &gt; Projections &gt; Warp (Reproject)
 <h4 class="anchored" data-anchor-id="step-b-configure-layout-format">Step B — Configure Layout Format</h4>
 <p>Create a final layout using:</p>
 <ul>
-<li><strong>11” × 17” (recommended)</strong> or<br>
+<li><strong>11” × 17”</strong> or<br>
 </li>
 <li><strong>8.5” × 11”</strong> (portrait or landscape)</li>
 </ul>
