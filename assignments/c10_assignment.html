@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-04-03">
+
+<title>Class 10 Assignment: Remote Sensing, Landsat Imagery &amp; Spectral Indices</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c10_assignment_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c10_assignment_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c10_assignment_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c10_assignment_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c10_assignment_files/libs/quarto-html/popper.min.js"></script>
+<script src="c10_assignment_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c10_assignment_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c10_assignment_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c10_assignment_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c10_assignment_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c10_assignment_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c10_assignment_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c10_assignment_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#class-10-reading-assignment-introduction-to-remote-sensing" id="toc-class-10-reading-assignment-introduction-to-remote-sensing" class="nav-link active" data-scroll-target="#class-10-reading-assignment-introduction-to-remote-sensing">📖 Class 10 Reading Assignment: Introduction to Remote Sensing</a>
+  <ul class="collapse">
+  <li><a href="#reading-link" id="toc-reading-link" class="nav-link" data-scroll-target="#reading-link">🔗 Reading Link</a></li>
+  <li><a href="#focus-sections" id="toc-focus-sections" class="nav-link" data-scroll-target="#focus-sections">🎯 Focus Sections</a></li>
+  <li><a href="#key-takeaway" id="toc-key-takeaway" class="nav-link" data-scroll-target="#key-takeaway">💡 Key Takeaway</a></li>
+  </ul></li>
+  <li><a href="#class-10-recorded-lecture" id="toc-class-10-recorded-lecture" class="nav-link" data-scroll-target="#class-10-recorded-lecture">Class 10 Recorded Lecture</a></li>
+  <li><a href="#assignment-preamble" id="toc-assignment-preamble" class="nav-link" data-scroll-target="#assignment-preamble">Assignment Preamble</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
+  <li><a href="#assignment-step-1" id="toc-assignment-step-1" class="nav-link" data-scroll-target="#assignment-step-1">Assignment Step 1</a></li>
+  <li><a href="#assignment-step-2" id="toc-assignment-step-2" class="nav-link" data-scroll-target="#assignment-step-2">Assignment Step 2</a></li>
+  <li><a href="#video-guide-i-step-i---ii" id="toc-video-guide-i-step-i---ii" class="nav-link" data-scroll-target="#video-guide-i-step-i---ii">Video Guide I | Step I - II:</a></li>
+  <li><a href="#assignment-step-3" id="toc-assignment-step-3" class="nav-link" data-scroll-target="#assignment-step-3">Assignment Step 3</a></li>
+  <li><a href="#assignment-step-4" id="toc-assignment-step-4" class="nav-link" data-scroll-target="#assignment-step-4">Assignment Step 4</a></li>
+  <li><a href="#assignment-step-4-1" id="toc-assignment-step-4-1" class="nav-link" data-scroll-target="#assignment-step-4-1">Assignment Step 4</a></li>
+  <li><a href="#video-guide-ii-step-iii---ix" id="toc-video-guide-ii-step-iii---ix" class="nav-link" data-scroll-target="#video-guide-ii-step-iii---ix">Video Guide II | Step III - IX:</a></li>
+  <li><a href="#map-layout-deliverable" id="toc-map-layout-deliverable" class="nav-link" data-scroll-target="#map-layout-deliverable">Map layout &amp; Deliverable:</a></li>
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources:</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 10 Assignment: Remote Sensing, Landsat Imagery &amp; Spectral Indices</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 3, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/header.png" class="img-fluid figure-img"></p>
+<figcaption><em>Landsat 8 Surface Reflectance + NDVI Spectral Index</em></figcaption>
+</figure>
+</div>
+<section id="class-10-reading-assignment-introduction-to-remote-sensing" class="level2">
+<h2 class="anchored" data-anchor-id="class-10-reading-assignment-introduction-to-remote-sensing">📖 Class 10 Reading Assignment: Introduction to Remote Sensing</h2>
+<p>This week’s reading introduces the foundational concepts of <strong>remote sensing</strong> — how satellites observe and measure the Earth’s surface. You will learn how raster data is <em>generated</em> through energy detection across different wavelengths, and how this connects directly to spatial analysis in GIS.</p>
+<p>This reading is especially important as it bridges our recent work with raster data into real-world data acquisition systems like <strong>satellite imagery (e.g., Landsat)</strong>.</p>
+<hr>
+<section id="reading-link" class="level3">
+<h3 class="anchored" data-anchor-id="reading-link">🔗 Reading Link</h3>
+<ul>
+<li>🌍 NASA Earth Observation Data Basics<br>
+https://www.earthdata.nasa.gov/learn/earth-observation-data-basics</li>
+</ul>
+<hr>
+</section>
+<section id="focus-sections" class="level3">
+<h3 class="anchored" data-anchor-id="focus-sections">🎯 Focus Sections</h3>
+<p>Please read the following sections carefully:</p>
+<ul>
+<li><p>🛰️ <strong>Orbits</strong><br>
+Understand how satellites move and how this affects data coverage and revisit time.</p></li>
+<li><p>📏 <strong>Resolution</strong><br>
+Focus on:</p>
+<ul>
+<li>Spatial resolution (pixel size)<br>
+</li>
+<li>Temporal resolution (revisit frequency)<br>
+</li>
+<li>Spectral resolution (bands)</li>
+</ul></li>
+<li><p>🌈 <strong>The Electromagnetic Spectrum</strong><br>
+Learn how different wavelengths (visible + infrared) are used to detect features like vegetation and water.</p></li>
+<li><p>📡 <strong>Active Instruments</strong><br>
+Sensors that emit their own energy (e.g., LiDAR, radar)</p></li>
+<li><p>☀️ <strong>Passive Instruments</strong><br>
+Sensors that rely on external energy sources (e.g., sunlight — Landsat)</p></li>
+</ul>
+</section>
+<section id="key-takeaway" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaway">💡 Key Takeaway</h3>
+<blockquote class="blockquote">
+<p>Remote sensing allows us to measure the Earth’s surface by capturing energy across wavelengths—stored as raster data that we can analyze in GIS.</p>
+</blockquote>
+</section>
+</section>
+<section id="class-10-recorded-lecture" class="level2">
+<h2 class="anchored" data-anchor-id="class-10-recorded-lecture">Class 10 Recorded Lecture</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1025893723"><img src="c10_assignment_files/img/c10-lecture.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Class 10 Recorded Lecture - Introduction to Remote Sensing</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Before proceeding with assignment steps below, review the posted lecture slides + lecture recording for an overview of this week’s concepts and themes.</p>
+</div>
+</div>
+</section>
+<section id="assignment-preamble" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-preamble">Assignment Preamble</h2>
+<p>This week’s assignment will encompass the following concepts covered in <strong>Class 11</strong> remote sensing (RS) lecture &amp; lab.</p>
+<p>In this RS assignment, you will first access and download Landsat ARD data for an urban area of your choice (Area of Interest - AOI). Once complete, you will create a Surface Temperature product to gauge potential urban heat island effect, coupled with a spectral index for NDVI - Normalized Difference Vegetation Index. When compared side by side, spatial patterns consistent across both raster surfaces should be evident.</p>
+<p>The assignment features several sections as follows:</p>
+<ul>
+<li>Landsat Analysis Ready Data (ARD) Program</li>
+<li>Surface Reflectance and Temperature Surface products</li>
+<li>Band Combinations</li>
+<li>Spectral Indices</li>
+</ul>
+<p>In the era of climate change, there has been significant research into the earth’s surface temperature, especially in urban areas where socio-economic, landcover, historical urban design all strongly correlate with increasing surface temperatures - often referred to as <a href="https://www.epa.gov/heatislands">Urban Heat Islands</a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/temp.1.jpeg" class="img-fluid figure-img"></p>
+<figcaption><em>Urban Heat Island Effect</em></figcaption>
+</figure>
+</div>
+<p>Through a socio-economic lens, income is often correlated with vegetative cover in urban areas:</p>
+<ul>
+<li><a href="https://www.nytimes.com/interactive/2021/06/30/opinion/environmental-inequity-trees-critical-infrastructure.html">Income and Vegetative Cover</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/income.green.png" class="img-fluid figure-img"></p>
+<figcaption><em>Urban Spatial Correlations Between Vegetative Cover &amp; Income</em></figcaption>
+</figure>
+</div>
+<p>Through a historical urban design lens, what is referred to as ‘red lining’ also often correlates with less vegetative cover:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/green.urban.2.png" class="img-fluid figure-img"></p>
+<figcaption><em>Redlining &amp; Vegetative Cover</em></figcaption>
+</figure>
+</div>
+<p>Particularly relevant for this assignment, rising surface temperatures are closely spatially correlated with landcover - all of which can be measured with a fair amount of precision at the municipal level via the Landsat program:</p>
+<ul>
+<li><p><a href="https://www.nasa.gov/topics/earth/features/heat-island-sprawl.html">Satellites Pinpoint Drivers of Urban Heat Islands in the Northeast</a></p></li>
+<li><p><a href="https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2021EF002016?stream=top&amp;utm_campaign=newsletter_axiosgenerate&amp;utm_medium=email&amp;utm_source=newsletter">Widespread Race and Class Disparities in Surface Urban Heat Extremes Across the United States</a></p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/urban.heat.png" class="img-fluid figure-img"></p>
+<figcaption><em>Landcover and Surface Temperature in Urban Environments</em></figcaption>
+</figure>
+</div>
+<p>Various heat-producing surfaces can be found in the urban environment and categorized into landcover types. This research can be helpful in interpreting the results of remote sensing for both surface temperature and landcover:</p>
+<ul>
+<li><p><a href="https://www.sciencedirect.com/science/article/pii/S0303243419307275">Normalised difference spectral indices and urban land cover as indicators of land surface temperature (LST)</a></p></li>
+<li><p><a href="https://cleantechnica.com/2019/07/10/researchers-in-portland-study-urban-heat-island-effect/">Researchers In Portland Study Urban Heat Island Effect</a></p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/types.png" class="img-fluid figure-img"></p>
+<figcaption><em>Landcover Types in Urban Environment Exhibiting Different Surface Temperature Profiles</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="data" class="level2">
+<h2 class="anchored" data-anchor-id="data">Data</h2>
+<ul>
+<li><a href="https://www.dropbox.com/s/4v7wea7pfofmbth/c10_assignment_data.zip?dl=1">C11 Assignment Data Package Download</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/data.1.png" class="img-fluid figure-img"></p>
+<figcaption>C11 Data Package</figcaption>
+</figure>
+</div>
+<blockquote class="blockquote">
+<p>Note: The <code>C10 Data Pacakge</code> features the ARD grid utilized early in the assignment to determine the horizontal and vertical position of the assignment AOI. Once done, two empty folders are provided for the surface temperature data (ARD_ST) and the surface reflectance data (ARD_SR). When accessing data at <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a>, the results can be placed in the ARD_ST and ARD_SR folders, respectively, to keep assignment organization.</p>
+</blockquote>
+</section>
+<section id="assignment-step-1" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-1">Assignment Step 1</h2>
+<ul>
+<li><p><strong>To Start</strong>, this assignment will rely on both the general process and sample imagery found in <a href="https://tns-course-repositories.github.io/STGIS_UENV3200_UURB3210_SP26/demos/c10_demo.html">this week’s lecture demo</a>. Here the city of Springfield, MO is the AOI; the imagery date is the height of summer on June 20th, 2021 at approximately 10:50 am (more on how to determine time of the imagery later in the assignment).</p></li>
+<li><p>Link to <a href="https://www.dropbox.com/s/cm7m99204jujwdg/c10_lecture_demo.data.zip?dl=1">Lecture Demo Data</a></p></li>
+<li><p>For your own assignment, you will pick a US city as your AOI. Good picks are cities that are mid-sized to large. They must first meet the following criteria:</p></li>
+</ul>
+<ol type="1">
+<li>The AOI must fully fit within one ARD grid tile.</li>
+<li>Within the ARD grid tile, the city must be covered by just 1 Landsat ARD scene.</li>
+</ol>
+<p>The Springfield, MO AOI meets both criteria as seen below:</p>
+<ul>
+<li>Search for a city that falls within one ARD grid tile. Once found, select the grid tile and notate the <code>h</code> and <code>v</code> values in the attribute table for the grid tile. In the case of the grid tile containing Springfield, MO, the <code>h</code> value is <code>18</code> and the <code>v</code> value is <code>11</code>.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/ard.grid.1.png" class="img-fluid figure-img"></p>
+<figcaption>ARD Grid Structure</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/grid.2.png" class="img-fluid figure-img"></p>
+<figcaption>ARD Grid overlay to QuickMapServices Google Maps Baselayer</figcaption>
+</figure>
+</div>
+<p>Next, Navigate to <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a>, making sure you are logged in as a user (we did this step in Assignment 11 also). Under Search Criteria, Navigate to the Landsat ARD tab for Collection 2 data:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landsat.1.png" class="img-fluid figure-img"></p>
+<figcaption>Landsat C2 US ARD</figcaption>
+</figure>
+</div>
+<p>Utilize the horizontal and vertical position of the ARD Grid to produce results just for that one grid space. The AOI is Springfield, Missouri which has a Horizontal ID of <code>18</code>, and Vertical ID of <code>11</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landsat.2.png" class="img-fluid figure-img"></p>
+<figcaption>Horizontal/Vertical Position ID of AOI ARD Tile</figcaption>
+</figure>
+</div>
+<p>Next, the following four conditions are met from the returned results:</p>
+<ol type="1">
+<li><p>Cloud-free over Area of Interest - AOI - Springfield, Missouri as example.</p></li>
+<li><p>The tile preview shows full continuous pixel coverage over AOI.</p></li>
+<li><p>The ARD tile date is within ‘the growing season’, i.e.&nbsp;approximately late May through early August. Ideally, the ARD tile date is also in ‘high summer’ so that the surface temperature values will represent a typical hot day at the AOI.</p></li>
+<li><p>The ARD scene is part of the Landsat 8 Program, and the ARD scene is part of the Collection 2 segment of the program.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landsat.3.png" class="img-fluid figure-img"></p>
+<figcaption>Criteria Met: this Tile is cloud-free, full coverage over the AOI, and is within the growing season and the high summer - 6/20/21</figcaption>
+</figure>
+</div>
+<p>The Download features two products - the Surface Reflectance Values; and secondly the Surface Temperature values. Make sure to download both bundles, <em>untar</em> them with keka or 7zip and place the uncompressed files into the <code>ARD_SR</code> and <code>ARD_ST</code>, respectively:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landsat.4.png" class="img-fluid figure-img"></p>
+<figcaption>Surface Reflectance Bundle</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landsat.5.png" class="img-fluid figure-img"></p>
+<figcaption>Surface Temperature Bundle</figcaption>
+</figure>
+</div>
+<p>Uncompress the download bundles into the assignment directory:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landsat.gif" class="img-fluid figure-img"></p>
+<figcaption>Uncompressed bundles placed into assignment directories</figcaption>
+</figure>
+</div>
+</section>
+<section id="assignment-step-2" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-2">Assignment Step 2</h2>
+<section id="verify-landsat-8-ard-imagery-date-time-azimuth-and-elevation" class="level4">
+<h4 class="anchored" data-anchor-id="verify-landsat-8-ard-imagery-date-time-azimuth-and-elevation">Verify Landsat 8 ARD Imagery Date, Time, Azimuth and Elevation</h4>
+<p>As we discussed in Lecture 10, the Landsat program instrument is a passive sensor which requires the sun to effectively record electromagnetic values. As Landsat 8 traverses the continental US, it travels in a north&gt;south direction, and it passes the equator heading southward mid-morning. As a result, the Landsat sensor should pass over a city in the continental US in the earlier part of the day. We can check the exact time that a Landsat scene is recorded, and we can also find the sun’s elevation and azimuth. The following graphic shows both elevation and azimuth where 0° elevation is at sunrise and 90° elevation when the sun is directly overhead:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/diagram.png" class="img-fluid figure-img"></p>
+<figcaption>Azimuth &amp; Elevation Diagram</figcaption>
+</figure>
+</div>
+<p>Landsat data acquisition times are expressed in Greenwich Mean Time (GMT), and can be converted to CST, PST and EST. Since Springfield, MO is CST, we subtract 6 hours from the GMT expression in the metadata:</p>
+<pre><code>CST = -6 GMT
+PST = -8 GMT
+EST = -5 GMT</code></pre>
+<p>We can also find the weather of a certain day for a certain city:</p>
+<ul>
+<li><a href="https://www.wunderground.com/history">Find weather of city on a date</a></li>
+</ul>
+<p>For Springfield, MO on the data of imagery acquistion (6-20-21) the temperature profile is as follows (hot by 10am!):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/temp.png" class="img-fluid figure-img"></p>
+<figcaption>Temperature Profile on Date of Image Acquisition</figcaption>
+</figure>
+</div>
+<p>To Find the Date, Time, Elevation and Azimuth, access the .json file located in either the ARD_ST folder:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/json.png" class="img-fluid figure-img"></p>
+<figcaption><code>.json</code> metadata file for ARD tile scene</figcaption>
+</figure>
+</div>
+<p>This file can be opened in a text editor. Once open, look for the section titled “SCENE_METADATA”:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/json.2.png" class="img-fluid figure-img"></p>
+<figcaption>Sections Highlighted in Magenta Include Date, Time, Elevation and Azimuth</figcaption>
+</figure>
+</div>
+<p>From this information, we can place the assignment example for Springfield, MO as follows:</p>
+<ul>
+<li>The image is taken on 6/20/21 at 10:48 AM.</li>
+<li>The Sun’s Elevation is relatively ‘high in the sky’ at 67 degrees.</li>
+<li>The Sun’s position is in the south-eastern sky with a Azimuth of 121 degrees.</li>
+</ul>
+<p>In effect, if we were standing facing south in Springfield, MO when this Landsat scene was recorded it would have been a hot morning approach 90 degrees; the sun would have been relatively high in the sky approaching a typical ‘noon’ position at 90 degrees; and the sun’s east&gt;west orientation would be southeast in the sky. Indeed, these conditions are pretty good to represent a typical ‘early, hot summer day’ in the midwest of the US in the city of Springfield, MO. This is the condition that we are seeking for our surface temperature analysis upcoming in the assignment. It is also appropriate for the vegetative cover analysis where we would expect the tree coverage to represent a ‘full-leaf’ summer day.</p>
+<p>Once the metadata has been checked for appropriateness of imagery to the analysis task, you can proceed with confidence that your Landsat imagery is portraying the date,time, ambient temperature and sun position that we seek: a typical warm to hot summer day with typical, full sun exposure.</p>
+</section>
+</section>
+<section id="video-guide-i-step-i---ii" class="level2">
+<h2 class="anchored" data-anchor-id="video-guide-i-step-i---ii">Video Guide I | Step I - II:</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1025892860"><img src="c10_assignment_files/img/c10-p1.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Steps 1 - 2</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="assignment-step-3" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-3">Assignment Step 3</h2>
+<section id="processing-the-imagery-for-ndvi" class="level4">
+<h4 class="anchored" data-anchor-id="processing-the-imagery-for-ndvi">Processing the Imagery for NDVI</h4>
+<p>To Start, Like the <a href="https://gis-nspe-tns.github.io/GIS_NINT5380_sp24/demos/c10_lecture_demo.html">Lecture Demo 10</a>, the NDVI spectral index will be created based on the following formula:</p>
+<pre><code>NDVI = (NIR Band - Red Band / (NIR Band + Red Band)</code></pre>
+<p>As translated to the Landsat 8 band numbers:</p>
+<pre><code>NDVI = (Band 5 – Band 4) / (Band 5 + Band 4)</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/ndvi.1.png" class="img-fluid figure-img"></p>
+<figcaption>Utilize Bands 4 and 5 for NDVI</figcaption>
+</figure>
+</div>
+<p>The following formula utilizes the bands for the SR values in Band 4 and Band 5 located in the ARD_SR folder:</p>
+<pre><code>("LC08_CU_018011_20210620_20210703_02_SR_B5@1"-"LC08_CU_018011_20210620_20210703_02_SR_B4@1")/("LC08_CU_018011_20210620_20210703_02_SR_B5@1"+"LC08_CU_018011_20210620_20210703_02_SR_B4@1")</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The above equation layer names are particular to the demonstration data; your layer names will be different; populate equations accordingly for your assignment NDVI and Surface Temperature calculations.</p>
+</div>
+</div>
+<p>Review the results with symbolization applied for values within the NDVI Index:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/ndvi.2.png" class="img-fluid figure-img"></p>
+<figcaption>NDVI low &gt; high Symbolization</figcaption>
+</figure>
+</div>
+<p>Save the results as <code>your_city_name_NDVI.tif</code> into the outputs folder. You can also save the <code>.qgs</code> QGIS project into the assignment folder before proceeding to the next steps.</p>
+</section>
+</section>
+<section id="assignment-step-4" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-4">Assignment Step 4</h2>
+<section id="processing-the-imagery-for-surface-temperature" class="level4">
+<h4 class="anchored" data-anchor-id="processing-the-imagery-for-surface-temperature">Processing the Imagery for Surface Temperature</h4>
+<p>With NDVI complete, turn to calculating the Surface Temperature utilizing the ST layer in the <code>ARD_ST</code> folder. Import this band layer into the QGIS project:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.1.png" class="img-fluid figure-img"></p>
+<figcaption><code>ST_B10</code> Layer</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.2.png" class="img-fluid figure-img"></p>
+<figcaption><code>ST_B10</code> Layer loaded to QGIS Layers Panel</figcaption>
+</figure>
+</div>
+<p>Based on the <a href="https://prd-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/atoms/files/LSDS-1619_Landsat-8-Collection2_Level-2_Science-Product-Guide-v3.pdf">metadata/product guide</a>, the thematic of this raster layer is as follows:</p>
+<blockquote class="blockquote">
+<p>Surface Temperature (ST) – Represents the temperature of the Earth’s surface in Kelvin (K).</p>
+</blockquote>
+<p>Also noted in the guide is a scale factor that is utilized for the product:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.3.png" class="img-fluid figure-img"></p>
+<figcaption>Kelvin Values for the <code>ST</code> band</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.4.png" class="img-fluid figure-img"></p>
+<figcaption>Application of Scale and Offset</figcaption>
+</figure>
+</div>
+<ul>
+<li>More information on Scaling <a href="https://www.usgs.gov/faqs/how-do-i-use-scale-factor-landsat-level-2-science-products?qt-news_science_products=0#qt-news_science_products">USGS Landsat Level 2 FAQ</a></li>
+</ul>
+<p>ST Band 10 in QGIS, Layers Panel:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.5.png" class="img-fluid figure-img"></p>
+<figcaption>Note the unscaled Kelvin Values 28804 - 49411</figcaption>
+</figure>
+</div>
+<p>Here the digital numbers need to be scaled accordingly, and an offset of <code>149</code> is also applied. If the value is to be expressed in Celcius or Fahrenheit, a further conversion needs to take place via the raster calculator. This will be accomplished in two steps:</p>
+<p><strong>Step 1</strong>: Scale the DN raster values in Raster Calculator where <code>ST_B10</code> is the original B10 DN raster:</p>
+<pre><code>(ST_B10@1 * 0.00341802) +149</code></pre>
+<p><strong>Step 2</strong>: Apply the following temperature conversion where <code>K</code> is the scaled raster values and <code>F</code> is the Fahrenheit temperature measurement:</p>
+<pre><code>F = 1.8(K - 273) + 32</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.6.png" class="img-fluid figure-img"></p>
+<figcaption>Step 1: Scaled + Offset Kelvin Values Equation in Raster Calculator</figcaption>
+</figure>
+</div>
+<pre><code>(ST_B10@1 * 0.00341802) +149</code></pre>
+<p>Next, apply the temperature conversion based on the formula for kelvin to fahrenheit units, and output as <code>your_city_name_ST</code> in the typical, default GeoTiff format:</p>
+<pre><code>1.8 * ("st_scaled@1" - 273) + 32</code></pre>
+<p>Review the resulting raster values, Kelvin vs Fahrenheit:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.7.png" class="img-fluid figure-img"></p>
+<figcaption>Step 2: Original Kelvin values transformed to Fahrenheit values</figcaption>
+</figure>
+</div>
+<p>Finally, apply an appropriate color ramp with the city focused in the canvas extent to ensure the surface temperature pattern appears correct where high values are located generally over impervious, high built-up areas; lower values in more suburban and rural areas, often towards the outer edges of cities:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/st.gif" class="img-fluid figure-img"></p>
+<figcaption>Utilize Value Tool &amp; QuickMapServices Base Imagery to Evaluate Resulting Surface Temperatures Across the Urban Extent</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="assignment-step-4-1" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-4-1">Assignment Step 4</h2>
+<section id="mask-analysis-layers-to-a-common-aoi-extent" class="level4">
+<h4 class="anchored" data-anchor-id="mask-analysis-layers-to-a-common-aoi-extent">Mask Analysis Layers to a Common AOI Extent</h4>
+<p>At this juncture, both the NDVI and Surface Temperature Analysis Rasters have been created; but their extent is simply the extent of the original Landsat tile edge. As the goal of the assignment is to compare and evaluate the vegetative cover within the respective urban AOI relative to surface temperature, ‘cutting’, i.e.&nbsp;masking to the city AOI is valuable. To do so, we will query OpenStreetMap for the ID of the respective city; acquire this ID in Overpass Turbo and utilize it as polygon mask in QGIS. We’ve done this type of query in the <a href="https://gis-nspe-tns.github.io/GIS_NINT5380_sp24/assignments/c6_assignment_spring_23_NINT5380.html">Class 6 Assignment - Map Projections</a></p>
+<p>To Start, navigate to OpenStreetMap, and search for the city by name:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.1.png" class="img-fluid figure-img"></p>
+<figcaption>Search by City Name and State</figcaption>
+</figure>
+</div>
+<p>Next, record the ID; in the case of Springfield, MO, this is a Relation geometry:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.2.png" class="img-fluid figure-img"></p>
+<figcaption>ID of Feature in OSM</figcaption>
+</figure>
+</div>
+<p>Navigate to <a href="https://overpass-turbo.eu/">Overpass Turbo</a> and enter the query code for the Feature ID (replace your city ID with that of Springfield, MO in the example):</p>
+<pre><code>/*
+This query looks for a node, way or relation 
+with the given id.
+*/
+[out:json][timeout:25];
+// gather results
+(
+  // query part for: “id:141244”
+  relation(141244);
+);
+// print results
+out body;
+&gt;;
+out skel qt;</code></pre>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.4.png" class="img-fluid figure-img"></p>
+<figcaption>Overpass Turbo Query Result for Springfield, MO</figcaption>
+</figure>
+</div>
+<p>Download the result as <code>GeoJSON</code> and place into the <code>outputs</code> folder.</p>
+<p>Import the <code>GeoJSON</code> file into QGIS:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.3.png" class="img-fluid figure-img"></p>
+<figcaption>OSM Springfield, MO Overpass Turbo Query Feature Loaded to QGIS</figcaption>
+</figure>
+</div>
+<p>At this juncture, its likely that the boundary feature needs to be fixed before utilizing as a mask feature. Run the export feature through the <em>Fix Geometries</em> tool via the Processing Toolbox and produce a temporary layer:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.6.png" class="img-fluid figure-img"></p>
+<figcaption>Fix Geometries</figcaption>
+</figure>
+</div>
+<p>Next, mask both the NDVI and Surface Temperature rasters and save them to the outputs folder as <code>NDVI_final.tif</code> and <code>ST_final.tif</code>, respectively:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.8.png" class="img-fluid figure-img"></p>
+<figcaption>Process the ST layer, then the NDVI layer to the Fix Geometries Mask using the parameters in the tool</figcaption>
+</figure>
+</div>
+<p>Before Proceeding to the final cartographic design, check the two results; they should be both clipped to the city boundary located at OpenStreetMap:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/op.9.gif" class="img-fluid figure-img"></p>
+<figcaption>Correctly Masked Layers for NDVI and ST Values</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="video-guide-ii-step-iii---ix" class="level2">
+<h2 class="anchored" data-anchor-id="video-guide-ii-step-iii---ix">Video Guide II | Step III - IX:</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://vimeo.com/1025893376"><img src="c10_assignment_files/img/c10-p2.png" class="img-fluid figure-img"></a></p>
+<figcaption><em>Steps 3 - 4</em></figcaption>
+</figure>
+</div>
+</section>
+<section id="map-layout-deliverable" class="level2">
+<h2 class="anchored" data-anchor-id="map-layout-deliverable">Map layout &amp; Deliverable:</h2>
+<p>With both Raster Layers Prepared, save the QGIS project before proceeding. The map layout will feature a side-by-side comparison of the NDVI results to the Surface Temperature results. A Gradient Color Ramp will be provided for each raster theme; both will be displayed with the same map scale, so 1 scale bar can apply to both map layout frames.</p>
+<p>To Start, create a Gradient Color Ramp for the NDVI Spectral Index and Surface Temperature Gradient using the following short video as guide:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Make sure to apply a pseudocolor color ramp for the legend development. Below is a short video outlining the process in QGIS LTR 3.1. In later releases - 3.2x - the default symbolization for rasters is indeed a pseudocolor color ramp, and thus no need to develop a secondary gradient color ramp in the layout.</p>
+</div>
+</div>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/Egc1jaPGg5k" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+<p>With the pseudocolor color ramps applied to each layer, proceed to Map Layout and position both layers into a horizontal, landscape orientation:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/landscape.png" class="img-fluid figure-img"></p>
+<figcaption>Page Properties for Landscape Orientation</figcaption>
+</figure>
+</div>
+<p>Next lay in the two analysis layers, and apply a continuous gradient legend to each. Make sure to retain the exact same map scale for each map frame, locking each map frame layer so that the next layer does not draw onto the subsequent layer:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/lock.png" class="img-fluid figure-img"></p>
+<figcaption>Locking the Layer within the Map Frame</figcaption>
+</figure>
+</div>
+<p>Use the following assignment draft as a general template for your map layout:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c10_assignment_files/img/layout.1.png" class="img-fluid figure-img"></p>
+<figcaption>Assignment 12 Draft Layout Example</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the layout example provided, both legends are oriented with low values at top, high values at bottom. There’s a strong argument to flip these legends so they correspond better. Low NDVI values correspond with high surface temperatures; it would be appropriate and logical to flip the surface temperature legend so that its high values are on top and correspond with the low NDVI values at top of the respective NDVI legend.</p>
+</div>
+</div>
+<p>A PDF of the map layout template is located as Class 9 Assignment Template:</p>
+<ul>
+<li><a href="https://mapexamples.s3.us-east-2.amazonaws.com/c12/c12.assignment.example.pdf">Example Layout - Assignment 9 PDF</a></li>
+</ul>
+<p>The final map design should include the following:</p>
+<ul>
+<li><p>Landscape orientation map sheet.</p></li>
+<li><p>Graduated symbology legend for both NDVI and Surface Temperature raster surfaces.</p></li>
+<li><p>Titling that explains the location, date range and thematic purpose of the mapping.</p></li>
+<li><p>Source the data as follows: Landsat-8 and Landsat-7 analysis imagery courtesy of the U.S. Geological Survey.</p></li>
+</ul>
+</section>
+<section id="resources" class="level2">
+<h2 class="anchored" data-anchor-id="resources">Resources:</h2>
+<ul>
+<li><a href="https://www.usgs.gov/faqs/what-are-us-landsat-analysis-ready-data-ard">Landsat ARD Data</a></li>
+<li><a href="https://www.usgs.gov/landsat-missions/landsat-normalized-difference-vegetation-index">NDVI</a></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c10_assignment_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
