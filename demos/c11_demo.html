@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-04-10">
+
+<title>Class 11 Lecture Demonstration Lab</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="c11_demo_files/libs/clipboard/clipboard.min.js"></script>
+<script src="c11_demo_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="c11_demo_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="c11_demo_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="c11_demo_files/libs/quarto-html/popper.min.js"></script>
+<script src="c11_demo_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="c11_demo_files/libs/quarto-html/anchor.min.js"></script>
+<link href="c11_demo_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="c11_demo_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="c11_demo_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="c11_demo_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="c11_demo_files/libs/bootstrap/bootstrap-d6a003b94517c951b2d65075d42fb01b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="c11_demo_files/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#part-i-demonstration-lab-interpolation-density-surfaces" id="toc-part-i-demonstration-lab-interpolation-density-surfaces" class="nav-link active" data-scroll-target="#part-i-demonstration-lab-interpolation-density-surfaces">🌡️ Part I Demonstration Lab — Interpolation &amp; Density Surfaces</a>
+  <ul class="collapse">
+  <li><a href="#overview" id="toc-overview" class="nav-link" data-scroll-target="#overview">🎯 Overview</a></li>
+  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">📊 Data</a></li>
+  <li><a href="#concept-why-interpolation" id="toc-concept-why-interpolation" class="nav-link" data-scroll-target="#concept-why-interpolation">🧠 Concept: Why Interpolation?</a></li>
+  <li><a href="#step-1-define-search-radius" id="toc-step-1-define-search-radius" class="nav-link" data-scroll-target="#step-1-define-search-radius">📏 Step 1 — Define Search Radius</a></li>
+  <li><a href="#optional-learn-about-optimal-bandwidth-hopt" id="toc-optional-learn-about-optimal-bandwidth-hopt" class="nav-link" data-scroll-target="#optional-learn-about-optimal-bandwidth-hopt">🎥 Optional: Learn About Optimal Bandwidth (hopt)</a></li>
+  <li><a href="#step-2-generate-density-surface" id="toc-step-2-generate-density-surface" class="nav-link" data-scroll-target="#step-2-generate-density-surface">🛠️ Step 2 — Generate Density Surface</a></li>
+  <li><a href="#parameters" id="toc-parameters" class="nav-link" data-scroll-target="#parameters">⚙️ Parameters</a></li>
+  <li><a href="#step-3-view-output" id="toc-step-3-view-output" class="nav-link" data-scroll-target="#step-3-view-output">🗺️ Step 3 — View Output</a></li>
+  <li><a href="#step-4-symbolize-the-surface" id="toc-step-4-symbolize-the-surface" class="nav-link" data-scroll-target="#step-4-symbolize-the-surface">🎨 Step 4 — Symbolize the Surface</a></li>
+  <li><a href="#step-5-contextualize-with-basemap" id="toc-step-5-contextualize-with-basemap" class="nav-link" data-scroll-target="#step-5-contextualize-with-basemap">🛰️ Step 5 — Contextualize with Basemap</a></li>
+  <li><a href="#step-6-interpret-results" id="toc-step-6-interpret-results" class="nav-link" data-scroll-target="#step-6-interpret-results">🔍 Step 6 — Interpret Results</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">🧩 Key Takeaways</a></li>
+  <li><a href="#further-reference-interpolation-density-surfaces" id="toc-further-reference-interpolation-density-surfaces" class="nav-link" data-scroll-target="#further-reference-interpolation-density-surfaces">📚 Further Reference — Interpolation &amp; Density Surfaces</a></li>
+  </ul></li>
+  <li><a href="#part-ii-network-distances" id="toc-part-ii-network-distances" class="nav-link" data-scroll-target="#part-ii-network-distances">🛣️ Part II: Network Distances</a></li>
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1">🎯 Overview</a>
+  <ul class="collapse">
+  <li><a href="#concept-different-types-of-distance" id="toc-concept-different-types-of-distance" class="nav-link" data-scroll-target="#concept-different-types-of-distance">🧠 Concept: Different Types of Distance</a></li>
+  <li><a href="#euclidean-distance" id="toc-euclidean-distance" class="nav-link" data-scroll-target="#euclidean-distance">📏 Euclidean Distance</a></li>
+  <li><a href="#manhattan-distance" id="toc-manhattan-distance" class="nav-link" data-scroll-target="#manhattan-distance">🧱 Manhattan Distance</a></li>
+  <li><a href="#network-distance" id="toc-network-distance" class="nav-link" data-scroll-target="#network-distance">🛣️ Network Distance</a></li>
+  <li><a href="#data-setup" id="toc-data-setup" class="nav-link" data-scroll-target="#data-setup">📦 Data &amp; Setup</a></li>
+  <li><a href="#step-1-add-your-origin-and-destination-points" id="toc-step-1-add-your-origin-and-destination-points" class="nav-link" data-scroll-target="#step-1-add-your-origin-and-destination-points">📍 Step 1 — Add Your Origin and Destination Points</a></li>
+  <li><a href="#step-2-load-the-street-network" id="toc-step-2-load-the-street-network" class="nav-link" data-scroll-target="#step-2-load-the-street-network">🗺️ Step 2 — Load the Street Network</a></li>
+  <li><a href="#check-the-following" id="toc-check-the-following" class="nav-link" data-scroll-target="#check-the-following">✅ Check the following:</a></li>
+  <li><a href="#step-3-generate-a-point-to-point-route" id="toc-step-3-generate-a-point-to-point-route" class="nav-link" data-scroll-target="#step-3-generate-a-point-to-point-route">🧭 Step 3 — Generate a Point-to-Point Route</a></li>
+  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal">🔧 Goal</a></li>
+  <li><a href="#in-general-you-will" id="toc-in-general-you-will" class="nav-link" data-scroll-target="#in-general-you-will">In general, you will:</a></li>
+  <li><a href="#step-4-choose-a-travel-mode" id="toc-step-4-choose-a-travel-mode" class="nav-link" data-scroll-target="#step-4-choose-a-travel-mode">🚶🚴🚗 Step 4 — Choose a Travel Mode</a></li>
+  <li><a href="#example-travel-assumptions" id="toc-example-travel-assumptions" class="nav-link" data-scroll-target="#example-travel-assumptions">Example travel assumptions:</a></li>
+  </ul></li>
+  <li><a href="#part-iii-isochrones--distance-as-polygons" id="toc-part-iii-isochrones--distance-as-polygons" class="nav-link" data-scroll-target="#part-iii-isochrones--distance-as-polygons">🗺️️ Part III: Isochrones- Distance as Polygons</a>
+  <ul class="collapse">
+  <li><a href="#step-1-generate-isochrones" id="toc-step-1-generate-isochrones" class="nav-link" data-scroll-target="#step-1-generate-isochrones">⏱️ Step 1 — Generate Isochrones</a></li>
+  <li><a href="#what-is-an-isochrone" id="toc-what-is-an-isochrone" class="nav-link" data-scroll-target="#what-is-an-isochrone">What is an isochrone?</a></li>
+  <li><a href="#goal-1" id="toc-goal-1" class="nav-link" data-scroll-target="#goal-1">🔧 Goal</a></li>
+  <li><a href="#suggested-outputs" id="toc-suggested-outputs" class="nav-link" data-scroll-target="#suggested-outputs">Suggested outputs:</a></li>
+  <li><a href="#result" id="toc-result" class="nav-link" data-scroll-target="#result">✅ Result</a></li>
+  <li><a href="#step-2-install-ors-tools-one-time-setup" id="toc-step-2-install-ors-tools-one-time-setup" class="nav-link" data-scroll-target="#step-2-install-ors-tools-one-time-setup">🔌 Step 2 — Install ORS Tools (One-Time Setup)</a></li>
+  <li><a href="#step-3-add-api-key" id="toc-step-3-add-api-key" class="nav-link" data-scroll-target="#step-3-add-api-key">🔑 Step 3 — Add API Key</a></li>
+  <li><a href="#step-4-choose-your-starting-point" id="toc-step-4-choose-your-starting-point" class="nav-link" data-scroll-target="#step-4-choose-your-starting-point">📍 Step 4 — Choose Your Starting Point</a></li>
+  <li><a href="#step-5-run-isochrone-tool" id="toc-step-5-run-isochrone-tool" class="nav-link" data-scroll-target="#step-5-run-isochrone-tool">🛠️ Step 5 — Run Isochrone Tool</a></li>
+  <li><a href="#step-6-run-tool" id="toc-step-6-run-tool" class="nav-link" data-scroll-target="#step-6-run-tool">▶️ Step 6 — Run Tool</a></li>
+  <li><a href="#step-7-add-basemap-context" id="toc-step-7-add-basemap-context" class="nav-link" data-scroll-target="#step-7-add-basemap-context">🛰️ Step 7 — Add Basemap Context</a></li>
+  <li><a href="#step-8-interpret-the-results" id="toc-step-8-interpret-the-results" class="nav-link" data-scroll-target="#step-8-interpret-the-results">🔎 Step 8 — Interpret the Results</a></li>
+  <li><a href="#key-takeaways-1" id="toc-key-takeaways-1" class="nav-link" data-scroll-target="#key-takeaways-1">🧩 Key Takeaways</a></li>
+  <li><a href="#suggested-applications" id="toc-suggested-applications" class="nav-link" data-scroll-target="#suggested-applications">📚 Suggested Applications</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">🚀 Looking Ahead</a></li>
+  <li><a href="#further-reference-network-distance-isochrones" id="toc-further-reference-network-distance-isochrones" class="nav-link" data-scroll-target="#further-reference-network-distance-isochrones">📚 Further Reference — Network Distance &amp; Isochrones</a></li>
+  <li><a href="#ors-tools-isochrones-routing-in-qgis" id="toc-ors-tools-isochrones-routing-in-qgis" class="nav-link" data-scroll-target="#ors-tools-isochrones-routing-in-qgis">🌐 ORS Tools (Isochrones &amp; Routing in QGIS)</a></li>
+  <li><a href="#conceptual-foundations-distance-accessibility" id="toc-conceptual-foundations-distance-accessibility" class="nav-link" data-scroll-target="#conceptual-foundations-distance-accessibility">🧠 Conceptual Foundations — Distance &amp; Accessibility</a></li>
+  <li><a href="#isochrones-service-areas-concept-application" id="toc-isochrones-service-areas-concept-application" class="nav-link" data-scroll-target="#isochrones-service-areas-concept-application">🧭 Isochrones &amp; Service Areas (Concept + Application)</a></li>
+  <li><a href="#step-by-step-tutorials" id="toc-step-by-step-tutorials" class="nav-link" data-scroll-target="#step-by-step-tutorials">🛠️ Step-by-Step Tutorials</a></li>
+  <li><a href="#why-this-matters" id="toc-why-this-matters" class="nav-link" data-scroll-target="#why-this-matters">🎯 Why This Matters</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Class 11 Lecture Demonstration Lab</h1>
+<p class="subtitle lead">Spring 2026 | <a href="https://courses.newschool.edu/courses/UENV3200/">UENV 3200 - CRN 11009</a> + <a href="https://courses.newschool.edu/courses/UURB3210">UURB 3210 - CRN 111008</a></p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">April 10, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="part-i-demonstration-lab-interpolation-density-surfaces" class="level2">
+<h2 class="anchored" data-anchor-id="part-i-demonstration-lab-interpolation-density-surfaces">🌡️ Part I Demonstration Lab — Interpolation &amp; Density Surfaces</h2>
+<section id="overview" class="level3">
+<h3 class="anchored" data-anchor-id="overview">🎯 Overview</h3>
+<p>This lab focuses on <strong>surface interpolation</strong>, a core raster-based method used to transform discrete point data into continuous spatial representations.</p>
+<p>You will work with <strong>NYC vehicle crash data</strong> to generate a <strong>density surface</strong>, revealing spatial patterns that are not immediately visible in the raw point dataset.</p>
+</section>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">📊 Data</h3>
+<ul>
+<li><p><a href="https://www.dropbox.com/s/23euwh4pcg6t3u0/c.12.lab11.data.zip?dl=1">Demonstration Lab Data - Part 1</a></p></li>
+<li><p>Source dataset:<br>
+<a href="https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95">Vehicle Crash feed at Open Data NY</a></p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/iBIpk8n.png" class="img-fluid figure-img"></p>
+<figcaption>Input Vector Features</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/BGlgfOj.png" class="img-fluid figure-img"></p>
+<figcaption>Input Vector Features</figcaption>
+</figure>
+</div>
+</section>
+<section id="concept-why-interpolation" class="level3">
+<h3 class="anchored" data-anchor-id="concept-why-interpolation">🧠 Concept: Why Interpolation?</h3>
+<p>There are <strong>two primary purposes</strong> of surface interpolation:</p>
+<section id="reveal-spatial-patterns" class="level4">
+<h4 class="anchored" data-anchor-id="reveal-spatial-patterns">1. 🔍 Reveal Spatial Patterns</h4>
+<ul>
+<li>Raw point data often appears random or noisy<br>
+</li>
+<li>Interpolation helps uncover <strong>hidden spatial structure</strong></li>
+</ul>
+</section>
+<section id="create-continuous-surfaces" class="level4">
+<h4 class="anchored" data-anchor-id="create-continuous-surfaces">2. 🌊 Create Continuous Surfaces</h4>
+<ul>
+<li>Fill in values between known data points<br>
+</li>
+<li>Smooth variation across geographic space</li>
+</ul>
+<p>👉 In doing so, interpolation: - sacrifices exact point precision<br>
+- produces a <strong>generalized, predictive surface</strong></p>
+</section>
+</section>
+<section id="step-1-define-search-radius" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-define-search-radius">📏 Step 1 — Define Search Radius</h3>
+<p>Before running a density surface, you must define a <strong>search radius</strong>.</p>
+<ul>
+<li>This represents the <strong>distance from each raster cell outward</strong></li>
+<li>Determines how far surrounding points influence each cell</li>
+</ul>
+<p>👉 For this dataset: - Optimal radius = <strong>582 feet</strong></p>
+</section>
+<section id="optional-learn-about-optimal-bandwidth-hopt" class="level3">
+<h3 class="anchored" data-anchor-id="optional-learn-about-optimal-bandwidth-hopt">🎥 Optional: Learn About Optimal Bandwidth (hopt)</h3>
+<ul>
+<li>Video Tutorial for Optimal Bandwidth (hopt) calculation: <a href="https://youtu.be/0zirt-3OGbI"><img src="https://i.imgur.com/XBfEbSb.png" class="img-fluid" alt="hopt process"></a></li>
+</ul>
+</section>
+<section id="step-2-generate-density-surface" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-generate-density-surface">🛠️ Step 2 — Generate Density Surface</h3>
+<p>Use the built-in QGIS tool:</p>
+<section id="heatmap-kernel-density-estimation" class="level4">
+<h4 class="anchored" data-anchor-id="heatmap-kernel-density-estimation">🔧 Heatmap (Kernel Density Estimation)</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/z6xRvJD.png" class="img-fluid figure-img"></p>
+<figcaption>Density Toolset QGIS</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/LzYTVOk.png" class="img-fluid figure-img"></p>
+<figcaption>Density Toolset QGIS - Parameters</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="parameters" class="level3">
+<h3 class="anchored" data-anchor-id="parameters">⚙️ Parameters</h3>
+<ul>
+<li>Input layer → <code>MVC_11_8_2019</code><br>
+</li>
+<li>Radius → <code>582</code><br>
+</li>
+<li>Pixel Size X/Y → <code>100</code><br>
+</li>
+<li>Output value → <code>Raw</code> (accident count per pixel)<br>
+</li>
+<li>Kernel Shape → <code>Quartic</code> (default)<br>
+</li>
+<li>Weights → None</li>
+</ul>
+<p>👉 Note: - Data is projected in <strong>NY State Plane (Feet)</strong> - All distances are in <strong>feet</strong></p>
+</section>
+<section id="step-3-view-output" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-view-output">🗺️ Step 3 — View Output</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/PbQf3lh.png" class="img-fluid figure-img"></p>
+<figcaption>Output</figcaption>
+</figure>
+</div>
+<p>The result is a <strong>continuous raster surface</strong> representing crash density.</p>
+</section>
+<section id="step-4-symbolize-the-surface" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-symbolize-the-surface">🎨 Step 4 — Symbolize the Surface</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/BNXHoAH.png" class="img-fluid figure-img"></p>
+<figcaption>Surface Output Symbolization</figcaption>
+</figure>
+</div>
+<ul>
+<li>Apply <strong>Spectral color ramp</strong></li>
+<li><strong>Invert colors</strong> → high values = red<br>
+</li>
+<li>Set <strong>Cumulative Cut</strong> → 2–98%
+<ul>
+<li>removes extreme low values</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-5-contextualize-with-basemap" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-contextualize-with-basemap">🛰️ Step 5 — Contextualize with Basemap</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/UbgrZzf.png" class="img-fluid figure-img"></p>
+<figcaption>Basemap Added to Layers Panel</figcaption>
+</figure>
+</div>
+<ul>
+<li>Apply <strong>50% transparency</strong></li>
+<li>Overlay on <strong>ESRI Satellite basemap</strong></li>
+</ul>
+</section>
+<section id="step-6-interpret-results" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-interpret-results">🔍 Step 6 — Interpret Results</h3>
+<p>The interpolation surface reveals patterns not visible in the raw data.</p>
+<section id="key-observations" class="level4">
+<h4 class="anchored" data-anchor-id="key-observations">🧭 Key Observations:</h4>
+<ul>
+<li>Crash density aligns with:
+<ul>
+<li>Bridges<br>
+</li>
+<li>Tunnels<br>
+</li>
+<li>Major corridors</li>
+</ul></li>
+</ul>
+</section>
+<section id="lower-manhattan" class="level4">
+<h4 class="anchored" data-anchor-id="lower-manhattan">📍 Lower Manhattan</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/k8Fx207.png" class="img-fluid figure-img"></p>
+<figcaption>Observation Results</figcaption>
+</figure>
+</div>
+</section>
+<section id="midtown" class="level4">
+<h4 class="anchored" data-anchor-id="midtown">📍 Midtown</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/l1pcYH2.png" class="img-fluid figure-img"></p>
+<figcaption>Observation Results</figcaption>
+</figure>
+</div>
+</section>
+<section id="uptown-george-washington-bridge" class="level4">
+<h4 class="anchored" data-anchor-id="uptown-george-washington-bridge">📍 Uptown (George Washington Bridge)</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://i.imgur.com/353YDsV.png" class="img-fluid figure-img"></p>
+<figcaption>Observation Results</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">🧩 Key Takeaways</h3>
+<ul>
+<li>Point data alone can obscure spatial patterns<br>
+</li>
+<li>Interpolation creates <strong>continuous insight from discrete inputs</strong><br>
+</li>
+<li>Kernel density is a powerful tool for:
+<ul>
+<li>hotspot detection<br>
+</li>
+<li>risk visualization<br>
+</li>
+<li>urban analysis</li>
+</ul></li>
+</ul>
+</section>
+<section id="further-reference-interpolation-density-surfaces" class="level3">
+<h3 class="anchored" data-anchor-id="further-reference-interpolation-density-surfaces">📚 Further Reference — Interpolation &amp; Density Surfaces</h3>
+<section id="qgis-heatmap-kernel-density-core-method" class="level4">
+<h4 class="anchored" data-anchor-id="qgis-heatmap-kernel-density-core-method">🔥 QGIS Heatmap / Kernel Density (Core Method)</h4>
+<ul>
+<li><p>QGIS Documentation — Heatmap (Kernel Density Estimation)<br>
+https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/interpolation.html</p></li>
+<li><p>QGIS Training Manual — Raster Analysis &amp; Heatmaps<br>
+https://docs.qgis.org/latest/en/docs/training_manual/processing/raster_analysis.html</p></li>
+</ul>
+</section>
+<section id="conceptual-understanding-density-interpolation" class="level4">
+<h4 class="anchored" data-anchor-id="conceptual-understanding-density-interpolation">🧠 Conceptual Understanding (Density + Interpolation)</h4>
+<ul>
+<li><p>What is Kernel Density Estimation (KDE)?<br>
+https://en.wikipedia.org/wiki/Kernel_density_estimation</p></li>
+<li><p>ESRI Guide — Understanding Density Analysis<br>
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/how-kernel-density-works.htm</p></li>
+</ul>
+</section>
+<section id="step-by-step-qgis-tutorials" class="level4">
+<h4 class="anchored" data-anchor-id="step-by-step-qgis-tutorials">🛠️ Step-by-Step QGIS Tutorials</h4>
+<ul>
+<li><p>QGIS Heatmap Tutorial (Points to Density Surface)<br>
+https://www.qgistutorials.com/en/docs/3/creating_heatmaps.html</p></li>
+<li><p>Interpolation in QGIS (IDW Method)<br>
+https://www.qgistutorials.com/en/docs/3/interpolating_point_data.html</p></li>
+</ul>
+</section>
+<section id="bandwidth-search-radius-concepts" class="level4">
+<h4 class="anchored" data-anchor-id="bandwidth-search-radius-concepts">📏 Bandwidth (Search Radius) Concepts</h4>
+<ul>
+<li><p>Bandwidth Selection in KDE (Conceptual Guide)<br>
+https://en.wikipedia.org/wiki/Kernel_density_estimation#Bandwidth_selection</p></li>
+<li><p>Practical Explanation of Search Radius in Density Mapping<br>
+https://gisgeography.com/kernel-density-estimation/</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="part-ii-network-distances" class="level2">
+<h2 class="anchored" data-anchor-id="part-ii-network-distances">🛣️ Part II: Network Distances</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Manhattan_distance.svg" class="img-fluid figure-img"></p>
+<figcaption>Distance Types Diagram</figcaption>
+</figure>
+</div>
+<p><em>The graphic above compares two important ways of measuring distance. <strong>Euclidean distance</strong> measures straight-line distance “as the crow flies,” while <strong>Manhattan distance</strong> measures movement along a grid. In GIS, <strong>network distance</strong> is closely related to Manhattan distance in concept, but more realistic in practice: it follows actual connected streets, paths, or routes and can also incorporate travel mode, speed, and time.</em></p>
+<p>In NYC, the LION Dataset is often used as the ‘network’ upon which distance can be calculated:</p>
+<blockquote class="blockquote">
+<p>LION: A single line street base map representing the city’s streets and other linear geographic features such as shorelines, surface rail lines and boardwalks, along with feature names and address ranges for each addressable street segment.</p>
+</blockquote>
+<ul>
+<li><a href="https://s-media.nyc.gov/agencies/dcp/assets/files/zip/data-tools/bytes/lion/nyclion_26a.zip">LION NYC Planning Dataset Download (Zip)</a></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c11_demo_files/img/LION.png" class="img-fluid figure-img"></p>
+<figcaption>NYC LION Dataset @ Lower Manhattan</figcaption>
+</figure>
+</div>
+</section>
+<section id="overview-1" class="level2">
+<h2 class="anchored" data-anchor-id="overview-1">🎯 Overview</h2>
+<p>In this part of the lab, you will explore how <strong>network distance</strong> differs from straight-line distance. Rather than measuring from one point directly to another through open space, network analysis measures travel <strong>along connected streets and paths</strong>.</p>
+<p>You will complete two tasks:</p>
+<ul>
+<li>Create a <strong>simple route</strong> from one point to another in New York City</li>
+<li>Generate <strong>isochrones</strong> from a point outward based on:
+<ul>
+<li>travel mode</li>
+<li>travel speed</li>
+<li>resulting travel distance / travel time</li>
+</ul></li>
+</ul>
+<p>This process is especially useful for understanding <strong>access, mobility, and service coverage</strong> in urban environments.</p>
+<section id="concept-different-types-of-distance" class="level3">
+<h3 class="anchored" data-anchor-id="concept-different-types-of-distance">🧠 Concept: Different Types of Distance</h3>
+<p>Before beginning, it is important to understand that there is more than one way to measure distance in GIS.</p>
+</section>
+<section id="euclidean-distance" class="level3">
+<h3 class="anchored" data-anchor-id="euclidean-distance">📏 Euclidean Distance</h3>
+<ul>
+<li>Straight-line distance</li>
+<li>Fast to calculate</li>
+<li>Useful for simple proximity analysis</li>
+<li>Does <strong>not</strong> account for streets, barriers, or travel routes</li>
+</ul>
+</section>
+<section id="manhattan-distance" class="level3">
+<h3 class="anchored" data-anchor-id="manhattan-distance">🧱 Manhattan Distance</h3>
+<ul>
+<li>Distance measured along horizontal and vertical paths</li>
+<li>Often used to describe movement through gridded street systems</li>
+<li>A simplified version of movement through built environments</li>
+</ul>
+</section>
+<section id="network-distance" class="level3">
+<h3 class="anchored" data-anchor-id="network-distance">🛣️ Network Distance</h3>
+<ul>
+<li>Distance measured along actual connected routes</li>
+<li>Uses streets, paths, or transit corridors</li>
+<li>Can account for:
+<ul>
+<li>one-way travel</li>
+<li>route connectivity</li>
+<li>travel speed</li>
+<li>travel time</li>
+<li>travel type (walk, drive, bike)</li>
+</ul></li>
+</ul>
+<p>👉 In cities, <strong>network distance is often more realistic than Euclidean distance</strong> because people move through infrastructure rather than across open space.</p>
+</section>
+<section id="data-setup" class="level3">
+<h3 class="anchored" data-anchor-id="data-setup">📦 Data &amp; Setup</h3>
+<ul>
+<li><a href="https://www.dropbox.com/scl/fi/c9b858tzxyyyu9bqz68iw/Demo-Lab_11_PartII.zip?rlkey=648eee32ceyxwba194wtx64to&amp;st=hf4koca3&amp;dl=1">Demonstration Lab Data - Part 2</a></li>
+</ul>
+<p>Before you begin, make sure you have:</p>
+<ul>
+<li>A street network or routing tool available in QGIS</li>
+<li>A starting point and destination point within NYC</li>
+<li>A projected coordinate system or web routing workflow ready to use</li>
+</ul>
+<p>You may use:</p>
+<ul>
+<li>A local street centerline dataset</li>
+<li>OpenStreetMap street data</li>
+<li>A routing plugin or service available in QGIS</li>
+</ul>
+</section>
+<section id="step-1-add-your-origin-and-destination-points" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-add-your-origin-and-destination-points">📍 Step 1 — Add Your Origin and Destination Points</h3>
+<p>Create or load two point locations in New York City:</p>
+<ul>
+<li><strong>Origin</strong> = your starting location</li>
+<li><strong>Destination</strong> = your ending location</li>
+</ul>
+<p>These can be: - landmarks - subway stations - schools - parks - intersections - any two locations of interest</p>
+<p>👉 Keep the points within the same borough or nearby area for a simple first test.</p>
+</section>
+<section id="step-2-load-the-street-network" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-load-the-street-network">🗺️ Step 2 — Load the Street Network</h3>
+<p>Add the street network layer that will be used for routing.</p>
+<p>This network should consist of connected street line features that can support route calculation.</p>
+</section>
+<section id="check-the-following" class="level3">
+<h3 class="anchored" data-anchor-id="check-the-following">✅ Check the following:</h3>
+<ul>
+<li>The streets are visible in the map</li>
+<li>The layer is in the correct area</li>
+<li>The streets appear connected</li>
+<li>Your origin and destination points are close to the network</li>
+</ul>
+<p>👉 A network analysis will only work correctly if the road lines are connected well enough to support movement from one point to another.</p>
+</section>
+<section id="step-3-generate-a-point-to-point-route" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-generate-a-point-to-point-route">🧭 Step 3 — Generate a Point-to-Point Route</h3>
+<p>Use the route or shortest path tool in QGIS to calculate a route from your origin to your destination.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c11_demo_files/img/NA1.png" class="img-fluid figure-img"></p>
+<figcaption>Standard Network analysis Toolbox in QGIS</figcaption>
+</figure>
+</div>
+</section>
+<section id="goal" class="level3">
+<h3 class="anchored" data-anchor-id="goal">🔧 Goal</h3>
+<p>Create the <strong>best route</strong> between two known points using the street network.</p>
+</section>
+<section id="in-general-you-will" class="level3">
+<h3 class="anchored" data-anchor-id="in-general-you-will">In general, you will:</h3>
+<ul>
+<li>choose the street network as the input layer</li>
+<li>choose the origin point</li>
+<li>choose the destination point</li>
+<li>define the route based on:
+<ul>
+<li>shortest distance</li>
+<li>or fastest travel time</li>
+</ul></li>
+</ul>
+</section>
+<section id="step-4-choose-a-travel-mode" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-choose-a-travel-mode">🚶🚴🚗 Step 4 — Choose a Travel Mode</h3>
+<p>Next, think about how <strong>travel type</strong> changes accessibility.</p>
+<p>Common travel modes include: - walking - biking - driving</p>
+<p>Each mode affects: - available routes - travel speed - area reached within a fixed time</p>
+</section>
+<section id="example-travel-assumptions" class="level3">
+<h3 class="anchored" data-anchor-id="example-travel-assumptions">Example travel assumptions:</h3>
+<ul>
+<li>Walking = slower speed, smaller reach</li>
+<li>Biking = medium speed, broader reach</li>
+<li>Driving = faster speed, much larger reach</li>
+</ul>
+<p>👉 Even when starting from the same point, different travel modes can produce very different accessibility patterns.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Time permitting, also run the Service area (from point) tool prior to the next section - Generating Isochrones</p>
+</div>
+</div>
+</section>
+</section>
+<section id="part-iii-isochrones--distance-as-polygons" class="level2">
+<h2 class="anchored" data-anchor-id="part-iii-isochrones--distance-as-polygons">🗺️️ Part III: Isochrones- Distance as Polygons</h2>
+<section id="step-1-generate-isochrones" class="level3">
+<h3 class="anchored" data-anchor-id="step-1-generate-isochrones">⏱️ Step 1 — Generate Isochrones</h3>
+</section>
+<section id="what-is-an-isochrone" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-an-isochrone">What is an isochrone?</h3>
+<p>An isochrone is a polygon or boundary showing how far someone can travel <strong>from one point outward</strong> within a given amount of time.</p>
+<p>Examples: - 5-minute walk - 10-minute bike ride - 15-minute drive</p>
+</section>
+<section id="goal-1" class="level3">
+<h3 class="anchored" data-anchor-id="goal-1">🔧 Goal</h3>
+<p>Generate one or more isochrones using: - a starting point - a travel mode - a travel speed or travel-time threshold</p>
+</section>
+<section id="suggested-outputs" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-outputs">Suggested outputs:</h3>
+<ul>
+<li>5-minute isochrone</li>
+<li>10-minute isochrone</li>
+<li>15-minute isochrone</li>
+</ul>
+</section>
+<section id="result" class="level3">
+<h3 class="anchored" data-anchor-id="result">✅ Result</h3>
+<p>You should get one or more polygons showing reachable space from the origin.</p>
+</section>
+<section id="step-2-install-ors-tools-one-time-setup" class="level3">
+<h3 class="anchored" data-anchor-id="step-2-install-ors-tools-one-time-setup">🔌 Step 2 — Install ORS Tools (One-Time Setup)</h3>
+<p>In QGIS:</p>
+<ul>
+<li>Go to <strong>Plugins → Manage and Install Plugins</strong></li>
+<li>Search for: <code>ORS Tools</code></li>
+<li>Click <strong>Install</strong></li>
+</ul>
+</section>
+<section id="step-3-add-api-key" class="level3">
+<h3 class="anchored" data-anchor-id="step-3-add-api-key">🔑 Step 3 — Add API Key</h3>
+<ul>
+<li>Go to: https://openrouteservice.org/</li>
+<li>Create a free account<br>
+</li>
+<li>Copy your API key</li>
+</ul>
+<p>In QGIS: - Open <strong>ORS Tools panel</strong> - Paste your API key into settings</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c11_demo_files/img/ORS1.png" class="img-fluid figure-img"></p>
+<figcaption>ORS &gt; Settings &gt; API Key</figcaption>
+</figure>
+</div>
+</section>
+<section id="step-4-choose-your-starting-point" class="level3">
+<h3 class="anchored" data-anchor-id="step-4-choose-your-starting-point">📍 Step 4 — Choose Your Starting Point</h3>
+<p>Use your <strong>Origin point</strong> from the previous step.</p>
+<p>👉 This is the location from which travel will expand outward.</p>
+</section>
+<section id="step-5-run-isochrone-tool" class="level3">
+<h3 class="anchored" data-anchor-id="step-5-run-isochrone-tool">🛠️ Step 5 — Run Isochrone Tool</h3>
+<p>Open:</p>
+<p>👉 <strong>ORS Tools → Isochrones → Isochrones from Point</strong></p>
+<section id="set-parameters" class="level4">
+<h4 class="anchored" data-anchor-id="set-parameters">⚙️ Set Parameters:</h4>
+<ul>
+<li><p>Input point → your <strong>Origin</strong></p></li>
+<li><p>Travel mode → choose one:</p>
+<ul>
+<li><code>Foot-walking</code></li>
+<li><code>Driving-car</code></li>
+<li><code>Cycling</code></li>
+</ul></li>
+<li><p>Range type → <code>Time</code></p></li>
+<li><p>Ranges (seconds):</p>
+<ul>
+<li><code>300</code> (5 minutes)<br>
+</li>
+<li><code>600</code> (10 minutes)<br>
+</li>
+<li><code>900</code> (15 minutes)</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="step-6-run-tool" class="level3">
+<h3 class="anchored" data-anchor-id="step-6-run-tool">▶️ Step 6 — Run Tool</h3>
+<p>Click <strong>Run</strong></p>
+</section>
+<section id="step-7-add-basemap-context" class="level3">
+<h3 class="anchored" data-anchor-id="step-7-add-basemap-context">🛰️ Step 7 — Add Basemap Context</h3>
+<p>Overlay the route and isochrones on a basemap.</p>
+<p>This helps you interpret: - which neighborhoods are included - which streets shape accessibility - where barriers or disconnected zones appear</p>
+<p>A basemap can make your results much easier to understand spatially.</p>
+</section>
+<section id="step-8-interpret-the-results" class="level3">
+<h3 class="anchored" data-anchor-id="step-8-interpret-the-results">🔎 Step 8 — Interpret the Results</h3>
+<p>Review both your point-to-point route and your isochrones.</p>
+<section id="consider" class="level4">
+<h4 class="anchored" data-anchor-id="consider">Consider:</h4>
+<ul>
+<li>Which areas are reachable within each travel time?</li>
+<li>How does the reachable area change by travel mode?</li>
+<li>Are some neighborhoods more connected than others?</li>
+<li>Does the shape of the isochrone reflect the street pattern?</li>
+<li>How is this different from a simple buffer?</li>
+</ul>
+<p>👉 A standard buffer assumes all directions are equally reachable. An isochrone shows that <strong>real access depends on the network</strong>.</p>
+</section>
+</section>
+<section id="key-takeaways-1" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways-1">🧩 Key Takeaways</h3>
+<ul>
+<li>Not all distances in GIS mean the same thing</li>
+<li>Euclidean distance is simple, but often unrealistic in cities</li>
+<li>Manhattan distance reflects grid-like movement</li>
+<li>Network distance follows actual travel routes</li>
+<li>Isochrones show how accessibility changes based on:
+<ul>
+<li>route structure</li>
+<li>travel speed</li>
+<li>travel type</li>
+<li>time threshold</li>
+</ul></li>
+</ul>
+</section>
+<section id="suggested-applications" class="level3">
+<h3 class="anchored" data-anchor-id="suggested-applications">📚 Suggested Applications</h3>
+<p>Network distance and isochrones are useful for projects involving:</p>
+<ul>
+<li>transit access</li>
+<li>walkability</li>
+<li>service coverage</li>
+<li>emergency response</li>
+<li>food access</li>
+<li>school access</li>
+<li>park access</li>
+<li>healthcare accessibility</li>
+<li>urban mobility and inequality</li>
+</ul>
+</section>
+<section id="looking-ahead" class="level3">
+<h3 class="anchored" data-anchor-id="looking-ahead">🚀 Looking Ahead</h3>
+<p>This method can be combined with other GIS approaches from the course.</p>
+<p>For example: - compare crash hotspots with network accessibility - measure access to parks in vulnerable neighborhoods - evaluate service coverage in flood-prone areas</p>
+<p>👉 Network analysis helps move from <strong>where things are</strong> to <strong>who can reach them and how</strong>.</p>
+</section>
+<section id="further-reference-network-distance-isochrones" class="level3">
+<h3 class="anchored" data-anchor-id="further-reference-network-distance-isochrones">📚 Further Reference — Network Distance &amp; Isochrones</h3>
+<section id="qgis-network-analysis-core-tools" class="level4">
+<h4 class="anchored" data-anchor-id="qgis-network-analysis-core-tools">🛣️ QGIS Network Analysis (Core Tools)</h4>
+<ul>
+<li><p>QGIS Documentation — Network Analysis (Shortest Path, Service Areas)<br>
+https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/networkanalysis.html</p></li>
+<li><p>QGIS Training Manual — Network Analysis<br>
+https://docs.qgis.org/latest/en/docs/training_manual/vector_analysis/network_analysis.html</p></li>
+</ul>
+</section>
+</section>
+<section id="ors-tools-isochrones-routing-in-qgis" class="level3">
+<h3 class="anchored" data-anchor-id="ors-tools-isochrones-routing-in-qgis">🌐 ORS Tools (Isochrones &amp; Routing in QGIS)</h3>
+<ul>
+<li><p>ORS Tools Plugin Documentation<br>
+https://giscience.github.io/openrouteservice/documentation/ors-tools/</p></li>
+<li><p>OpenRouteService (ORS) Web Platform<br>
+https://openrouteservice.org/</p></li>
+<li><p>ORS API Documentation (Isochrones, Routing, Travel Modes)<br>
+https://giscience.github.io/openrouteservice/api-reference/</p></li>
+</ul>
+</section>
+<section id="conceptual-foundations-distance-accessibility" class="level3">
+<h3 class="anchored" data-anchor-id="conceptual-foundations-distance-accessibility">🧠 Conceptual Foundations — Distance &amp; Accessibility</h3>
+<ul>
+<li><p>Euclidean vs Network Distance (Overview)<br>
+https://en.wikipedia.org/wiki/Euclidean_distance</p></li>
+<li><p>Manhattan Distance (Grid-Based Movement)<br>
+https://en.wikipedia.org/wiki/Taxicab_geometry</p></li>
+<li><p>Accessibility (Urban Planning Context)<br>
+https://en.wikipedia.org/wiki/Accessibility</p></li>
+</ul>
+</section>
+<section id="isochrones-service-areas-concept-application" class="level3">
+<h3 class="anchored" data-anchor-id="isochrones-service-areas-concept-application">🧭 Isochrones &amp; Service Areas (Concept + Application)</h3>
+<ul>
+<li><p>ESRI Guide — Understanding Service Areas<br>
+https://pro.arcgis.com/en/pro-app/latest/tool-reference/network-analyst/service-area.htm</p></li>
+<li><p>What is an Isochrone? (Clear Explanation)<br>
+https://www.mapbox.com/blog/isochrones</p></li>
+</ul>
+</section>
+<section id="step-by-step-tutorials" class="level3">
+<h3 class="anchored" data-anchor-id="step-by-step-tutorials">🛠️ Step-by-Step Tutorials</h3>
+<ul>
+<li><p>QGIS Shortest Path Tutorial<br>
+https://www.qgistutorials.com/en/docs/3/shortest_path.html</p></li>
+<li><p>Creating Service Areas / Isochrones in QGIS<br>
+https://www.qgistutorials.com/en/docs/3/network_analysis.html</p></li>
+</ul>
+</section>
+<section id="why-this-matters" class="level3">
+<h3 class="anchored" data-anchor-id="why-this-matters">🎯 Why This Matters</h3>
+<p>These tools allow you to move beyond:</p>
+<ul>
+<li>simple proximity (buffers)</li>
+</ul>
+<p>and toward:</p>
+<ul>
+<li><strong>real-world accessibility</strong></li>
+<li><strong>movement-based analysis</strong></li>
+<li><strong>who can reach what—and how quickly</strong></li>
+</ul>
+<p>👉 Network distance is essential for understanding cities as <strong>connected systems</strong>, not just static maps.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("^(?:http:|https:)\/\/www\.quarto\.org\/custom");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="c11_demo_files/libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
